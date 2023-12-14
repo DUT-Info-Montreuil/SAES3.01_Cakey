@@ -20,6 +20,7 @@ class ControleurClassement {
 				break;
 			case "niveau" :
 				$this->niveau();
+				echo'niveau';
 				break;
 			default : 
 				die ("Action inexistante");

@@ -2,8 +2,8 @@
 class VueClassement{
     public function menu(){
         ?> <ul>
-            <li><a href="index.php?module=classement&action=general">Classement général</a></li>
-            <li><a href="index.php?module=classement&action=niveau">Classement par niveau</a></li>
+            <li><a href="index.php?getmodule=modClassement&action=general">Classement général</a></li>
+            <li><a href="index.php?getmodule=modClassement&action=niveau">Classement par niveau</a></li>
     </ul>
     <?php
     }
