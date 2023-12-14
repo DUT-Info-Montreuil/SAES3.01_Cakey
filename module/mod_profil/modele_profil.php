@@ -19,7 +19,13 @@ class ModeleProfil extends Connexion{
   		return $pdo_req->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public function get_classementProfil ($id) {
+		$req = "SELECT niveau, degatmax, temps, xp 
+			FROM partie   
+			WHERE utilisateur.idUtil=:id";
+	}
 	
+	//modification profil : pdp à faire
 	public function modifLogin($id, $nouvLogin) {
         $req = "update utilisateur set login = :login where idUtil = :id";
     
@@ -39,6 +45,10 @@ class ModeleProfil extends Connexion{
     
         return $pdo_req->execute();
     }
+	
+
+
+
 	
 	
 	

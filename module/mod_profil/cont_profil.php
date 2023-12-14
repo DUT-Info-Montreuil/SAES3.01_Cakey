@@ -19,13 +19,19 @@ class ControleuProfil {
  			case "profil" :
 				$this->donneesProfil();
 				break;
-			case "partager" :
-				$this->details();
+			case "partager" : // ou avec js
+				$this->partagerProfil(); 
 				break;
 			case "modifProfil" :
 				$this->modifProfil();
 				break;
-				
+			case "inventaire" :
+				$this->inventaire();
+				break;
+			case "ajoutAmi" :
+				$this->ajoutAmi();
+				break;
+
 			default : 
 				die ("Action inexistante");
 			
@@ -41,25 +47,35 @@ class ControleuProfil {
 		}
  		$this->vue->donneesProfil($donnees);
 	}
+
+	private function modifProfil() {
+		$id = 1;  //$_SESSION['id']?
+	   $nouvLogin = isset($_POST['login']) ? $_POST['login'] : '';
+	   $nouvdescription = isset($_POST['description']) ? $_POST['description'] : '';
+	   
+		if ($nouvLogin !== '') {
+			$this->modele->modifLogin($id, $nouvLogin);
+	   }
+   
+	   if ($nouvdescription !== '') {
+			$this->modele->modifDescription($id, $nouvdescription);
+	   }
+   
+		header("Location: index.php?getmodule=modProfil");
+	   exit();
+   }
 	private function partagerProfil () {
   
 	}
-	private function modifProfil() {
- 			$id = 1;  //$_SESSION['id']
-			$nouvLogin = isset($_POST['login']) ? $_POST['login'] : '';
-			$nouvdescription = isset($_POST['description']) ? $_POST['description'] : '';
-			
- 			if ($nouvLogin !== '') {
- 				$this->modele->modifLogin($id, $nouvLogin);
-			}
-		
-			if ($nouvdescription !== '') {
- 				$this->modele->modifDescription($id, $nouvdescription);
-			}
-		
- 			header("Location: index.php?getmodule=modProfil");
-			exit();
-		}
+
+	private function inventaire () {
+  
+	}
+
+	private function ajoutAmi () {
+  
+	}
+
 }
 
 

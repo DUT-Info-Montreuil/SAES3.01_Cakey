@@ -70,7 +70,7 @@ switch ($getmodule) {
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
-        $module->exec();
+
         break;
         
     case 'modUnivers' :
@@ -83,6 +83,7 @@ switch ($getmodule) {
         break;
     default : break;
 }
+$module->exec();
 
 //données dynamiques//
 $pageTitle = "Cakey";
