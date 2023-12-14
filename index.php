@@ -59,8 +59,10 @@ switch ($getmodule) {
         $module = new ModBonus;
         break;
     case 'modClassement' :
-        include_once './module/mod_classement/modele_classement.php';
-        $module = new ModClassement;
+        include_once './module/mod_classement/mod_classement.php';
+        echo'classement';
+        $module = new ModClassement();
+        $module->exec();
         break;
     case 'modNiveaux' :
         include_once './module/mod_niveaux/modele_niveaux.php';
@@ -75,8 +77,8 @@ switch ($getmodule) {
         $module = new ModUnivers;
         break;
     case 'modConnexion':
-        //include_once './module/mod_connexion/modele_connexion.php';
-     //   $module = new ModConnexion;
+        include_once './module/mod_connexion/modele_connexion.php';
+        $module = new ModConnexion;
         break;
     default : break;
 }
