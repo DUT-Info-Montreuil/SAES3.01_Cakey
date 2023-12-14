@@ -44,39 +44,42 @@ include_once './composants/controllerCompMenu.php';
 Connexion::initConnexion();
 
 $vueGenerique = new VueGenerique();
-$getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modConnexion';
+$getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modProfil';
 switch ($getmodule) {
     case 'modEnnemis':
-        include_once './module/mod_ennemi/modele_ennemi.php';
+        include_once './module/mod_ennemi/mod_ennemi.php';
         $module = new ModJoueurs;
         break;
     case 'modUstensile':
-        include_once './module/mod_ustensile/modele_ustensile.php';
+        include_once './module/mod_ustensile/mod_ustensile.php';
         $module = new ModUstensile;
         break;
     case 'modBonus' :
-        include_once './module/mod_bonus/modele_bonus.php';
+        include_once './module/mod_bonus/mod_bonus.php';
         $module = new ModBonus;
         break;
     case 'modClassement' :
-        include_once './module/mod_classement/modele_classement.php';
+        include_once './module/mod_classement/mod_classement.php';
         $module = new ModClassement;
         break;
     case 'modNiveaux' :
-        include_once './module/mod_niveaux/modele_niveaux.php';
+        include_once './module/mod_niveaux/mod_niveaux.php';
         $module = new ModNiveaux;
         break;
+
     case 'modProfil' : 
-        include_once './module/mod_profil/modele_profil.php';
+        include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
+        $module->exec();
         break;
+        
     case 'modUnivers' :
-        include_once './module/mod_univers/modele_univers.php';
+        include_once './module/mod_univers/mod_univers.php';
         $module = new ModUnivers;
         break;
     case 'modConnexion':
-        //include_once './module/mod_connexion/modele_connexion.php';
-     //   $module = new ModConnexion;
+        include_once './module/mod_connexion/mod_connexion.php';
+        $module = new ModConnexion;
         break;
     default : break;
 }
@@ -84,8 +87,9 @@ switch ($getmodule) {
 //données dynamiques//
 $pageTitle = "Cakey";
 $tampon = $vueGenerique->getAffichage();
-//fin données dynamiques//
 
+//fin données dynamiques//
+ 
 include_once './template.php';
 
 ?>

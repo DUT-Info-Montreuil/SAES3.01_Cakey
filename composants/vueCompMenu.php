@@ -10,7 +10,11 @@ class VueCompMenu{
 					<li><a href="index.php?getmodule=modTours">Tours</a></li>
 					<li><a href="index.php?getmodule=modBonus">Bonus</a></li>
 					<li><a href="index.php?getmodule=modConnexion">Connexion</a></li>
-				</ul>';
+					<li><a href="index.php?getmodule=modProfil">Profil</a></li>
+
+					
+
+					</ul>';
 	}
 
 	public function affiche(){
