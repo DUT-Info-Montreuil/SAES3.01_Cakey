@@ -19,4 +19,12 @@ public function __construct(VueConnexion $vue, ModeleConnexion $modele){
     public function inscription(){
 		$this->modele->recupDonneesInscriptionEtAjoutBD();
 	}
+
+    public function connexion(){
+		$this->modele->recupDonneesEtConnexion();
+	}
+
+    public function deconnexion(){
+        $this->modele->deconnexion();
+    }
 }

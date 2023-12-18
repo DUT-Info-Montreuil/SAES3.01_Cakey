@@ -27,7 +27,9 @@ class ModeleConnexion extends Connexion{
 
 
 				if ($sql->execute()) {
-					echo'Vous êtes inscrit !';
+					echo 'Votre inscription a été prise en compte. Vous allez être redirigé vers la page de connexion.';
+					header('Refresh: 4; URL=index.php?getmodule=modConnexion&action=formulaireConnexion');
+					exit;
 				}
 				else {
 					echo'Une erreur est survenue lors de votre inscription';
@@ -41,23 +43,61 @@ class ModeleConnexion extends Connexion{
 		if ($photo['error'] === UPLOAD_ERR_OK) {
 			$uploadDir = 'ressources/photoProfil/';
 			$uploadFile = $uploadDir . basename($photo['name']);
-		if (move_uploaded_file($photo['tmp_name'], $uploadFile)) {
-			$sql = self::$bdd->prepare('SELECT idUser FROM utilisateur ORDER BY idUser DESC LIMIT 1;');
+			if (move_uploaded_file($photo['tmp_name'], $uploadFile)) {
+				$sql = self::$bdd->prepare('SELECT idUser FROM utilisateur ORDER BY idUser DESC LIMIT 1;');
+				$sql->execute();
+				$result = $sql->fetch();
+				$newId = $result['idUser'] + 1; 
+				$newFilePath = 'ressources/photoProfil/user' . $newId;
+				//a modifier si on veut que le num de la pp match avec l'idUser si suppression dans les lignes précédentes
+				
+				if (rename($uploadFile, $newFilePath)) {
+					return $newFilePath;
+				} else {
+					echo "Erreur lors du renommage du fichier.";
+				}
+			}else{
+				echo "Erreur lors du téléchargement du fichier.";
+			}
+		}	
+	}
+
+	public function recupDonneesEtConnexion(){
+		if(isset($_POST['seConnecter'])){
+			$sql = self::$bdd->prepare("select pwd from utilisateur where login = :login");
+			$sql->bindParam(':login', $_POST['login'], PDO::PARAM_STR);
 			$sql->execute();
 			$result = $sql->fetch();
-		    $newId = $result['idUser'] + 1; 
-		    $newFilePath = 'ressources/photoProfil/' . $newId;
-		    
-		    if (rename($uploadFile, $newFilePath)) {
-                return $newFilePath;
-		    } else {
-			    echo "Erreur lors du renommage du fichier.";
-		    }
-		}else{
-		    echo "Erreur lors du téléchargement du fichier.";
+			$hash = $result['pwd'];
+			
+			if(password_verify($_POST['pwd'], $hash)){
+				$_SESSION["newsession"] = $_POST['login'];
+				/*verifier si la case de $_SESSION est set, si oui ça veut dire que l'user est connecté sinon non*/
+				if(isset($_SESSION["newsession"])){
+					echo "vous êtes connecté !"; 
+					//ou rediriger vers la page d'accueil ou la page de profil ?
+				}
+				else {"erreur de connexion";}	
+			} else echo 'mot de passe invalide';
 		}
-
-
 	}
-}
+
+	public function deconnexion(){
+		if(isset($_SESSION["newsession"])){
+			unset($_SESSION["newsession"]);
+			if(!isset($_SESSION["newsession"])){
+				echo "A bientôt !";
+			}	
+		} else {
+			echo "Aucun utilisateur n'est actuellement connecté."; ?>
+			<a href="index.php?getmodule=modConnexion&action=formulaireConnexion">Se connecter</a>
+<?php
+
+		}
+	}
+
+	
+
+
+
 }
