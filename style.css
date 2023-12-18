@@ -124,11 +124,17 @@ nav > ul li:hover .sousOngletsUnivers{
 
 
 footer{
+    /*
     width: 100%;
     margin: 0 auto;
     background-color: orange;
     position: sticky;
     top: 0px;
+    */
+    position: absolute;
+    bottom: 0;
+    background-color: orange;
+    width: 100%;
 }
 
 footer ul{
@@ -181,3 +187,56 @@ footer a:hover{
     padding: 0;
     margin: 0;
 }
+
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: table;
+    width: 100%;
+}
+
+#main{
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.histoire{
+    /*border: 5px solid;*/
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.histoire h3{
+    color: lightpink;
+}
+
+.histoire img{
+    width: 15%;
+    margin: auto;
+    padding: 10px;
+}
+
+.imgText p{
+    border: 2px solid;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 95px;
+}
+
