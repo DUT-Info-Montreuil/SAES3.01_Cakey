@@ -76,7 +76,7 @@ switch ($getmodule) {
         break;
     case 'modConnexion':
         include_once './module/mod_connexion/mod_connexion.php';
-      //  $module = new ModConnexion;
+        $module = new ModConnexion;
         break;
     default : break;
 }
