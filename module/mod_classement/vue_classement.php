@@ -22,5 +22,35 @@ class VueClassement{
     <?php
     }
 
+	public function tab ($données){
+        ?>
+         <table>
+            <thead>
+                <tr>
+                    <td > Position</td>
+                    <td> Nom</td>
+                    <td> rang </td>
+                    <td> niveau max</td>
+                    <td > Xp </td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($données as $util){
+                    ?><tr>
+                        <td>1</td>
+                        <td><a href="index.php?getModule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td> <?=$util["description"]?> </td>
+                        <td> <?=$util["nbSignalementsAbusifs"]?> </td>
+                        <td> <?=$util["argentChocolat"]?> </td>
+                </tr><?php 
+                }
+                ?>
+                </tbody>
+                </table>
+                <?php
+                
 
+                
+    }
 }

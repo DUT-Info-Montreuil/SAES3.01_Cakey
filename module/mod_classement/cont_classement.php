@@ -35,8 +35,9 @@ class ControleurClassement {
 	}
 	
 	private function niveau () {
+		$liste =$this->modele->get_liste();
 		$this->vue->menu();
-        $this->vue->get_tableauParNiveau();
+       $this->vue->tab($liste);
 		
 	}
 	
