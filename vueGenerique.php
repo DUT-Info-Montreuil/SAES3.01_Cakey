@@ -40,12 +40,14 @@
                         <li class="barreRecherche">
                             <input type="text" maxlength="20" placeholder="Rechercher" class="searchbar" />
                             <img src="https://images-na.ssl-images-amazon.com/images/I/41gYkruZM2L.png" alt="search icon" class="button" />
-                        </li>
-                        <li>
-                            <a href ="index.php?getmodule=modConnexion&action=formulaireInscription">Inscription</a>
-                        </li>
-                        <li>
-                            <a href ="index.php?getmodule=modConnexion&action=formulaireConnexion">Connexion</a>
+                        </li> ';
+                            if(isset($_SESSION['newsession'])){
+                                echo '   <li><a href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
+                            }
+                            else { 
+                                echo '    <li><a href="index.php?getmodule=modConnexion&action=formulaireInscription">Inscription</a></li> ';
+                                echo '    <li><a href="index.php?getmodule=modConnexion&action=formulaireConnexion">Connexion</a></li> ';                            }
+                            echo ' 
                         </li>
                     </ul>
                 </nav>

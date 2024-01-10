@@ -25,6 +25,7 @@
 	}
 
     public function formulaireConnexion(){
+		self::header();
 		if(isset($_SESSION['newsession'])){
 			 echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
 			?> </br> 
@@ -37,7 +38,7 @@
 			<p>Entrez votre login : </p>
 			<input type="text" name="login" maxlength="100" />
 			<p>Entrez votre mot de passe : </p>
-			<input type="text" name="pwd" maxlength="200" />
+			<input type="password" name="pwd" maxlength="200" />
 
 		    <button type="submit" name="seConnecter">Valider</button>
 		<p> Pas encore inscrit ?</p>
@@ -45,10 +46,12 @@
 		</form>
 <?php
 		}
+		self::footer();
 	}
 
 
     public function formulaireInscription(){
+		self::header();
         ?>		
         <p> Formulaire d'inscription </p>
             <form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
@@ -63,5 +66,6 @@
 
             </form>
         <?php
+		self::footer();
     }
 }
