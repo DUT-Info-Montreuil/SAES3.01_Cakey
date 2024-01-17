@@ -5,14 +5,12 @@ public function __contruct(){
 }
 
 public function page(){
-    self::header();
     echo ' 
     <html>
         <head>
             <title>Page</title>
             <meta charset="utf-8">
-            <!--<link rel="stylesheet" href="style.css"> -->
-            <link rel="stylesheet" href="css/bootstrap.css">        
+          
         </head>
         <body>
             <div class ="histoire">
@@ -43,9 +41,7 @@ public function page(){
             </br>
             </br>
         </body>
-    </html>';
-    self::footer();
-    
+    </html>';    
 }
 
 }

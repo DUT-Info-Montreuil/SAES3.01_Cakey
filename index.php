@@ -40,6 +40,8 @@ include_once './module/mod_accueil/vue_accueil.php';
 
 include_once './composants/menuHeader/vueCompMenu.php';
 include_once './composants/menuHeader/controllerCompMenu.php';
+include_once './composants/menuFooter/vueCompFooter.php';
+include_once './composants/menuFooter/controllerCompFooter.php';
 
 Connexion::initConnexion();
 
@@ -87,6 +89,8 @@ switch ($getmodule) {
 
 //données dynamiques//
 $pageTitle = "Cakey";
+$tampon = $vueGenerique->getAffichage();
 //fin données dynamiques//
+include_once './template.php';
 
 ?>

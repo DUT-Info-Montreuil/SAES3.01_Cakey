@@ -1,10 +1,10 @@
 <?php
-class ControllerCompMenu{
+class ControllerCompFooter{
 
 	private $vue;
 //pas besoin de modele ici
 
-	public function __construct(VueCompMenu $vue){
+	public function __construct(VueCompFooter $vue){
 		$this->vue = $vue;
 	}
 
