@@ -74,8 +74,11 @@ class ModeleConnexion extends Connexion{
 				$_SESSION["newsession"] = $_POST['login'];
 				/*verifier si la case de $_SESSION est set, si oui ça veut dire que l'user est connecté sinon non*/
 				if(isset($_SESSION["newsession"])){
-					echo "vous êtes connecté !"; 
-					//ou rediriger vers la page d'accueil ou la page de profil ?
+					//echo "vous êtes connecté !"; 
+					header('Refresh: 4; URL=accueil.php');
+
+					//ou rediriger vers la page de profil ?
+
 				}
 				else {"erreur de connexion";}	
 			} else echo 'mot de passe invalide';

@@ -1,6 +1,6 @@
 <?php 
 
-class ControllerEnnemi{ // jamais de return ou d'echo dans le controller
+class ControllerEnnemi{
 
     private $vue;
     private $modele;
@@ -10,7 +10,21 @@ class ControllerEnnemi{ // jamais de return ou d'echo dans le controller
         $this->modele = $modele;
     }
 
+    public function getVue(){
+        return $this->vue;
+    }
+
     public function bienvenue(){
         $this->vue->bienvenue();
     }
+
+    public function afficherEnnemis(){
+        $this->vue->afficherEnnemis($this->modele->recupererDonneesEnnemi());
+    }
+
+    public function details(){
+        
+    }
+
+
 }
