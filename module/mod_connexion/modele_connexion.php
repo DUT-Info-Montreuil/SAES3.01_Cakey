@@ -75,10 +75,9 @@ class ModeleConnexion extends Connexion{
 				/*verifier si la case de $_SESSION est set, si oui ça veut dire que l'user est connecté sinon non*/
 				if(isset($_SESSION["newsession"])){
 					//echo "vous êtes connecté !"; 
-					header('Refresh: 4; URL=accueil.php');
-
-					//ou rediriger vers la page de profil ?
-
+					header('Refresh: 4; URL=accueil.php'); //TODO ICI
+					//header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+					//ou rediriger vers la page d'accueil ou la page de profil ?
 				}
 				else {"erreur de connexion";}	
 			} else echo 'mot de passe invalide';
@@ -89,12 +88,10 @@ class ModeleConnexion extends Connexion{
 		if(isset($_SESSION["newsession"])){
 			unset($_SESSION["newsession"]);
 			if(!isset($_SESSION["newsession"])){
-				echo "A bientôt !";
+				header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
 			}	
 		} else {
-			echo "Aucun utilisateur n'est actuellement connecté."; ?>
-			<a href="index.php?getmodule=modConnexion&action=formulaireConnexion">Se connecter</a>
-<?php
+			header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
 
 		}
 	}

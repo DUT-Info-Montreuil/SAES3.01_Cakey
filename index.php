@@ -1,5 +1,3 @@
-<h1>INDEX</h1>
-
 <?php session_start();
 
 include_once './connexion.php';
@@ -35,7 +33,9 @@ include_once './module/mod_classement/vue_classement.php';
 
 include_once './module/mod_connexion/cont_connexion.php';
 include_once './module/mod_connexion/modele_connexion.php';
-include_once './module/mod_connexion/vue_connexion.php'; 
+include_once './module/mod_connexion/vue_connexion.php';
+
+include_once './module/mod_accueil/vue_accueil.php';
 
 
 include_once './composants/menuHeader/vueCompMenu.php';
@@ -44,8 +44,12 @@ include_once './composants/menuHeader/controllerCompMenu.php';
 Connexion::initConnexion();
 
 $vueGenerique = new VueGenerique();
-$getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modConnexion';
+$getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modAccueil';
 switch ($getmodule) {
+    case 'modAccueil' :
+        include_once './module/mod_accueil/mod_accueil.php';
+        $module = new ModAccueil;
+        break;
     case 'modEnnemi':
         include_once './module/mod_ennemi/mod_ennemi.php';
         $module = new ModEnnemi;
@@ -83,9 +87,6 @@ switch ($getmodule) {
 
 //données dynamiques//
 $pageTitle = "Cakey";
-$tampon = $vueGenerique->getAffichage();
 //fin données dynamiques//
-
-include_once './template.php';
 
 ?>
