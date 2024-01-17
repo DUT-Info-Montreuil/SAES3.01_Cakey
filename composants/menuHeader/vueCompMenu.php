@@ -11,6 +11,7 @@ class VueCompMenu{
 					<li><a href="index.php?getmodule=modUstensile">Tours</a></li>
 					<li><a href="index.php?getmodule=modBonus">Bonus</a></li>
 					<li><a href="index.php?getmodule=modConnexion">Connexion</a></li>
+					<li><a href="index.php?getmodule=modClassement">Classement</a></li>
 				</ul>';
 	}
 
