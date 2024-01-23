@@ -5,6 +5,7 @@ class ControleurClassement {
 	private $modele;
 	private $vue;
 	private $action;
+	private $choix;
 	
 	public function __construct() {
 		$this->modele = new ModeleClassement();
@@ -18,28 +19,50 @@ class ControleurClassement {
 			case "general" :
 				$this->general();
 				break;
-			case "niveau" :
-				$this->niveau();
-				echo'niveau';
+			case "niveau":
+				$this->niveau1();
+				break;
+			case "niveau1" :
+				$this->niveau1();
+				break;
+			case "niveau2" :
+				$this->niveau2();
+		
 				break;
 			default : 
 				die ("Action inexistante");
 			
+		
 		}
 	}
 	
 	private function general () {
+		$liste =$this->modele->get_liste();
 		$this->vue->menu();
-		$this->vue->get_tableauGeneral();
+      	$this->vue->tab($liste);
+	   //$this->modele->get_liste1();
+
 	
 	}
 	
 	private function niveau () {
-		$liste =$this->modele->get_liste();
-		$this->vue->menu();
-       $this->vue->tab($liste);
-		
+		$this->vue-> formNiveau();
 	}
+
+	private function niveau1 () {
+		$this->vue-> formNiveau();
+		$liste =$this->modele-> get_listeParNiveau(1) ;
+		$this->vue->get_tableauParNiveau($liste);
+	}
+
+	private function niveau2() {
+		$this->vue-> formNiveau();
+		$liste= $this->modele-> get_listeParNiveauTemps(1);
+		$this->vue->get_tableauParNiveauTps($liste);
+			
+		}
+
+
 	
 
 }
