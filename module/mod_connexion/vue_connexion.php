@@ -36,9 +36,9 @@
 ?>		<p> Formulaire de connexion </p>
 		<form method="post" action="index.php?getmodule=modConnexion&action=connexion">
 			<p>Entrez votre login : </p>
-			<input type="text" name="login" maxlength="100" />
+			<input type="text" name="login" maxlength="100" required />
 			<p>Entrez votre mot de passe : </p>
-			<input type="password" name="pwd" maxlength="200" />
+			<input type="password" name="pwd" maxlength="200" required/>
 
 		    <button type="submit" name="seConnecter">Valider</button>
 		<p> Pas encore inscrit ?</p>
@@ -56,9 +56,9 @@
         <p> Formulaire d'inscription </p>
             <form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
                 <p>Créez votre login : </p>
-                <input type="text" name="login" maxlength="100" />
+                <input type="text" name="login" maxlength="100" required />
                 <p>Créez votre mot de passe : </p>
-                <input type="text" name="pwd" maxlength="200" />
+                <input type="text" name="pwd" maxlength="200" required/>
                 <p>Ajoutez votre photo de profil :</p>
                 <input type="file" name="pathPhotoProfil"/>
 

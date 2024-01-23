@@ -4,10 +4,6 @@
         parent::__construct();
     }
 
-    public function bienvenue(){
-        echo "bienvenue sur la page des ennemis";
-    }
-
     public function afficherEnnemis($tabEnnemis){
         foreach($tabEnnemis as $ennemi){
             echo $ennemi["nom"];
@@ -42,7 +38,6 @@
     public function menuEnnemi(){
 ?>
 		<ul>
-            <li><a href="index.php?getmodule=modEnnemi&action=bienvenue">Bienvenue</a></li>
             <li><a href="index.php?getmodule=modEnnemi&action=afficherEnnemis">AfficherEnnemi Vue</a></li>
         </ul>
 <?php
