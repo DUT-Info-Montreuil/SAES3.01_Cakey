@@ -54,8 +54,7 @@ class ModeleProfil extends Connexion{
   }
 
   public function get_classementProfil ($id) {
-	  //todo : requete + calcul xp 
-	  $req = "SELECT partie.numeroniveau, partie.score, partie.temps   
+ 	  $req = "SELECT partie.numeroniveau, partie.score, partie.temps   
 		  FROM partie   
 		  WHERE partie.idUser=:id ORDER BY score DESC limit 10" ;
 	  
@@ -68,22 +67,19 @@ class ModeleProfil extends Connexion{
   }
 
   public function get_classementAllLevel ($id) {
-	  //todo : requete marche sur phpmyadmin mais column sont pas dans $pdo_req calcul xp 
-	  $req = "SELECT distinct partie.numeroniveau, max(score) over (partition by numeroniveau) as scoremax, min(temps) over (partition by numeroniveau) as mintemps  
+ 	  $req = "SELECT distinct partie.numeroniveau, max(score) over (partition by numeroniveau) as scoremax, min(temps) over (partition by numeroniveau) as mintemps  
 		  FROM partie   
 		  WHERE partie.idUser=:id   ORDER BY numeroniveau " ;
 	  
 	  $pdo_req = self::$bdd->prepare($req);
 	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
-	  //print_r($pdo_req->fetchAll(PDO::FETCH_ASSOC));
-	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
 		  
   }
 
   public function get_amis($id){
-	// TODO : 
- 	  $req =
+  	  $req =
 	  "select login from utilisateur where idUser in (select idUser1 from amis where idUser2 =:id)
 	  union
 	  select login from utilisateur where idUser in (select idUser2 from amis where idUser1 =:id) ";
@@ -101,8 +97,7 @@ class ModeleProfil extends Connexion{
 	$pdo_req = self::$bdd->prepare($req);
 	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	$pdo_req->execute();
-	//print_r($pdo_req->fetch(PDO::FETCH_ASSOC));
-	return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function get_demandeRecu($id){

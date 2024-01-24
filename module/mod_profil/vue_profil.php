@@ -102,8 +102,7 @@ class VueProfil {
 		   <tbody>
 			   <?php
 			   foreach ($donneesClassement as $donnee){
-				// todo  : pq util ne reprends pas les noms de col, pourquoi donnéesclassement boucle la premiere ligne ≠ phpmyamdin
-  				   ?><tr>
+   				   ?><tr>
 					   <td> <?=$donnee["numeroniveau"]?></td>
 					   <td> <?=$donnee['score']?></td>
 					   <td> <?=$donnee['temps']?> </td>
@@ -127,8 +126,7 @@ class VueProfil {
 		   <tbody>
 			   <?php
 			   foreach ($classementAllLevel as $donnee){
-				// todo  : pq util ne reprends pas les noms de col, pourquoi donnéesclassement boucle la premiere ligne ≠ phpmyamdin
-  				   ?><tr>
+   				   ?><tr>
 					   <td> <?=$donnee['numeroniveau']?></td>
 					   <td> <?=$donnee['scoremax']?></td>
 					   <td> <?=$donnee['mintemps']?> </td>
