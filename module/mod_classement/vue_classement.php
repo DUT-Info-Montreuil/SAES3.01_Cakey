@@ -109,6 +109,7 @@ class VueClassement{
         </p>
     </fieldset>
 </form>
+<?php
     }
 
   
