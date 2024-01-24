@@ -30,7 +30,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["Rank() OVER(ORDER BY score DESC )"]?></td>
-                        <td><a href="index.php?getModule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
                         <td> <?=$util["login"]?> </td>
                         <td> <?=$util["score"]?> </td>
                 </tr><?php 
@@ -57,7 +57,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["Rank() OVER(ORDER BY temps ASC )"]?></td>
-                        <td><a href="index.php?getModule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
                         <td> <?=$util["login"]?> </td>
                         <td> <?=$util["temps"]?> </td>
                 </tr><?php 
@@ -77,10 +77,41 @@ class VueClassement{
             <form action="index.php?getmodule=modClassement&action=niveau2" method="POST">
                  <button type="submit" > temps</button>
             </form>
-
             <?php
                 }
     
+    public function selectionnerNiveau($niveau){
+        ?>
+        <label for="choixNiveau">Choisir un niveau</label>
+        <select name="niveaux" onchange="updated(this)">
+          <?php
+                foreach ($niveau as $util){  
+                ?><option value=<?=$util["numeroNiveau"]?> ><?=$util["numeroNiveau"]?></option>
+               
+                <?php
+                }
+                ?>
+        </select>
+        <?php
+    }
+
+    public function formselNiveau(){
+        ?>
+        <form action="/traiter-message.php" method="post">
+    <fieldset>
+        <p>
+            <label>Votre message :</label>
+            <textarea name="message"></textarea>
+        <p>
+        <p>
+            <input type="submit" name="previsualiser" value="Previsualiser" />
+            <input type="submit" name="envoyer" value="Envoyer" />
+        </p>
+    </fieldset>
+</form>
+    }
+
+  
 
 	public function tab ($données){
         ?>
@@ -100,7 +131,7 @@ class VueClassement{
     
                     ?><tr>
                         <td><?=$util["Rank() OVER(ORDER BY Sum(score) DESC )"]?></td>
-                        <td><a href="index.php?getModule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
                         <td> <?=$util["login"]?> </td>
                         <td> <?=$util["niveauMax"]?> </td>
                         <td> <?=$util["Xp"]?> </td>
@@ -111,7 +142,6 @@ class VueClassement{
                 </table>
                 <?php
                 
-
                 
     }
 }

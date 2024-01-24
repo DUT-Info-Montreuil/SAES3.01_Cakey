@@ -72,10 +72,13 @@ switch ($getmodule) {
         include_once './module/mod_niveaux/mod_niveaux.php';
         $module = new ModNiveaux;
         break;
+
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
+
         break;
+        
     case 'modUnivers' :
         include_once './module/mod_univers/mod_univers.php';
         $module = new ModUnivers;
@@ -86,6 +89,7 @@ switch ($getmodule) {
         break;
     default : break;
 }
+$module->exec();
 
 //données dynamiques//
 $pageTitle = "Cakey";

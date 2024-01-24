@@ -20,12 +20,14 @@ class ControleurClassement {
 				$this->general();
 				break;
 			case "niveau":
-				$this->niveau1();
+				$this->niveau();
 				break;
 			case "niveau1" :
+			
 				$this->niveau1();
 				break;
 			case "niveau2" :
+		
 				$this->niveau2();
 		
 				break;
@@ -46,16 +48,21 @@ class ControleurClassement {
 	}
 	
 	private function niveau () {
+		$this->vue->menu();
 		$this->vue-> formNiveau();
+		$listeNiveau=$this->modele->get_listeNiveau();
+		$this->vue->selectionnerNiveau($listeNiveau);	
 	}
 
 	private function niveau1 () {
+		$this->vue->menu();
 		$this->vue-> formNiveau();
-		$liste =$this->modele-> get_listeParNiveau(1) ;
+		$liste =$this->modele-> get_listeParNiveau1(2) ;
 		$this->vue->get_tableauParNiveau($liste);
 	}
 
 	private function niveau2() {
+		$this->vue->menu();
 		$this->vue-> formNiveau();
 		$liste= $this->modele-> get_listeParNiveauTemps(1);
 		$this->vue->get_tableauParNiveauTps($liste);

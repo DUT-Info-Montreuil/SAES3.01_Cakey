@@ -21,7 +21,7 @@ class VueCompMenu{
 				</ul>
 			</li>
 			<li>
-				<a href="classement.html">Classement</a>
+				<a href="index.php?getmodule=modClassement">Classement</a>
 			</li>
 			<li class="barreRecherche">
 				<input type="text" maxlength="20" placeholder="Rechercher" class="searchbar" />

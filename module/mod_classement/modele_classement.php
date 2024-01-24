@@ -19,17 +19,26 @@ public function get_liste1() {
     */
 }
 public function get_listeParNiveau($niveau){
-    $req= $req="SELECT Rank() OVER(ORDER BY score DESC ), idUser , login, score 
+    $req="SELECT Rank() OVER(ORDER BY score DESC ), idUser , login, score 
     FROM utilisateur NATURAL JOIN partie
      where numeroNiveau=1 limit 20";
     $pdo_req = self::$bdd->query($req);
-    $pdo_req->bindParam("niveau", $niveau, PDO::PARAM_INT);
+    $pdo_req->bindParam("niveau", $niveau);
     $pdo_req->execute();
     return $pdo_req->fetchAll();
     
 }
+public function get_listeParNiveau1($niveau){
+    $req=Connexion::$bdd->prepare("SELECT Rank() OVER(ORDER BY score DESC ), idUser , login, score 
+    FROM utilisateur NATURAL JOIN partie
+     where numeroNiveau=? limit 20");
+    $req->bindParam(1, $niveau);
+    $req->execute();
+    return $req->fetchAll();
+    
+}
 public function get_listeParNiveauTemps($niveau){
-    $req= $req="SELECT Rank() OVER(ORDER BY temps ASC ), idUser , login, temps 
+    $req="SELECT Rank() OVER(ORDER BY temps ASC ), idUser , login, temps 
     FROM utilisateur NATURAL JOIN partie
      where numeroNiveau=1 limit 20";
     $pdo_req = self::$bdd->query($req);
@@ -37,6 +46,13 @@ public function get_listeParNiveauTemps($niveau){
     $pdo_req->execute();
     return $pdo_req->fetchAll();
 
+}
+public function get_listeNiveau(){
+    $req= "Select numeroNiveau from niveau";
+    $pdo_req = self::$bdd->query($req);
+    $pdo_req->execute();
+    
+    return $pdo_req->fetchAll();
 }
 
 
