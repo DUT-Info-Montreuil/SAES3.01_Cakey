@@ -12,7 +12,8 @@ class ModProfil{
 	}
 	
 	public function exec () {
-		$this->controleur->exec();
+		print_r("ok");
+ 		$this->controleur->exec();
 	}
 
 

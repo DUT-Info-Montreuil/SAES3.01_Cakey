@@ -31,6 +31,9 @@ class ControleuProfil {
 			case "ajoutAmi" :
 				$this->ajoutAmi();
 				break;
+			case "changerPhotoProfil" :
+				$this->changerPhotoProfil();
+				break;
 
 			default : 
 				die ("Action inexistante");
@@ -45,7 +48,29 @@ class ControleuProfil {
 		if (!$donnees) {
 			die("Erreur dans la récupération du profil");
 		}
- 		$this->vue->donneesProfil($donnees);
+		// données table classement 
+		$donneesClassement = $this->modele->get_classementProfil ($id_profil);
+		if (!$donneesClassement) {
+			die("Erreur dans la récupération des données classements");
+		}
+		$classementAllLevel = $this->modele->get_classementAllLevel ($id_profil);
+		if (!$classementAllLevel) {
+			die("Erreur dans la récupération des données classements tout niveau");
+		}
+		$amis = $this->modele->get_amis ($id_profil);
+		if (!$amis) {
+			die("Erreur dans la récupération des données des amis");
+		}
+		$dmdamis = $this->modele->get_demandeAmis ($id_profil);
+		if (!$dmdamis) {
+			die("Erreur dans la récupération des données des amis");
+		}
+		$dmdAmisRecu = $this->modele->get_demandeRecu ($id_profil);
+		if (!$dmdAmisRecu) {
+			die("Erreur dans la récupération des données des amis recu");
+		}
+ 		$this->vue->donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
+ 		
 	}
 
 	private function modifProfil() {
@@ -64,6 +89,21 @@ class ControleuProfil {
 		header("Location: index.php?getmodule=modProfil");
 	   exit();
    }
+/*
+ https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg
+ https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg
+  */ private function changerPhotoProfil () {
+	$id = 1;  //$_SESSION['id']?
+	$donneeProfil=$this->modele->get_detailsProfil($id);
+
+	$defaultPDP = $donneeProfil['pathPhotoProfil'];
+ 	$nouvPDP = isset($_POST['linkPDP']) ? $_POST['linkPDP'] : $defaultPDP;
+ 
+	$this->vue->modifPhotoProfil( );
+	$this->donneesProfil();
+ 	$this->modele->modifPhotoProfil($id, $nouvPDP );
+
+}
 	private function partagerProfil () {
   
 	}
@@ -75,6 +115,8 @@ class ControleuProfil {
 	private function ajoutAmi () {
   
 	}
+
+
 
 }
 

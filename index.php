@@ -1,6 +1,9 @@
 <h1>INDEX</h1>
 
 <?php session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include_once './connexion.php';
 include_once './vueGenerique.php';
@@ -70,8 +73,7 @@ switch ($getmodule) {
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
-
-        break;
+         break;
         
     case 'modUnivers' :
         include_once './module/mod_univers/mod_univers.php';

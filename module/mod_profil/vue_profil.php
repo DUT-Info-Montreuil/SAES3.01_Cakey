@@ -7,12 +7,14 @@ class VueProfil {
 	}
 
 
-	public function donneesProfil($donnees){
+	public function donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
 		//print_r($donnees);
 		?>	
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
+
+		<button type="button" id="changerPhotoProfil">Modifier photo </button> 
 
 		 <style>
         .photoProfil {
@@ -38,6 +40,10 @@ class VueProfil {
 			document.getElementById("boutonAjouterAmi").onclick = function () {
    	     		location.href = "index.php?getmodule=modProfil&action=ajoutAmi";
    	 		};
+			document.getElementById("changerPhotoProfil").onclick = function () {
+   	     		location.href = "index.php?getmodule=modProfil&action=changerPhotoProfil";
+   	 		};
+			
 		</script>
   
 		<br/>
@@ -52,13 +58,143 @@ class VueProfil {
 				<input type="submit" value ="Enregistrer"/> <br/>
 			</div>
 		</form>
-
-
-
-
-
 		<?php
+		   $this->get_classement($donneesClassement, $classementAllLevel);
+ 		   $this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
 	}
+
+	public function modifPhotoProfil(){
+	?>
+		<form  method="POST">
+
+		Entrez le lien de la photo de profil <input type="text" id="linkPDP" name="linkPDP" placeholder="https://image..."     /> <br/>
+		
+	   <div>
+ 
+		   <input action="index.php?getmodule=modProfil" id ='modif photo' type="submit" value ="Enregistrer"/> <br/>
+	   </div>
+
+	   <script type="text/javascript">
+    		document.getElementById("modif photo").onclick = function () {
+				location.href = "index.php?getmodule=modProfil";
+
+    	 		};
+				</script>
+
+   </form>
+   <?php
+
+
+
+	}
+
+	public function get_classement($donneesClassement, $classementAllLevel){
+		?>
+		Statistique des 10 niveaux avec les meilleurs scores
+		<table>
+		   <thead>
+			   <tr>
+				   <td > niveau</td>
+				   <td> Dégâts max</td>
+				   <td> Temps </td>
+ 			   </tr>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($donneesClassement as $donnee){
+				// todo  : pq util ne reprends pas les noms de col, pourquoi donnéesclassement boucle la premiere ligne ≠ phpmyamdin
+  				   ?><tr>
+					   <td> <?=$donnee["numeroniveau"]?></td>
+					   <td> <?=$donnee['score']?></td>
+					   <td> <?=$donnee['temps']?> </td>
+ 					   <td>  </td> 
+			   </tr>
+			   <?php 
+			   }
+			   ?>
+			   </tbody>
+			   </table>
+
+			   <h1>Statistique de tous les niveaux </h1>
+			   <table>
+		   <thead>
+			   <tr>
+				   <td > niveau</td>
+				   <td> Dégâts max</td>
+				   <td> Temps min </td>
+ 			   </tr>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($classementAllLevel as $donnee){
+				// todo  : pq util ne reprends pas les noms de col, pourquoi donnéesclassement boucle la premiere ligne ≠ phpmyamdin
+  				   ?><tr>
+					   <td> <?=$donnee['numeroniveau']?></td>
+					   <td> <?=$donnee['scoremax']?></td>
+					   <td> <?=$donnee['mintemps']?> </td>
+ 					   <td>  </td> 
+			   </tr>
+			   <?php 
+			   }
+			   ?>
+			   </tbody>
+			   </table>
+			   <?php
+
+	}
+
+ 	public function afficherPartieAmis($amis, $demandeAmis, $demandeRecu ){
+		//todo : ajouter colonne rang
+		?>
+		
+		<table>
+		   <thead>
+		   <h1> Mes amis </h1>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($amis as $ami){
+   				   ?><tr>
+					   <td> <?=$ami['login']?></td>	   
+			  		</tr>
+					<?php } ?>
+		</table>
+
+		<table>
+		   <thead>
+		   <h1> Demandes envoyées </h1>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($demandeAmis as $dmd){
+  				   ?><tr>
+					   <td> <?=$dmd['login']?></td>	   
+			  		</tr>
+					  <?php } ?>
+
+		</table>
+
+		<table>
+		   <thead>
+		   <h1> Demandes reçues </h1>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($demandeRecu as $dmdrecu){
+   				   ?><tr>
+					   <td> <?=$dmdrecu['login']?></td>	   
+			  		</tr>
+					  <?php } ?>
+
+		</table>
+
+
+			   <?php 
+	
+	}
+}
+
+
 
 
 
@@ -85,5 +221,6 @@ Array (
 */
  
 
-}
+ 
+
  
