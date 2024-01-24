@@ -5,43 +5,84 @@ public function __contruct(){
 }
 
 public function page(){
-    echo ' 
-    <html>
-        <head>
-            <title>Page</title>
-            <meta charset="utf-8">
-          
-        </head>
-        <body>
-            <div class ="histoire">
-                <div class="imgText">
-                    <img src ="Ressources/coeur.png">
-                    <p>Nouveautés</p>
+    /*
+    echo '
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="histoire">
+                        <div class="imgText">
+                            <img src="Ressources/coeur.png">
+                            <p>Nouveautés</p>
+                        </div>
+                        <h3>L\'univers et l\'histoire de Cakey</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                    </div>
                 </div>
-                <h3>L\'univers et l\'histoire de Cakey</h3>
-                </br>
-                </br>
-                </br>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
-                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+
+                <div class="col-12">
+                    <div class="gameplayVideo">
+                        <video class="responsive-video" width="100%" height="auto" controls>
+                            <source src="Ressources/gameplayGakey.ogx" type="video/ogg">
+                        </video>
+                    </div>
+                </div>
             </div>
+        </div>
+
+
+
+    ';
+    */
+    
+    echo '
+    <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="histoire" style="width: 100%;">
+                <div class="imgText d-flex align-items-center">
+                    <img src="Ressources/coeur.png" class="img-fluid" alt="Coeur">
+                    <p class="ml-3">Nouveautés</p>
+                </div>
+                <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
             <div class="gameplayVideo">
-                <video width="640" height="480" controls>
-                    <source src="Ressources/gameplayGakey.ogx" type="video/ogg"> 
+                <video class="responsive-video" width="100%" height="auto" controls>
+                    <source src="Ressources/gameplayGakey.ogx" type="video/ogg">
                 </video>
             </div>
-            <!--IL FAUT ENLEVER LES </BR> ET REGLER LE PROBLEME DE LA VIDEO MAL ALLIGNER-->
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-        </body>
-    </html>';    
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="Telechargement">
+                <a class="lienJeu" href="https://drive.google.com/drive/u/0/folders/1B1SwAYAbnX6UHVS0bPmXEE-KaxiweCzj">Télécharger</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+    ';
 }
 
 }

@@ -1,85 +1,90 @@
-/*Reset CSS*/
+/* active
 *{
     margin: 0px;
     padding: 0px;
     font-family: Avenir, sans-serif;
-}
-
-nav{
+  }
+  */
+  /*
+  nav{
     width: 100%;
     margin: 0 auto;
     background-color: orange;
     position: sticky;
     top: 0px;
-}
-
-nav ul{
+  }
+  
+  nav ul{
     list-style-type: none;
-}
-
-nav ul li{
+  }
+  
+  nav ul li{
     float: left;
-    width: 15%;
+    width: 10%;
     text-align: center;
     position: relative;
-}
-
-nav ul::after{
+    margin-right: 5px;
+  }
+  
+  nav ul li:last-child{
+    margin-right: 0;
+  }
+  
+  nav ul::after{
     content: "";
     display: table;
     clear: both;
-}
-
-nav a{
+  }
+  
+  nav a{
     display: block;
     text-decoration: none;
     color: black;
     border-bottom: 2px solid transparent;
     padding: 10px 0px;
-}
-
-nav a:hover{
+  }
+  
+  nav a:hover{
     color: red;
     border-bottom: 2px solid gold;
-}
-
-.sousOngletsUnivers{
+  }
+  
+  .sousOngletsUnivers{
     display: none;
     box-shadow: 0px 1px 2px #CCC;
     background-color: white;
     position: absolute;
     width: 100%;
     z-index: 1000;
-}
-nav > ul li:hover .sousOngletsUnivers{
+  }
+  nav > ul li:hover .sousOngletsUnivers{
     display: block;
-}
-.sousOngletsUnivers li{
+  }
+  .sousOngletsUnivers li{
     float: none;
     width: 100%;
     text-align: left;
-}
-.sousOngletsUnivers a{
+  }
+  .sousOngletsUnivers a{
     padding: 10px;
     border-bottom: none;
-}
-.sousOngletsUnivers a:hover{
+  }
+  .sousOngletsUnivers a:hover{
     border-bottom: none;
     background-color: RGBa(200,200,200,0.1);
-}
-.ongletUnivers > a::after{
+  }
+  .ongletUnivers > a::after{
     content:" ▼";
     font-size: 12px;
-}
-
-.barreRecherche {
-    /*width: 25rem;*/
+  }
+  
+  .barreRecherche {
     height: 100%;
     margin: 0 1rem;
     position: relative;
-}
-
-.searchbar {
+  }
+  
+  .searchbar {
     font-size: 2.4rem;
     width: 125px;
     height: 5px;
@@ -90,40 +95,51 @@ nav > ul li:hover .sousOngletsUnivers{
     transition: all 0.1s;
     transition-delay: 0.1s;
     font-size: 18px;
-}
-
-.searchbar:hover {
+  }
+  
+  .searchbar:hover {
     width: 135px;
     height: 7px;
-}
-
-.button {
+  }
+  
+  .button {
     height: 1rem;
     position: absolute;
     top: 0.4rem;
     right: 0.6rem;
     transition: all 0.1s;
     transition-delay: 0.1s;
-}
-
-.button:hover {
-    cursor: pointer;
-}
+  }
   
-.searchbar:hover + .button {
+  .button:hover {
+    cursor: pointer;
+  }
+  
+  .searchbar:hover + .button {
     height: 2.5rem;
     top: 1.8rem;
     right: 0;
-}
-
-.searchbar::placeholder {
+  }
+  
+  .searchbar::placeholder {
     opacity: 0.3;
     font-size: 18px;
-
-}
-
-
-footer{
+  
+  }
+  
+  .input-search {
+    width: 150px;
+    margin-right: 10px;
+  }
+  */
+  /*
+  .logo-img{
+    width: 70px;
+    height: 70px;
+  }
+  */
+  
+  footer{
     /*
     width: 100%;
     margin: 0 auto;
@@ -135,108 +151,161 @@ footer{
     bottom: 0;
     background-color: orange;
     width: 100%;
-}
-
-footer ul{
+    text-align: center;
+  }
+  
+  footer ul{
     list-style-type: none;
-}
-
-footer ul li{
+  }
+  
+  footer ul li{
     float: left;
     width: 20%;
     text-align: center;
     position: relative;
-}
-
-footer ul::after{
+  }
+  
+  footer ul::after{
     content: "";
     display: table;
     clear: both;
-}
-
-footer a{
+  }
+  
+  footer a{
     display: block;
     text-decoration: none;
     color: black;
     border-bottom: 2px solid transparent;
     padding: 10px 0px;
-}
-
-footer a:hover{
+  }
+  
+  footer a:hover{
     color: red;
     border-bottom: 2px solid gold;
-}
-
-.logo img{
+  }
+  
+  .logo img{
     width: 70px;
     height: 70px;
     justify-content: center;
-}
-
-.logo{
+  }
+  
+  .logo{
     text-align: center;
-}
-
-.icon img{
+  }
+  
+  .icon img{
     width: 20px;
     height: 20px;
     align-items: right;
-}
-
-.icon ul{
+  }
+  
+  .icon ul{
     padding: 0;
     margin: 0;
-}
-
-html{
+  }
+  
+  html{
     height: 100%;
-}
-
-body{
+  }
+  
+  body{
     min-height: 100%;
     margin: 0;
     padding: 0;
     position: relative;
-}
 
-html,body{
+    display: flex;
+    flex-direction: column;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+  }
+  
+  html,body{
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-body{
+  }
+  
+  
+  body{
     display: table;
     width: 100%;
-}
-
-#main{
+  }
+  
+  
+  #main{
     min-height: 100%;
     position: relative;
     padding-bottom: 100px;
-}
-
-.histoire{
+  }
+  
+  .histoire{
     /*border: 5px solid;*/
     margin: auto;
     width: 50%;
     padding: 10px;
-}
-
-.histoire h3{
+  }
+  
+  .histoire h3{
     color: lightpink;
-}
-
-.histoire img{
+  }
+  
+  .histoire img{
     width: 15%;
     margin: auto;
     padding: 10px;
-}
-
-.imgText p{
+  }
+  
+  .imgText p{
     border: 2px solid;
     padding-left: 2%;
     padding-right: 2%;
-    width: 95px;
+    width: 115px;
+  }
+  
+  .gameplayVideo{
+    text-align: center;
+  }
+  
+  .bg-orange {
+    background-color: orange;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+ .navbar-nav .nav-item {
+    flex: 1;
+    text-align: center;
+ }
+ main{
+  flex: 1;
+  overflow: auto;
+  color:black;
+  background-image: url(Ressources/imagedefond.jpg);
+  width: 100%;
+  height: 750px;
+
 }
+
+.responsive-video{
+  margin-bottom: 50px;
+}
+
+.Telechargement{
+  margin-bottom: 50px;
+}
+
+.lienJeu{
+  margin-bottom: 0px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+
+
+
 
