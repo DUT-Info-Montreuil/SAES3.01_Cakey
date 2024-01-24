@@ -68,9 +68,9 @@ switch ($getmodule) {
         include_once './module/mod_classement/mod_classement.php';
         $module = new ModClassement;
         break;
-    case 'modNiveaux' :
+    case 'modNiveau' :
         include_once './module/mod_niveaux/mod_niveaux.php';
-        $module = new ModNiveaux;
+        $module = new ModNiveau;
         break;
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';

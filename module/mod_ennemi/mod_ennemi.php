@@ -21,6 +21,8 @@ class ModEnnemi{
             default : break;
 	    }
         $this->controller->getVue()->menuEnnemi(); */
+
+		$this->controller->getVue()->trierEnnemis();
 		$this->controller->afficherEnnemis();
 
 

@@ -4,10 +4,7 @@ class ModeleEnnemi extends Connexion{
 
 
     public function recupererDonneesEnnemi(){
-        echo 'dans recupererDonneesEnnemi modele';
-        echo "<br>";
-
-        $sql = self::$bdd->prepare("SELECT nom, PV, porteeAttaque, pointsAttaque, recompense, pathImageEnnemi FROM ennemi");
+        $sql = self::$bdd->prepare("SELECT nom, PV, porteeAttaque, pointsAttaque, recompense, pathImageEnnemi, exist FROM ennemi");
 	    if ($sql->execute()) {
 		    return $sql->fetchAll(PDO::FETCH_ASSOC);
 	    } else {

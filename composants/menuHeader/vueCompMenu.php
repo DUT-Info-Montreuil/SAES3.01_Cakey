@@ -15,9 +15,9 @@ class VueCompMenu{
 			<li class="ongletUnivers"><a href="#">Univers &ensp;</a>
 				<ul class="sousOngletsUnivers">
 					<li><a href = "index.php?getmodule=modEnnemi&action=bienvenue">Ennemi</a></li>
-					<li><a href = "#">Ustensiles</a></li>
-					<li><a href = "#">Niveaux</a></li>
-					<li><a href = "#">Bonus</a></li>
+					<li><a href = "index.php?getmodule=modUstensile&action=bienvenue">Ustensiles</a></li>
+					<li><a href = "index.php?getmodule=modNiveau&action=bienvenue">Niveaux</a></li>
+					<li><a href = "index.php?getmodule=modBonus&action=bienvenue">Bonus</a></li>
 				</ul>
 			</li>
 			<li>

@@ -26,5 +26,9 @@ class ControllerEnnemi{
         
     }
 
+    public function trier(){
+        
+    }
+
 
 }
