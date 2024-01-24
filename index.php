@@ -35,6 +35,10 @@ include_once './module/mod_connexion/cont_connexion.php';
 include_once './module/mod_connexion/modele_connexion.php';
 include_once './module/mod_connexion/vue_connexion.php';
 
+include_once './module/mod_statistiques/cont_statistiques.php';
+include_once './module/mod_statistiques/modele_statistiques.php';
+include_once './module/mod_statistiques/vue_statistiques.php';
+
 include_once './module/mod_accueil/vue_accueil.php';
 
 
@@ -83,6 +87,10 @@ switch ($getmodule) {
     case 'modConnexion':
         include_once './module/mod_connexion/mod_connexion.php';
         $module = new ModConnexion;
+        break;
+    case 'modStatistiques' :
+        include_once './module/mod_statistiques/mod_statistiques.php';
+        $module = new ModStatisques;
         break;
     default : break;
 }

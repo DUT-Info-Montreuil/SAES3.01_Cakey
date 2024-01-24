@@ -6,8 +6,25 @@ class VueCompMenu{
 	public function __construct(){
 		if(isset($_SESSION['newsession'])){
 			/*$connect = ' <li><a href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';*/
-			
-			$connect = '<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
+			/*
+			$connect = '
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Statistiques</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfils">Profil</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
+			*/
+
+			$connect = '
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Statistiques</a></li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="Ressources/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="index.php?getmodule=modProfils">Profil</a>
+                        <a class="dropdown-item" href="index.php?getmodule=modConnexion&action=deconnexion">Se Deconnecter</a>
+                    </div>
+			';
 		}
 		else { 
 			$connect = 
@@ -75,7 +92,7 @@ class VueCompMenu{
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Ennemi</a>
-                        <a class="dropdown-item" href="#">Ustensiles 2</a>
+                        <a class="dropdown-item" href="#">Ustensiles</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Niveaux</a>
 						<a class="dropdown-item" href="#">Bonus</a>
