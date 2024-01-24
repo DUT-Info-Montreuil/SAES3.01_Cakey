@@ -7,6 +7,7 @@
         <!--<link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="css/bootstrap.css">    
             <script src="lib/jquery-3.7.1.min.js"></script>
+            <script src="ajax/script.js"></script>
         <title><?= $pageTitle ?></title>
     
     </head>

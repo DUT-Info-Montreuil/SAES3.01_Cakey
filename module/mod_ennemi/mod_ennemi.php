@@ -7,11 +7,11 @@ class ModEnnemi{
 	private $controller;
 	private $action;
 
-	public function __construct(){
+	public function __construct($sort){
 		// $action = isset($_GET['action']) ? $_GET['action'] : 'afficherEnnemis';
 
 		$vue = new VueEnnemi();
-		$modele = new ModeleEnnemi();
+		$modele = new ModeleEnnemi($sort);
 		$this->controller = new ControllerEnnemi($vue, $modele); 
 
 		

@@ -51,8 +51,6 @@
     }
 
     public function trierEnnemis(){ ?>
-<script> console.log("testtest"); </script>
-
     <form id="formTrierEnnemis" class ="formTri" method="post" enctype="multipart/form-data" action="">
 
         <label for="bientotDispo"> bientot dispo </label>
@@ -64,9 +62,10 @@
         <label for="PVDesc">PV</label>
         <input type="checkbox" id="PVDesc" name="PVDesc">
        
-        <button type="submit" name="submit">Trier</button>
+        <button>Trier</button>
         <button type="reset" name="reset">Supprimer les filtres </button>
 
+        Trier par : <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=nom">Nom</a> | <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=pv">PV</a>
     </form>
 <?php
     }

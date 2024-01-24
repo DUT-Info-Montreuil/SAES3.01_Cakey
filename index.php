@@ -54,7 +54,8 @@ switch ($getmodule) {
         break;
     case 'modEnnemi':
         include_once './module/mod_ennemi/mod_ennemi.php';
-        $module = new ModEnnemi;
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'nom';
+        $module = new ModEnnemi($sort);
         break;
     case 'modUstensile':
         include_once './module/mod_ustensile/mod_ustensile.php';
