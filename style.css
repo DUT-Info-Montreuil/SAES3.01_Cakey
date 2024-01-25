@@ -395,6 +395,52 @@ tbody tr:nth-child(even) {
 
 
 
+#bouton{
+  background-color:#F081B6;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+}
+#bouton:hover{
+  color:#F081B6;
+  background: #ffeaf9;
+}
+
+#menuClassement{
+  display: block;
+
+}
+#menuClassement{ 
+float: left; /* effet flottant */
+text-decoration: none; /* pas d'héritage avec effet souligné */
+color: #F081B6; /* couleur du texte */
+background:  #ffeaf9; /* couleur de fond */
+
+padding: 15px 32px; /* marges intérieur */
+font-family: sans-serif; /* police d'écriture */
+font-size: 16px; /* taille du texte */
+transition: .5s; /* temps de transition lors du hover : une demi seconde */
+border-radius: 5%;
+}
+#menuClassement:hover{ /* tous liens lors du survol dans la balise nav */
+background:#F081B6; /* couleur de fond */
+color:#ffeaf9;
+}
+
+#labelNiveau{
+  background:#F081B6; /* couleur de fond */
+color:#ffeaf9
+}
+#niveauSel{
+  background:#F081B6; /* couleur de fond */
+color:#ffeaf9;
+border-radius: 10%;
+}
 
 
 

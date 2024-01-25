@@ -2,29 +2,46 @@
 class VueClassement{
     public function menuNotPerso(){
         ?> <ul>
-            <li><a href="index.php?getmodule=modClassement&action=general">Classement général</a></li>
-            <li><a href="index.php?getmodule=modClassement&action=niveau">Classement par niveau</a></li>
-    </ul>
+            <a href="index.php?getmodule=modClassement&action=general"id="menuClassement">Classement général</a>
+            <a href="index.php?getmodule=modClassement&action=niveau"id="menuClassement">Classement par niveau</a>
+   
     <?php
     }
     public function menu(){
         ?> <ul>
-        <li><a href="index.php?getmodule=modClassement&action=notPerso"> Classement</a></li>
+        <li><a href="index.php?getmodule=modClassement&action=notPerso" id="menuClassement"> Classement</a></li>
         <?php 
         if(isset($_SESSION['newsession'])){
 		
-            ?><li><a href="index.php?getmodule=modClassement&action=perso"> Classement Personnel</a></li>
+            ?><li><a href="index.php?getmodule=modClassement&action=perso"id="menuClassement> Classement Personnel</a></li>
             <?php
             }
             ?>
 </ul>
 <?php
     }
+
+    public function menuzzef(){
+        ?> 
+        <nav>
+        <a href="index.php?getmodule=modClassement&action=notPerso" id="menuClassement"> Classement</a>
+        <?php 
+        if(isset($_SESSION['newsession'])){
+		
+            ?><a href="index.php?getmodule=modClassement&action=perso" id="menuClassement"> Classement Personnel</a>
+            <?php
+            }
+            ?>
+            </nav>
+            
+<?php
+    }
     public function menuPerso(){
-        ?> <ul>
-        <li><a href="index.php?getmodule=modClassement&action=generalPerso">Classement général</a></li>
-        <li><a href="index.php?getmodule=modClassement&action=niveauPerso">Classement par niveau</a></li>
-</ul>
+        ?>
+        <nav>
+        <a href="index.php?getmodule=modClassement&action=generalPerso" id="menuClassement">Classement général</a>
+        <a href="index.php?getmodule=modClassement&action=niveauPerso" id="menuClassement">Classement par niveau</a>
+    </nav>
 <?php
     }
     public function get_tableauParNiveau($données){
@@ -42,7 +59,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["rankScore"]?></td>
-                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><?=$util["login"]?></a></td>
                         <td> <?=$util["score"]?> </td>
                 </tr><?php 
                 }
@@ -67,7 +84,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["rankTemps"]?></td>
-                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><?=$util["login"]?></a></td>
                         <td> <?=$util["temps"]?> </td>
                 </tr><?php 
                 }
@@ -78,37 +95,12 @@ class VueClassement{
                 
 
     }
-    public function formNiveau(){
-            ?>
-            <form action="index.php?getmodule=modClassement&action=niveau1" method="POST">
-                 <button type="submit" > score</button>
-            </form>
-            <form action="index.php?getmodule=modClassement&action=niveau2" method="POST">
-                 <button type="submit" > temps</button>
-            </form>
-            <?php
-                }
-    
-    public function selectionnerNiveau($niveau){
-        ?>
-        <label for="choixNiveau">Choisir un niveau</label>
-        <select name="niveaux" onchange="updated(this)">
-          <?php
-                foreach ($niveau as $util){  
-                ?><option value=<?=$util["numeroNiveau"]?> ><?=$util["numeroNiveau"]?></option>
-               
-                <?php
-                }
-                ?>
-        </select>
-        <?php
-    }
-
     public function formselNiveau($niveau){
         ?>
+        <br>
         <form action="index.php?getmodule=modClassement&action=niveausel" method="POST">
     <fieldset>
-    <label for="choixNiveau">Choisir un niveau</label>
+    <label for="choixNiveau" id="labelNiveau">Choisir un niveau</label>
         <select name="niveaux" id="niveauSel">
           <?php
                 foreach ($niveau as $util){  
@@ -119,8 +111,8 @@ class VueClassement{
                 ?>
         </select>
         <p>
-            <input type="submit" name="score" value="score" />
-            <input type="submit" name="temps" value="temps" />
+            <input type="submit" name="score" value="score" id="bouton" />
+            <input type="submit" name="temps" value="temps" id="bouton" />
         </p>
     </fieldset>
 </form>
@@ -131,7 +123,7 @@ class VueClassement{
         ?>
         <form action="index.php?getmodule=modClassement&action=niveauselPerso" method="POST">
     <fieldset>
-    <label for="choixNiveau">Choisir un niveau</label>
+    <label for="choixNiveau" id="labelNiveau">Choisir un niveau</label>
         <select name="niveaux" id="niveauSel">
           <?php
                 foreach ($niveau as $util){  
@@ -142,8 +134,8 @@ class VueClassement{
                 ?>
         </select>
         <p>
-            <input type="submit" name="score" value="score" />
-            <input type="submit" name="temps" value="temps" />
+            <input type="submit" name="score" value="score" id="bouton" />
+            <input type="submit" name="temps" value="temps" id="bouton"/>
         </p>
     </fieldset>
 </form>
@@ -168,7 +160,7 @@ class VueClassement{
     
                     ?><tr>
                         <td><?=$util["rangG"]?></td>
-                        <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
+                        <td><?=$util["login"]?></a></td>
                         <td> <?=$util["niveauMax"]?> </td>
                         <td> <?=$util["Xp"]?> </td>
                 </tr><?php 
