@@ -19,7 +19,7 @@ class ControllerEnnemi{
     }
 
     public function afficherEnnemis(){
-        $this->vue->afficherEnnemis($this->modele->recupererDonneesEnnemi());
+        $this->vue->afficherEnnemis($this->modele->recupererDonneesEnnemi($_POST['sort']));
     }
 
     public function details(){

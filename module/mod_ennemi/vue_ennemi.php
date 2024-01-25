@@ -49,27 +49,26 @@
     <?php
         }
     }
+    
+
 
     public function trierEnnemis(){ ?>
-<script> console.log("testtest"); </script>
-
     <form id="formTrierEnnemis" class ="formTri" method="post" enctype="multipart/form-data" action="">
-
         <label for="bientotDispo"> bientot dispo </label>
         <input type="checkbox" id="bientotDispo" name="bientotDispo">
-        
         <label for="dansLeJeu"> déjà dans le jeu </label>
         <input type="checkbox" id="dansLeJeu" name="dansLeJeu">
-        
         <label for="PVDesc">PV</label>
         <input type="checkbox" id="PVDesc" name="PVDesc">
-       
-        <button type="submit" name="submit">Trier</button>
+        <button>Trier</button>
         <button type="reset" name="reset">Supprimer les filtres </button>
-
+        Trier par : <a href="/index.php?getmodule=modEnnemi&sort=nom">Nom</a> | <a href="/index.php?getmodule=modEnnemi&sort=pv">PV</a>
     </form>
-<?php
+    <?php
     }
-}
-
+    }
 ?>
+
+<!-- pr savoir de quelle manière on trie on parcourt le DOM en JS 
+regarder si le selecteur est cochée regarder comment en jquery comment on sait si tel ou tel checkbow est cochée
+selon la checkbox cochée, j'envoie tel ou tel param pour ma requête ajax -->

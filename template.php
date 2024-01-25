@@ -7,6 +7,7 @@
         <!--<link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="css/bootstrap.css">    
             <script src="lib/jquery-3.7.1.min.js"></script>
+            <script src="ajax/triEnnemi.js"></script>
         <title><?= $pageTitle ?></title>
     
     </head>
@@ -34,87 +35,14 @@
             </nav>
         </header>
 
+
+
+
         <script>
-            // Votre code jQuery ici
-            $(document).ready(() => {
-                // Votre code jQuery à exécuter lorsque le document est prêt
-                $(".formTri").submit(function(e) {                    
-                    console.log("Bouton Trier cliqué !");  
-                    console.log("Formulaire soumis");
-                  // Empêcher la soumission par défaut du formulaire
-                    e.preventDefault();
 
-                    // Récupérer l'état des cases à cocher
-                    var bientotDispoChecked = $("#bientotDispo").prop("checked");
-                    var dansLeJeuChecked = $("#dansLeJeu").prop("checked");
-                    var trierParPV = $("#PVDesc").prop("checked");
-
-                    // Masquer tous les éléments ennemi
-                    $(".universItem").hide();
-
-                    // Afficher les éléments en fonction des cases cochées
-                    if (bientotDispoChecked) {
-                        $(".itemAVenir").show();
-                    }
-                    if (dansLeJeuChecked) {
-                        $(".itemExist").show();
-                    }
-
-                    if (trierParPV) {
-                        var ennemis = $(".ennemi-item").clone();
-                        ennemis.sort(function(a, b) {
-                            var pvA = parseInt($(a).find(".PVvalue").text());
-                            console.log(pvA);
-                            var pvB = parseInt($(b).find(".PVvalue").text());
-                            console.log(pvB);
-
-                            return pvB - pvA;
-                        });
-
-                        $(".ennemi").empty().append(ennemis);
-                        console.log("Ennemis triés : ", ennemis);
-                        
-
-
-                        console.log("Après ajout à .ennemi :", $(".ennemi"));                        
-                        console.log("tri TERMINE");
-
-
-                        // $(".tabEnnemi").html(ennemis);
-                        //$(".tabEnnemi").append(ennemis);
-                    }
-
-
-                });
-
-                $("#formTrierUstensiles").submit(function(e) {    
-                        e.preventDefault();
-
-                        // Récupérer l'état des cases à cocher
-                        var bientotDispoChecked = $("#bientotDispo").prop("checked");
-                        var dansLeJeuChecked = $("#dansLeJeu").prop("checked");
-                        var trierParPV = $("#nom").prop("checked");
-
-                        // Masquer tous les éléments ennemi
-                        $(".ennemi-item").hide();
-
-                        // Afficher les éléments en fonction des cases cochées
-                        if (bientotDispoChecked) {
-                            $(".ustensileAVenir").show();
-                        }
-                        if (dansLeJeuChecked) {
-                            $(".ustensileExist").show();
-                        }
-
-                        //NE FONCTIONNE PAS ENCORE
-                        if (nomChecked) {
-                        }
-
-            });
-            });
         </script>
+
       
-      <!-- style="background-color : purple" -->
 
       <main style="height: 1500px; padding-left: 10px;">
             <?= $tampon ?>
