@@ -14,14 +14,12 @@ class ModeleStatistiques extends Connexion{
     }
     
     public function recupererDonneePartieParNiveau($niveau){
-        $sql = self::$bdd->prepare("select numeroPartie,temps,score,isGagnee,numeroNiveau from partie where idUser = :idUser and numeroNiveau = :numeroNiveau order by numeroPartie");
+        $sql = self::$bdd->prepare("SELECT temps, score, isGagnee, numeroNiveau FROM partie WHERE idUser = :idUser ORDER BY numeroPartie DESC LIMIT 10; ");
 		$sql->bindParam(':idUser',$this->id, PDO::PARAM_INT);
-        $sql->bindParam(':numeroNiveau', $niveau, PDO::PARAM_INT);
-        echo '' . $this->id . '';
-        echo '' . $niveau . '';
+        /*$sql->bindParam(':numeroNiveau', $niveau, PDO::PARAM_INT);*/
 		if($sql->execute()){
             $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($result);
+            /*var_dump($result);*/
             return $result;
         }
         else{
