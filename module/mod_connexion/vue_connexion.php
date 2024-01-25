@@ -23,9 +23,8 @@
 		</ul>
 <?php
 	}
-/*		
-    public function formulaireConnexion(){
-		
+
+    public function formulaireConnexion($token){
 		if(isset($_SESSION['newsession'])){
 			 echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
 			?> </br> 
@@ -39,6 +38,8 @@
 			<input type="text" name="login" maxlength="100" required />
 			<p>Entrez votre mot de passe : </p>
 			<input type="password" name="pwd" maxlength="200" required/>
+
+			<input type="hidden" name="csrfToken" value="<? $token ?>">
 
 		    <button type="submit" name="seConnecter">Valider</button>
 		<p> Pas encore inscrit ?</p>
@@ -86,8 +87,7 @@
 	
 
 
-    public function formulaireInscription(){
-		
+    public function formulaireInscription($token){
         ?>		
         <p> Formulaire d'inscription </p>
             <form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
@@ -100,10 +100,11 @@
                 <p>Ajoutez votre photo de profil :</p>
                 <input type="file" name="pathPhotoProfil"/>
 
+				<input type="hidden" name="csrfToken" value="<? $token ?>">
+
                 <button type="submit" name="submit">Valider</button>
 
             </form>
         <?php
-		
     }
 }

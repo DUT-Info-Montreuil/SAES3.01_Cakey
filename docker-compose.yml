@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  # Service MySQL
+  database-etudiants.iut.univ-paris8.fr:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - datasaes301:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: dutinfopw201628
+      MYSQL_USER: dutinfopw201628
+      MYSQL_PASSWORD: bumuqasy
+
+  # Service PHP
+  php:
+    #image: php:7.1-apache
+    build: .
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - database-etudiants.iut.univ-paris8.fr
+    links:
+      - database-etudiants.iut.univ-paris8.fr
+volumes:
+  datasaes301:

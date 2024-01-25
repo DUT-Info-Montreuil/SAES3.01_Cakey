@@ -56,6 +56,7 @@ Connexion::initConnexion();
 
 $vueGenerique = new VueGenerique();
 $getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modAccueil';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'nom';
 switch ($getmodule) {
     case 'modAccueil' :
         include_once './module/mod_accueil/mod_accueil.php';
@@ -63,23 +64,25 @@ switch ($getmodule) {
         break;
     case 'modEnnemi':
         include_once './module/mod_ennemi/mod_ennemi.php';
-        $module = new ModEnnemi;
+        $module = new ModEnnemi($sort);
         break;
-    case 'modUstensile':
+    case 'modUstensile' :
         include_once './module/mod_ustensile/mod_ustensile.php';
-        $module = new ModUstensile;
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'niveau';
+        $module = new ModUstensile($sort);
         break;
     case 'modBonus' :
         include_once './module/mod_bonus/mod_bonus.php';
-        $module = new ModBonus;
+        $module = new ModBonus($sort);
         break;
     case 'modClassement' :
         include_once './module/mod_classement/mod_classement.php';
         $module = new ModClassement;
         break;
-    case 'modNiveaux' :
+    case 'modNiveau' :
         include_once './module/mod_niveaux/mod_niveaux.php';
-        $module = new ModNiveaux;
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'numeroNiveau';
+        $module = new ModNiveau($sort);
         break;
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
