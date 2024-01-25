@@ -9,7 +9,7 @@ class VueCompMenu{
 			/*
 			$connect = '
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Statistiques</a></li>
-			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfils">Profil</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfil">Profil</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
 			*/
 
@@ -21,7 +21,7 @@ class VueCompMenu{
 					<img src="Ressources/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?getmodule=modProfils">Profil</a>
+                        <a class="dropdown-item" href="index.php?getmodule=modProfil">Profil</a>
                         <a class="dropdown-item" href="index.php?getmodule=modConnexion&action=deconnexion">Se Deconnecter</a>
                     </div>
 			';
@@ -141,7 +141,7 @@ class VueCompMenu{
 			/*
 			$connect = '
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Statistiques</a></li>
-			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfils">Profil</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfil">Profil</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
 			*/
 
@@ -150,10 +150,10 @@ class VueCompMenu{
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img src="'.$lien .'" style="width: 70px; height: 70px;"/>
+					<img src="'.$lien .'" style="width: 70px; height: 70px;" class="image-rond"/>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?getmodule=modProfils">Profil</a>
+                        <a class="dropdown-item" href="index.php?getmodule=modProfil">Profil</a>
                         <a class="dropdown-item" href="index.php?getmodule=modConnexion&action=deconnexion">Se Deconnecter</a>
                     </div>
 			';
@@ -203,7 +203,7 @@ class VueCompMenu{
 
 
 
-		echo $this->affichage;
+		echo $affichage;
 	}
 
 }

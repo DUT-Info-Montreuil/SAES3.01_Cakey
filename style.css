@@ -393,6 +393,15 @@ tbody tr:nth-child(even) {
   background-color: #FFC6EF;
 }
 
+.image-rond{
+  width : 150px; height : 150px;
+  border: none;
+  -moz-border-radius : 75px;
+  -webkit-border-radius : 75px;
+  border-radius : 75px;
+
+}
+
 
 
 #bouton{
