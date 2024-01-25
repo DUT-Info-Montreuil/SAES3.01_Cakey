@@ -13,10 +13,10 @@ class ModeleConnexion extends Connexion{
 
 
     public function recupDonneesInscriptionEtAjoutBD(){
-		if($SERVER['REQUEST_METHOD'] === 'POST'){
+		// if($SERVER['REQUEST_METHOD'] === 'POST'){
 			if(isset($_POST['submit'])){
 
-				$token = $_POST['token'];
+				$token = $_SESSION['csrfToken'];
 				if(!Securite::isTokenValid($token)){
 					die('Session expirée. Veuillez réessayer');
 				}
@@ -44,7 +44,7 @@ class ModeleConnexion extends Connexion{
 
 					if ($sql->execute()) {
 						echo 'Votre inscription a été prise en compte. Vous allez être redirigé vers la page de connexion.';
-						header('Refresh: 4; URL=index.php?getmodule=modConnexion&action=formulaireConnexion');
+						header('Refresh: 0; URL=index.php?getmodule=modConnexion&action=formulaireConnexion');
 						exit;
 					}
 					else {
@@ -52,7 +52,7 @@ class ModeleConnexion extends Connexion{
 					}
 				}
 			}
-		}
+		// }
 	}
 
 
@@ -65,7 +65,7 @@ class ModeleConnexion extends Connexion{
 			$fileMimeType = mime_content_type($photo['tmp_name']);
 	
 			if (!in_array($fileMimeType, $allowedTypes)) {
-				throw new Exception("Le fichier doit être une image de type JPEG, PNG ou GIF.");
+				die("Le fichier doit être une image de type JPEG, PNG ou GIF.");
 			}
 
 			if (move_uploaded_file($photo['tmp_name'], $uploadFile)) {
@@ -88,7 +88,7 @@ class ModeleConnexion extends Connexion{
 	}
 
 	public function recupDonneesEtConnexion(){
-		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+		// if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			if(isset($_POST['seConnecter'])){
 				$sql = self::$bdd->prepare("select pwd from utilisateur where login = :login");
 				$sql->bindParam(':login', $_POST['login'], PDO::PARAM_STR);
@@ -114,7 +114,7 @@ class ModeleConnexion extends Connexion{
 					else {"erreur de connexion";}	
 				} else echo 'mot de passe invalide';
 			}
-		}
+		// }
 	}
 
 	public function deconnexion(){

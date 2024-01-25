@@ -51,7 +51,6 @@
 
 
     public function formulaireInscription($token){
-		self::header();
         ?>		
         <p> Formulaire d'inscription </p>
             <form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
@@ -68,6 +67,5 @@
 
             </form>
         <?php
-		self::footer();
     }
 }
