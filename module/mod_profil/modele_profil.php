@@ -183,11 +183,9 @@ class ModeleProfil extends Connexion{
 			$req = 
 			"delete from demandeAmis
 			where (idUserDemandeur = :monid and idUserDemande = :id) 
-				and (idUserDemande = :id and idUserDemandeur = :monid)
-				or
+ 				or
 				(idUserDemandeur = :id and idUserDemande = :monid) 
-				and (idUserDemande = :monid and idUserDemandeur = :id)
-				";   
+ 				";   
 			$pdo_req = self::$bdd->prepare($req);	
 			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
@@ -209,11 +207,9 @@ class ModeleProfil extends Connexion{
 			$req = 
 			"delete from demandeAmis
 			where (idUserDemandeur = :monid and idUserDemande = :id) 
-				and (idUserDemande = :id and idUserDemandeur = :monid)
-				or
+ 				or
 				(idUserDemandeur = :id and idUserDemande = :monid) 
-				and (idUserDemande = :monid and idUserDemandeur = :id)
-				";   
+ 				";   
 			$pdo_req = self::$bdd->prepare($req);	
 			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
