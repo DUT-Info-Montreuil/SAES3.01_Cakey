@@ -9,11 +9,16 @@ class VueClassement{
     }
     public function menu(){
         ?> <ul>
-        <li><a href="index.php?getmodule=modClassement&action=perso">Personnel</a></li>
-        <li><a href="index.php?getmodule=modClassement&action=notPerso">Not Personnel</a></li>
+        <li><a href="index.php?getmodule=modClassement&action=notPerso"> Classement</a></li>
+        <?php 
+        if(isset($_SESSION['newsession'])){
+		
+            ?><li><a href="index.php?getmodule=modClassement&action=perso"> Classement Personnel</a></li>
+            <?php
+            }
+            ?>
 </ul>
 <?php
-    
     }
     public function menuPerso(){
         ?> <ul>
@@ -29,7 +34,6 @@ class VueClassement{
                 <tr>
                     <td > Position</td>
                     <td> Nom</td>
-                    <td> rang </td>
                     <td > Xp </td>
                 </tr>
             </thead>
@@ -39,7 +43,6 @@ class VueClassement{
                     ?><tr>
                         <td><?=$util["rankScore"]?></td>
                         <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
-                        <td> <?=$util["login"]?> </td>
                         <td> <?=$util["score"]?> </td>
                 </tr><?php 
                 }
@@ -56,7 +59,6 @@ class VueClassement{
                 <tr>
                     <td > Position</td>
                     <td> Nom</td>
-                    <td> rang </td>
                     <td > temps </td>
                 </tr>
             </thead>
@@ -66,7 +68,6 @@ class VueClassement{
                     ?><tr>
                         <td><?=$util["rankTemps"]?></td>
                         <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
-                        <td> <?=$util["login"]?> </td>
                         <td> <?=$util["temps"]?> </td>
                 </tr><?php 
                 }
@@ -157,7 +158,6 @@ class VueClassement{
                 <tr>
                     <td > Position</td>
                     <td> Nom</td>
-                    <td> rang </td>
                     <td> niveau max</td>
                     <td > Xp </td>
                 </tr>
@@ -169,7 +169,6 @@ class VueClassement{
                     ?><tr>
                         <td><?=$util["rangG"]?></td>
                         <td><a href="index.php?getmodule=modClassement&action=niveau&id=<?=$util["idUtil"]?>"><?=$util["login"]?></a></td>
-                        <td> <?=$util["login"]?> </td>
                         <td> <?=$util["niveauMax"]?> </td>
                         <td> <?=$util["Xp"]?> </td>
                 </tr><?php 

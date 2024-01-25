@@ -1,6 +1,16 @@
 <?php
 
 class ModeleClassement extends Connexion{
+    private $id;
+
+    public function __construct(){
+        $sql = self::$bdd->prepare("select idUser from utilisateur where login = :login");
+		$sql->bindParam(':login', $_SESSION["newsession"], PDO::PARAM_STR);
+		$sql->execute();
+		$result = $sql->fetch();
+
+        $this->id = $result['idUser'];
+    }
 public function get_liste(){
     $req="SELECT (Rank() OVER(ORDER BY Sum(score) DESC ))as rangG, idUser , login,Sum(score)as Xp,MAX(numeroNiveau)as niveauMax FROM utilisateur NATURAL JOIN partie group by idUSer limit 20";
     $pdo_req = self::$bdd->query($req);
@@ -69,7 +79,7 @@ public function get_listeNiveau(){
     
     return $pdo_req->fetchAll();
 }
-public function get_liste_perso($id){
+public function get_liste_perso(){
     $req=Connexion::$bdd->prepare("SELECT * 
         FROM(SELECT (Rank() OVER(ORDER BY Sum(score) DESC ))rangG, idUser , login,Sum(score)as Xp,MAX(numeroNiveau)as niveauMax 
         FROM utilisateur NATURAL JOIN partie group by idUSer)as t
@@ -79,14 +89,14 @@ public function get_liste_perso($id){
         AND t.rangG >=(SELECT rangG
         FROM(SELECT (Rank() OVER(ORDER BY Sum(score) DESC ))rangG, idUser , login,Sum(score)as Xp,MAX(numeroNiveau)as niveauMax 
         FROM utilisateur NATURAL JOIN partie group by idUSer)as t where idUser=?)-2");
-    $req->bindParam(1, $id);
-    $req->bindParam(2, $id);
+    $req->bindParam(1, $this->id);
+    $req->bindParam(2, $this->id);
 
     $req->execute();
 
     return $req->fetchAll();
 }
-public function get_liste_perso_temps($niveau,$id){
+public function get_liste_perso_temps($niveau){
     $req=Connexion::$bdd->prepare("SELECT *
     FROM(SELECT (Rank() OVER(ORDER BY MIN(temps) DESC ))as rankTemps, idUser , login, MIN(temps) as temps
     FROM( SELECT idUser , login, temps 
@@ -111,9 +121,9 @@ public function get_liste_perso_temps($niveau,$id){
    ");
     $req->bindParam(1, $niveau);
     $req->bindParam(2, $niveau);
-    $req->bindParam(3, $id);
+    $req->bindParam(3, $this->id);
     $req->bindParam(4, $niveau);
-    $req->bindParam(5, $id);
+    $req->bindParam(5, $this->id);
 
 
 
@@ -124,7 +134,7 @@ public function get_liste_perso_temps($niveau,$id){
     return $req->fetchAll();
 
 }
-public function get_liste_perso_score($niveau,$id){
+public function get_liste_perso_score($niveau){
     $req=Connexion::$bdd->prepare("SELECT *
     FROM(SELECT (Rank() OVER(ORDER BY MAX(score) DESC ))as rankScore, idUser , login, MAX(score)as score
     FROM( SELECT idUser , login, score 
@@ -149,9 +159,9 @@ public function get_liste_perso_score($niveau,$id){
    ");
     $req->bindParam(1, $niveau);
     $req->bindParam(2, $niveau);
-    $req->bindParam(3, $id);
+    $req->bindParam(3, $this->id);
     $req->bindParam(4, $niveau);
-    $req->bindParam(5, $id);
+    $req->bindParam(5, $this->id);
 
 
     $req->execute();

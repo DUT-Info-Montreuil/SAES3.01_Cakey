@@ -83,7 +83,7 @@ class ControleurClassement {
 }
 	private function persGenerale(){
 		$this->vue->menuPerso();
-		$liste= $this->modele->get_liste_perso(1);
+		$liste= $this->modele->get_liste_perso();
 		$this->vue->tab($liste);
 	}
 	private function persNiveau(){
@@ -95,13 +95,13 @@ class ControleurClassement {
 	private function selPerso(){
 	
 		if (isset($_POST['score'])) {
-			$liste =$this->modele-> get_liste_perso_score($_POST['niveaux'],1) ;
+			$liste =$this->modele-> get_liste_perso_score($_POST['niveaux']) ;
 			$this->vue->get_tableauParNiveau($liste);
 		
 	 
 		} elseif (isset($_POST['temps'])) {
 	 
-			$liste= $this->modele-> get_liste_perso_temps($_POST['niveaux'],2);
+			$liste= $this->modele-> get_liste_perso_temps($_POST['niveaux']);
 			$this->vue->get_tableauParNiveauTps($liste);
 	
 		}
