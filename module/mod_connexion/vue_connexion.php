@@ -94,7 +94,9 @@
                 <p>Créez votre login : </p>
                 <input type="text" name="login" maxlength="100" required />
                 <p>Créez votre mot de passe : </p>
-                <input type="text" name="pwd" maxlength="200" required/>
+                <input type="password" name="pwd" maxlength="200" required/>
+				<p>Confirmer votre mot de passe : </p>
+                <input type="password" name="pwdConf" maxlength="200" required/>
                 <p>Ajoutez votre photo de profil :</p>
                 <input type="file" name="pathPhotoProfil"/>
 

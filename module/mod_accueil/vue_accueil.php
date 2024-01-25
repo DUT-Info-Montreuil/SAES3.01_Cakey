@@ -44,7 +44,6 @@ public function page(){
             <div class="histoire" style="width: 100%;">
                 <div class="imgText d-flex align-items-center">
                     <img src="Ressources/coeur.png" class="img-fluid" alt="Coeur">
-                    <p class="ml-3">Nouveautés</p>
                 </div>
                 <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.

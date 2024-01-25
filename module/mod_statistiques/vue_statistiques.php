@@ -7,20 +7,23 @@
 
     
     public function afficherTableauParties($donnees) {
-        echo '<table>';
-        echo '<thead><tr><th>Numéro de Partie</th><th>Temps</th><th>Score</th><th>Est Gagnée</th><th>Numéro de Niveau</th></tr></thead>';
+        echo '<div class="table-responsive">';
+        echo '<table class="table">';
+        echo '<thead><tr><th>Numéro de Niveau</th><th>Temps</th><th>Score</th><th>Est Gagnée</th></tr></thead>';
         echo '<tbody>';
         foreach ($donnees as $partie) {
             echo '<tr>';
-            echo '<td>' . $partie['numeroPartie'] . '</td>';
-            echo '<td>' . $partie['temps'] . '</td>';
-            echo '<td>' . $partie['score'] . '</td>';
-            echo '<td>' . ($partie['isGagnee'] ? 'Oui' : 'Non') . '</td>';
-            echo '<td>' . $partie['numeroNiveau'] . '</td>';
+            echo '<td>' . htmlspecialchars($partie['numeroNiveau']) . '</td>';
+            echo '<td>' . htmlspecialchars($partie['temps']) . '</td>';
+            echo '<td>' . htmlspecialchars($partie['score']) . '</td>';
+            echo '<td>' . (htmlspecialchars($partie['isGagnee']) ? 'Oui' : 'Non') . '</td>';
             echo '</tr>';
-            }
+        }
         echo '</tbody></table>';
-    }    
+        echo '</div>';
+    }
+    
+    
         
 
 }

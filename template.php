@@ -12,7 +12,7 @@
     <body>
         <header>
             <?php
-                $compMenu = new ControllerCompMenu(new VueCompMenu);
+                $compMenu = new ControllerCompMenu(new VueCompMenu , new ModeleCompMenu);
                 $compMenu->exec();
             ?>
         </header>
