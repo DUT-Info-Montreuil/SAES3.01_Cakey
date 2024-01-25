@@ -5,12 +5,16 @@ class VueCompMenu{
 
 	public function __construct(){
 		if(isset($_SESSION['newsession'])){
-			/*$connect = ' <li><a href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';*/
+ 			/*$connect = ' <li><a href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';*/
 			/*
 			$connect = '
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Statistiques</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modProfil">Profil</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a></li> ';
+			
+			avant nom : 
+			<a class="dropdown-item" href="index.php?getmodule=modProfil">Profil</a>
+
 			*/
 
 			$connect = '
@@ -21,8 +25,8 @@ class VueCompMenu{
 					<img src="Ressources/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.php?getmodule=modProfil">Profil</a>
-                        <a class="dropdown-item" href="index.php?getmodule=modConnexion&action=deconnexion">Se Deconnecter</a>
+				<a class="dropdown-item" href="index.php?getmodule=modProfil&nom=' . $_SESSION['newsession'] . '">Profil</a>
+				<a class="dropdown-item" href="index.php?getmodule=modConnexion&action=deconnexion">Se Deconnecter</a>
                     </div>
 			';
 		}

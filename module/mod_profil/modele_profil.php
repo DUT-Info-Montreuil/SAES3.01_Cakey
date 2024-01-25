@@ -14,13 +14,13 @@ class ModeleProfil extends Connexion{
 		print_r($this->id);
      }
 
-	public function get_detailsProfil () {
+	public function get_detailsProfil ($login) {
 		$req = "SELECT utilisateur.login , utilisateur.description , utilisateur.pathPhotoProfil 
 			  FROM utilisateur  
 			  WHERE utilisateur.idUser=:id";
 
 	  $pdo_req = self::$bdd->prepare($req);
-	  $id = $this->id;
+	  $id = $this->get_idUserAvecLogin($login);
 	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
 	  $resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
@@ -63,63 +63,65 @@ class ModeleProfil extends Connexion{
     }
 
 
-  public function get_classementProfil () {
+  public function get_classementProfil ($nom) {
  	  $req = "SELECT partie.numeroniveau, partie.score, partie.temps   
 		  FROM partie   
 		  WHERE partie.idUser=:id ORDER BY score DESC limit 10" ;
-	  
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
-	  $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
+	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
 	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
  	  return $resultat;
 		  
   }
 
-  public function get_classementAllLevel () {
+  public function get_classementAllLevel ($nom) {
  	  $req = "SELECT distinct partie.numeroniveau, max(score) over (partition by numeroniveau) as scoremax, min(temps) over (partition by numeroniveau) as mintemps  
 		  FROM partie   
-		  WHERE partie.idUser=:id   ORDER BY numeroniveau " ;
-	  
+		  WHERE partie.idUser=:id ORDER BY numeroniveau " ;
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
-	  $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
+	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
 	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
  	  return $resultat;
 		  
   }
 
-  public function get_amis(){
+  public function get_amis($nom){
   	  $req =
 	  "select login from utilisateur where idUser in (select idUser1 from amis where idUser2 =:id)
 	  union
 	  select login from utilisateur where idUser in (select idUser2 from amis where idUser1 =:id) ";
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
-	  $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
+	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
-	  //print_r($pdo_req->fetch(PDO::FETCH_ASSOC));
-	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
-  
+	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	  return $resultat;
   }
 
-  public function get_demandeAmis(){
+  public function get_demandeAmis($nom){
 	$req =
 	"select login from utilisateur where idUser in (select idUserDemande from demandeAmis where idUserDemandeur =:id) ";
+	$id=$this->get_idUserAvecLogin($nom);
 	$pdo_req = self::$bdd->prepare($req);
-	$pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
-	$pdo_req->execute();
- 	return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
-  }
-
-  public function get_demandeRecu(){
-	$req =
-	"select login from utilisateur where idUser in (select idUserDemandeur from demandeAmis where idUserDemande =:id) ";
-	$pdo_req = self::$bdd->prepare($req);
-	$pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
+	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	$pdo_req->execute();
 	$resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
- 
-    return $resultat;
+	 return $resultat;
+  }
+
+  public function get_demandeRecu($nom){
+	$req =
+	"select login from utilisateur where idUser in (select idUserDemandeur from demandeAmis where idUserDemande =:id) ";
+	$id=$this->get_idUserAvecLogin($nom);
+	$pdo_req = self::$bdd->prepare($req);
+	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+	$pdo_req->execute();
+	$resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+	 return $resultat;
   }
 
   //creer un trigger, quand on ajoute une demande et que l'inverse existe : ami 
@@ -291,26 +293,9 @@ class ModeleProfil extends Connexion{
 					echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
 					return 0;
 				}	
-			
 			}else {
-				
 				print_r("iduser row false");
 
 		}
-	}
-	
-
-    
-
-
-
-
-
-	
-
-
-
-	
-	
-	
+	}	
 }

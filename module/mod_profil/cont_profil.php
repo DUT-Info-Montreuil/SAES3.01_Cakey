@@ -6,71 +6,88 @@ class ControleuProfil {
 	private $modele;
 	private $vue;
 	private $action;
+	private $nom;
 	
 	public function __construct() {
 		$this->modele = new ModeleProfil();
 		$this->vue = new VueProfil();
+		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+
 	}
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
-		print_r("oui");
-		switch ($this->action) {
- 			case "profil" :
-				$this->donneesProfil();
-				break;
-			case "partager" :  
-				$this->partagerProfil(); 
-				break;
-			case "modifProfil" :
-				$this->modifProfil();
-				break;
-			case "inventaire" :
-				$this->inventaire();
-				break;
-			case "ajoutAmi" :
-				print_r("oui");
-				$this->ajoutAmi();
-				break;
-			case "changerPhotoProfil" :
-				$this->changerPhotoProfil();
-				break;
-			case "supprimerAmi":
-				$this->supprimerAmi();
-				break;
-			case "supprimerDemandeAmi" :
-				$this->supprimerDemandeAmi();
-				break;
-			case "accepterDemandeAmi" :
-				$this->accepterDemandeAmi();
-				break;
 
-			default : 
-				die ("Action inexistante");
+		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+
+		if($this->nom=$_SESSION['newsession']){
+			switch ($this->action) {
+				case "profil" :
+					$this->afficheProfilModifiable();
+					break;
+				case "partager" :  
+					$this->partagerProfil(); 
+					break;
+				case "modifProfil" :
+					$this->modifProfil();
+					break;
+				case "inventaire" :
+					$this->inventaire();
+					break;
+				case "ajoutAmi" :
+					print_r("oui");
+					$this->ajoutAmi();
+					break;
+				case "changerPhotoProfil" :
+					$this->changerPhotoProfil();
+					break;
+				case "supprimerAmi":
+					$this->supprimerAmi();
+					break;
+				case "supprimerDemandeAmi" :
+					$this->supprimerDemandeAmi();
+					break;
+				case "accepterDemandeAmi" :
+					$this->accepterDemandeAmi();
+					break;
+				case "afficheProfile" :
+					$this->afficheProfil();
+					break;
+
+				default : 
+					die ("Action inexistante");
 			
 		}
+		}else{
+			switch ($this->action) {
+				case "profil" :
+					$this->afficheProfil();
+					break;
+
+			}
+		}	
 
 	}
 
 	
-	private function donneesProfil () {
+	private function afficheProfilModifiable () {
 		//partie peresonnel 
- 		$donnees = $this->modele->get_detailsProfil ();
+ 		$donnees = $this->modele->get_detailsProfil($this->nom);
 
 
 		if (!$donnees) {
 			die("Erreur dans la récupération du profil");
 		}
 		//partie classement
- 		$donneesClassement = $this->modele->get_classementProfil ();
-		$classementAllLevel = $this->modele->get_classementAllLevel ();
+ 		$donneesClassement = $this->modele->get_classementProfil ($this->nom);
+		$classementAllLevel = $this->modele->get_classementAllLevel ($this->nom);
 
 		//partie social 
-		$amis = $this->modele->get_amis ();
-		$dmdamis = $this->modele->get_demandeAmis ();
-		$dmdAmisRecu = $this->modele->get_demandeRecu ();
+		$amis = $this->modele->get_amis ($this->nom);
+		$dmdamis = $this->modele->get_demandeAmis ($this->nom);
+		$dmdAmisRecu = $this->modele->get_demandeRecu ($this->nom);
 		 
- 		$this->vue->donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
+ 		$this->vue->afficheProfilModifiable($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
  		
 	}
 
@@ -89,6 +106,27 @@ class ControleuProfil {
 		header("Location: index.php?getmodule=modProfil");
 	   exit();
    }
+
+	private function afficheProfil () {
+		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		//partie peresonnel 
+		$donnees = $this->modele->get_detailsProfil ($nom);
+		if (!$donnees) {
+			die("Erreur dans la récupération du profil");
+		}
+		//partie classement
+		$donneesClassement = $this->modele->get_classementProfil ($nom);
+		$classementAllLevel = $this->modele->get_classementAllLevel ($nom);
+
+		//partie social 
+		$amis = $this->modele->get_amis ($nom);
+		$dmdamis = $this->modele->get_demandeAmis ($nom);
+		$dmdAmisRecu = $this->modele->get_demandeRecu ($nom);
+		
+		$this->vue->afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
+		$this->donneesProfil();
+
+}
 /*
 exemple de pdp
  https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg
@@ -138,19 +176,36 @@ exemple de pdp
 
 	}
 
- 
 
-	private function partagerProfil () {	
-  
-	}
+	
 
 	private function inventaire () {
   
 	}
 
 
+	/*
+	private function afficheProfil () {
+		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		//partie peresonnel 
+		$donnees = $this->modele->get_detailsProfil ($nom);
+		if (!$donnees) {
+			die("Erreur dans la récupération du profil");
+		}
+		//partie classement
+		$donneesClassement = $this->modele->get_classementProfil ($nom);
+		$classementAllLevel = $this->modele->get_classementAllLevel ($nom);
 
+		//partie social 
+		$amis = $this->modele->get_amis ($nom);
+		$dmdamis = $this->modele->get_demandeAmis ($nom);
+		$dmdAmisRecu = $this->modele->get_demandeRecu ($nom);
+		
+		$this->vue->afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
+		 $this->donneesProfil();
 
+	}
+*/
 
 }
 

@@ -6,7 +6,7 @@ class VueProfil {
 
 	}
 
-	public function donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
+	public function afficheProfilModifiable($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
 		var_dump($donnees);
 		var_dump($donnees["login"]);
 		?>	
@@ -36,8 +36,15 @@ class VueProfil {
 		<!--              JS pour actions bouttons -->
 		<script type="text/javascript">
      		document.getElementById("boutonPartagerProfil").onclick = function () {
-   	     		//code pour copier le lien du profil : si id = id de session : page modifiable sinon non 
-   	 		};
+				var currentUrl = window.location.href;
+
+				navigator.clipboard.writeText(currentUrl).then(function() {
+					alert('L\'URL a été copiée dans le presse-papiers : ' + currentUrl);
+				}).catch(function(err) {
+					console.error('Erreur lors de la copie dans le presse-papiers : ', err);
+				});
+
+		};
 			document.getElementById("changerPhotoProfil").onclick = function () {
    	     		location.href = "index.php?getmodule=modProfil&action=changerPhotoProfil";
    	 		};
@@ -67,6 +74,56 @@ class VueProfil {
  		   $this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
 	}
  
+	public function afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
+		var_dump($donnees);
+		var_dump($donnees["login"]);
+		?>	
+		<figure>	
+			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
+		</figure>
+
+		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="changerPhotoProfil" > Modifier photo </button> 
+
+		 <style>
+        .photoProfil {
+            width: 3cm;
+            height:  3cm; 
+			border-radius: 50%;
+        }
+    	</style>
+
+ 		<h1> Profil <h1/> 
+		<button type="button" id="boutonPartagerProfil">Partager profil</button> 
+		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
+
+	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
+
+		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
+		<input type="submit" value ="Ajouter un ami "/> <br/>
+	</form>
+		<!--              JS pour actions bouttons -->
+		<script type="text/javascript">
+     		document.getElementById("boutonPartagerProfil").onclick = function () {
+				var currentUrl = window.location.href;
+				navigator.clipboard.writeText(currentUrl).then(function() {
+					alert('L\'URL a été copiée dans le presse-papiers : ' + currentUrl);
+				}).catch(function(err) {
+					console.error('Erreur lors de la copie dans le presse-papiers : ', err);
+				});
+
+		};	
+		</script>
+  
+		<br/>
+		 <div> <?=$donnees["login"]?></div>
+		 <div> <?=$donnees["description"]?></div>
+
+		<?php
+		   $this->get_classement($donneesClassement, $classementAllLevel);
+ 		   $this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
+	}
+
+
 
 	public function modifPhotoProfil(){
 	?>
@@ -160,8 +217,8 @@ class VueProfil {
 			   <?php
 			   foreach ($amis as $ami){
    				   ?><tr>
-					   <td> <?=$ami['login']?> 
-							<form action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" method="POST">
+					   <td> <a href="index.php?getmodule=modProfil&nom=<?=$ami['login']?>"><?=$ami['login']?>   </a>
+							<form action="index.php?getmodule=modProfil&nom=<?=$ami['login']?>" method="POST">
 								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form>
 					</td>	   
@@ -213,34 +270,3 @@ class VueProfil {
 	
 	}
 }
-
-
-
-
-
-
-/*
-Array ( 
-	[nomUser] => soup [0] => soup [descriptionProfil] => moi cest soup [1] => moi cest soup [pdp] => https://i.pinimg.com/236x/93/d4/2e/93d42e90b085e14f98bbca41c6ba43b4.jpg [2] => https://i.pinimg.com/236x/93/d4/2e/93d42e90b085e14f98bbca41c6ba43b4.jpg ) 
- 	public function liste ($tab_equipes) {
-		?><ul><?php
-		foreach ($tab_equipes as $equipe) {
-
-			?><li><a href="index.php?module=equipes&action=details&id=<?=$equipe["id"]?>"><?=$equipe["nom"]?></a></li><?php
-		}
-		?></ul><?php
-	}
-	
-	public function details ($donnees) {
-		?>
-		<h1><?=$donnees["nom"]?></h1>
-		<!--Ajouter ici l'affichage de l'année, du pays etc-->
-		<?=$donnees["description"]?>
-		<?php
-	}
-*/
- 
-
- 
-
- 
