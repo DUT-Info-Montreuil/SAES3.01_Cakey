@@ -90,9 +90,11 @@ class ControleuProfil {
 	   exit();
    }
 /*
+exemple de pdp
  https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg
  https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg
-  */ private function changerPhotoProfil () {
+  */ 
+  private function changerPhotoProfil () {
 	$id = 1;  //$_SESSION['id']?
 	$donneeProfil=$this->modele->get_detailsProfil($id);
 
@@ -104,7 +106,19 @@ class ControleuProfil {
  	$this->modele->modifPhotoProfil($id, $nouvPDP );
 
 }
-	private function partagerProfil () {
+	private function ajoutAmi () {
+		$id = 1;  //$_SESSION['id']?
+		$loginJoueur = isset($_POST['login']) ? $_POST['login'] : '';
+ 		if ($loginJoueur !== '') {
+			
+			$this->modele->ajouterAmi($loginJoueur, $id);
+		}else{
+			print_r("erreur login joueur vide? ");
+			//todo : popup "invalide"? 
+		}
+		$this->donneesProfil();
+	}
+	private function partagerProfil () {	
   
 	}
 
@@ -112,9 +126,7 @@ class ControleuProfil {
   
 	}
 
-	private function ajoutAmi () {
-  
-	}
+
 
 
 

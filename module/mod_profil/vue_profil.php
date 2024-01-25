@@ -6,7 +6,6 @@ class VueProfil {
 
 	}
 
-
 	public function donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
 		//print_r($donnees);
 		?>	
@@ -14,7 +13,7 @@ class VueProfil {
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
 
-		<button type="button" id="changerPhotoProfil">Modifier photo </button> 
+		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="changerPhotoProfil" > Modifier photo </button> 
 
 		 <style>
         .photoProfil {
@@ -27,21 +26,25 @@ class VueProfil {
  		<h1> Profil <h1/> 
 		<button type="button" id="boutonPartagerProfil">Partager mon profil</button> 
 		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
-		<button type="button" id="boutonAjouterAmi">Ajouter un ami</button> 
 
+	<form action="index.php?module=profil&action=ajoutAmi" method="POST">
+
+		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
+		<input type="submit" value ="Ajouter un ami "/> <br/>
+	</form>
 		<!--              JS pour actions bouttons -->
 		<script type="text/javascript">
-    		document.getElementById("boutonPartagerProfil").onclick = function () {
+     		document.getElementById("boutonPartagerProfil").onclick = function () {
    	     		//code pour copier le lien du profil : si id = id de session : page modifiable sinon non 
    	 		};
-			document.getElementById("boutonInventaire").onclick = function () {
-   	     		location.href = "index.php?getmodule=modProfil&action=inventaire";
+			document.getElementById("changerPhotoProfil").onclick = function () {
+   	     		location.href = "index.php?getmodule=modProfil&action=changerPhotoProfil";
    	 		};
 			document.getElementById("boutonAjouterAmi").onclick = function () {
    	     		location.href = "index.php?getmodule=modProfil&action=ajoutAmi";
    	 		};
-			document.getElementById("changerPhotoProfil").onclick = function () {
-   	     		location.href = "index.php?getmodule=modProfil&action=changerPhotoProfil";
+				document.getElementById("boutonInventaire").onclick = function () {
+   	     		location.href = "index.php?getmodule=modProfil&action=inventaire";
    	 		};
 			
 		</script>
@@ -62,6 +65,7 @@ class VueProfil {
 		   $this->get_classement($donneesClassement, $classementAllLevel);
  		   $this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
 	}
+ 
 
 	public function modifPhotoProfil(){
 	?>

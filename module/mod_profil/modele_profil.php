@@ -111,6 +111,55 @@ class ModeleProfil extends Connexion{
     return $resultat;
   }
 
+  //creer un trigger, quand on ajoute une demande et que l'inverse existe : ami 
+  // todo : possibilité de supp un ami, une demande , une demande recu 
+  // todo : fix echo 
+
+  public function ajouterAmi($login, $id) {
+	print_r("dmd d'ami pour  : ");
+    var_dump($login);
+	$req = "select idUser from utilisateur where lower(login) =lower(:login)";
+	$pdo_req = self::$bdd->prepare($req);	
+	$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
+	$pdo_req->execute();
+	$idUserRow=$pdo_req->fetch(PDO::FETCH_ASSOC);
+	var_dump($idUserRow);
+	//pq renvoie false
+	
+	if ($idUserRow !== false) {
+		try{
+			$idUser = (int)$idUserRow['idUser'];
+			var_dump($idUser);
+
+			$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
+			$pdo_req = self::$bdd->prepare($req);
+			$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
+			$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+			$pdo_req->execute();
+ 		?> 
+		<script>alert('Demande d'ami envoyé ! ');</script>;
+		<?php
+ 		}catch(PDOException $e ){
+			if ($e->errorInfo[1] == 1062) {
+				echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
+			}	
+		}catch(MySQLException $e){
+			$e->getMessage();
+			echo "<script>alert('Un problème est survenu : '+$e' ');</script>";
+		}
+	}else {
+		
+		echo "<script>alert('Mais c'est qui ? ! '); </script>";
+		print_r("user existe pas");
+
+	}
+	
+
+    
+}
+
+
+
 
 	
 
