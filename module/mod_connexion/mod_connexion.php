@@ -1,5 +1,9 @@
 <?php
 
+// if (!defined("BASE_URL")) {
+//     die("il faut passer par l'index");
+// }
+
 class ModConnexion{
 
 

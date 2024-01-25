@@ -1,4 +1,11 @@
 <?php 
+
+
+// if (!defined("BASE_URL")) {
+//     die("il faut passer par l'index");
+// }
+
+
 include_once 'connexion.php';
 class ModeleConnexion extends Connexion{
 

@@ -22,9 +22,10 @@ public function page(){
                 </br>
                 </br>
                 </br>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
-                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                <p>Bienvenue chez Cakay ! Dans ce jeu de type tower defense, tu essayes de cusiner un gâteau. 
+                Mais des ennemis veulent t\'en empêcher ! Tu vas devoir affronter des patates, des poissons, des petits pois et tant d\'autres qui essayent de gâcher ton délicieux gâteau
+                Pour les empêcher d\'atteindre ton saladier, tu peux utiliser différents instrument de cuisine, des couteaux, des fouets etc. 
+                </p>
             </div>
             <div class="gameplayVideo">
                 <video width="640" height="480" controls>
