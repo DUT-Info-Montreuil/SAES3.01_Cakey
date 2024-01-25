@@ -54,41 +54,36 @@ class ControleuProfil {
 
 	
 	private function donneesProfil () {
- 		$id_profil = isset ($_GET["id"]) ? $_GET["id"] : 1;
-		$donnees = $this->modele->get_detailsProfil ($id_profil);
+		//partie peresonnel 
+ 		$donnees = $this->modele->get_detailsProfil ();
+
+
 		if (!$donnees) {
 			die("Erreur dans la récupération du profil");
 		}
-		// données table classement 
-		$donneesClassement = $this->modele->get_classementProfil ($id_profil);
-		if (!$donneesClassement) {
-			die("Erreur dans la récupération des données classements");
-		}
-		$classementAllLevel = $this->modele->get_classementAllLevel ($id_profil);
-		if (!$classementAllLevel) {
-			die("Erreur dans la récupération des données classements tout niveau");
-		}
-		$amis = $this->modele->get_amis ($id_profil);
-		 
-		$dmdamis = $this->modele->get_demandeAmis ($id_profil);
-		 
-		$dmdAmisRecu = $this->modele->get_demandeRecu ($id_profil);
+		//partie classement
+ 		$donneesClassement = $this->modele->get_classementProfil ();
+		$classementAllLevel = $this->modele->get_classementAllLevel ();
+
+		//partie social 
+		$amis = $this->modele->get_amis ();
+		$dmdamis = $this->modele->get_demandeAmis ();
+		$dmdAmisRecu = $this->modele->get_demandeRecu ();
 		 
  		$this->vue->donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
  		
 	}
 
 	private function modifProfil() {
-		$id = 1;  //$_SESSION['id']?
-	   $nouvLogin = isset($_POST['login']) ? $_POST['login'] : '';
+ 	   $nouvLogin = isset($_POST['login']) ? $_POST['login'] : '';
 	   $nouvdescription = isset($_POST['description']) ? $_POST['description'] : '';
 	   
 		if ($nouvLogin !== '') {
-			$this->modele->modifLogin($id, $nouvLogin);
+			$this->modele->modifLogin($nouvLogin);
 	   }
    
 	   if ($nouvdescription !== '') {
-			$this->modele->modifDescription($id, $nouvdescription);
+			$this->modele->modifDescription($nouvdescription);
 	   }
    
 		header("Location: index.php?getmodule=modProfil");
@@ -100,24 +95,22 @@ exemple de pdp
  https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg
   */ 
   private function changerPhotoProfil () {
-	$id = 1;  //$_SESSION['id']?
-	$donneeProfil=$this->modele->get_detailsProfil($id);
+ 	$donneeProfil=$this->modele->get_detailsProfil();
 
 	$defaultPDP = $donneeProfil['pathPhotoProfil'];
  	$nouvPDP = isset($_POST['linkPDP']) ? $_POST['linkPDP'] : $defaultPDP;
  
 	$this->vue->modifPhotoProfil( );
 	$this->donneesProfil();
- 	$this->modele->modifPhotoProfil($id, $nouvPDP );
+ 	$this->modele->modifPhotoProfil( $nouvPDP );
 
 }
 	private function ajoutAmi () {
-		$id = 1;  //$_SESSION['id']?
-		$loginJoueur = isset($_POST['login']) ? $_POST['login'] : '';
+ 		$loginJoueur = isset($_POST['login']) ? $_POST['login'] : '';
  		if ($loginJoueur !== '') {
 			print_r("joueur vide");
 
-			$this->modele->ajouterAmi($loginJoueur, $id);
+			$this->modele->ajouterAmi($loginJoueur);
 		}else{
 			print_r("erreur login joueur vide? ");
  		}
@@ -126,24 +119,21 @@ exemple de pdp
 	}
 
 	private function supprimerAmi () {
-		$id = 1;  //$_SESSION['id']?
-		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->supprimerAmi($nom, $id);
+ 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->supprimerAmi($nom );
 		$this->donneesProfil();
 
 	}
 	private function supprimerDemandeAmi () {
-		$id = 1;  //$_SESSION['id']?
-		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->supprimerDemandeAmi($nom, $id);
+ 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->supprimerDemandeAmi($nom);
 		$this->donneesProfil();
 
 	}
 
 	private function accepterDemandeAmi () {
-		$id = 1;  //$_SESSION['id']?
-		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->accepterDemandeAmi($nom, $id);
+ 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->accepterDemandeAmi($nom);
 		$this->donneesProfil();
 
 	}

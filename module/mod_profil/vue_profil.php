@@ -7,7 +7,8 @@ class VueProfil {
 	}
 
 	public function donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
-		//print_r($donnees);
+		var_dump($donnees);
+		var_dump($donnees["login"]);
 		?>	
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
