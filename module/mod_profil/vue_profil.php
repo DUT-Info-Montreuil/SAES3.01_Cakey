@@ -14,8 +14,12 @@ class VueProfil {
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
 
-		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="changerPhotoProfil" > Modifier photo </button> 
+ 		<form method="post" enctype="multipart/form-data" action="index.php?getmodule=modProfil&action=changerPhotoProfil">
+                 <input type="file" name="pathPhotoProfil"/>
 
+                <button type="submit" name="submit">Valider</button>
+
+        </form>
 		 <style>
         .photoProfil {
             width: 3cm;

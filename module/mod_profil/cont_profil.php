@@ -12,12 +12,11 @@ class ControleuProfil {
 		$this->modele = new ModeleProfil();
 		$this->vue = new VueProfil();
 		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-
+ 
 	}
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
-
 		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
 		print_r("on cherche le profil de ");
 		print_r($this->nom);
@@ -131,14 +130,12 @@ exemple de pdp
  https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg
   */ 
   private function changerPhotoProfil () {
- 	$donneeProfil=$this->modele->get_detailsProfil();
+  
+	//$this->vue->modifPhotoProfil( );
+ 	$this->modele->modifPhotoProfil($this->nom);
+	 $this->afficheProfilModifiable();
 
-	$defaultPDP = $donneeProfil['pathPhotoProfil'];
- 	$nouvPDP = isset($_POST['linkPDP']) ? $_POST['linkPDP'] : $defaultPDP;
  
-	$this->vue->modifPhotoProfil( );
-	$this->donneesProfil();
- 	$this->modele->modifPhotoProfil( $nouvPDP );
 
 }
 	private function ajoutAmi () {
@@ -150,27 +147,27 @@ exemple de pdp
 		}else{
 			print_r("erreur login joueur vide? ");
  		}
-		$this->donneesProfil();
+		$this->afficheProfilModifiable();
 		print_r("donne");
 	}
 
 	private function supprimerAmi () {
  		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
 		$this->modele->supprimerAmi($nom );
-		$this->donneesProfil();
+		$this->afficheProfilModifiable();
 
 	}
 	private function supprimerDemandeAmi () {
  		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
 		$this->modele->supprimerDemandeAmi($nom);
-		$this->donneesProfil();
+		$this->afficheProfilModifiable();
 
 	}
 
 	private function accepterDemandeAmi () {
  		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
 		$this->modele->accepterDemandeAmi($nom);
-		$this->donneesProfil();
+		$this->afficheProfilModifiable();
 
 	}
 
@@ -192,7 +189,7 @@ exemple de pdp
 		$dmdAmisRecu = $this->modele->get_demandeRecu ($nom);
 		
 		$this->vue->afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
-		 $this->donneesProfil();
+		 $this->afficheProfilModifiable();
 
 	}
 */

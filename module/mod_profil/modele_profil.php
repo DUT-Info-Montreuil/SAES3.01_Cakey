@@ -50,8 +50,27 @@ class ModeleProfil extends Connexion{
     
         return $pdo_req->execute();
     }
+ 
+	public function modifPhotoProfil($nom) {
+		$id = $this->get_idUserAvecLogin($nom);
+		if(isset($_POST['submit'])){
+			$photo = $_FILES['pathPhotoProfil'];
+			//echo $photo;
+			$lien = $this->traitementPhoto($photo);
+			$sql = self::$bdd->prepare("update utilisateur set pathPhotoProfil = :pathPhotoProfil where idUser = :id");
+		
+		$sql->bindParam(':pathPhotoProfil', $lien, PDO::PARAM_STR);
+		$sql->bindParam(':id', $id, PDO::PARAM_STR);
 
-	public function modifPhotoProfil($id, $pathPhotoProfil) {
+			if ($sql->execute()) {
+				echo 'Photo de profil changé.';
+				header('Refresh: 0; URL=index.php?getmodule=modProfil');
+				exit;
+			}
+			else {
+				echo'Une erreur est survenue lors de la modification';
+			}
+ 		}
 
         $req = "update utilisateur set pathPhotoProfil = :pathPhotoProfil where idUser = :id";
     
@@ -59,9 +78,35 @@ class ModeleProfil extends Connexion{
         $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
          $pdo_req->bindParam("pathPhotoProfil", $pathPhotoProfil, PDO::PARAM_STR);
     
-        return $pdo_req->execute();
-    }
+        return $pdo_req->execute();		
+		}
 
+
+	public function traitementPhoto($photo){	
+		if ($photo['error'] === UPLOAD_ERR_OK) {
+			$uploadDir = 'ressources/photoProfil/';
+			$path_part = pathinfo(basename($photo['name']));
+			$typeImg = $path_part['extension'];
+	
+			$uploadFile = $uploadDir . basename($photo['name']);
+			if (move_uploaded_file($photo['tmp_name'], $uploadFile)) {
+				$sql = self::$bdd->prepare('SELECT idUser FROM utilisateur ORDER BY idUser DESC LIMIT 1;');
+				$sql->execute();
+				$result = $sql->fetch();
+				$newId = $result['idUser'] + 1; 
+				$newFilePath = 'ressources/photoProfil/user' . $newId . '.' . $typeImg;
+				//a modifier si on veut que le num de la pp match avec l'idUser si suppression dans les lignes précédentes
+				
+				if (rename($uploadFile, $newFilePath)) {
+					return $newFilePath;
+				} else {
+					echo "Erreur lors du renommage du fichier.";
+				}
+			}else{
+				echo "Erreur lors du téléchargement du fichier.";
+			}
+		}	
+	}
 
   public function get_classementProfil ($nom) {
  	  $req = "SELECT partie.numeroniveau, partie.score, partie.temps   
