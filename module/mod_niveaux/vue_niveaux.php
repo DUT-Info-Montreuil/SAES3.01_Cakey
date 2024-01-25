@@ -54,23 +54,16 @@ public function afficherNiveaux($tabNiveau){
 }
 
 public function trierNiveaux(){ ?>
-<form id="formTrierNiveau" class ="formTri" method="post" enctype="multipart/form-data" action="">
-<!-- A CHANGER -->
-<!-- PEUT ETRE RAJOUTER <p> "CONTIENT" avec une sorte de liste déroulante qui contient les noms des ennemis et quand on clique ça affiche les niveaux qui contiennent cet ennemi -->
-    <label for="nbEnnemis"> NB ENNEMI DESC </label>
-    <input type="checkbox" id="nbEnnemis" name="nbEnnemis">
-
-    <label for="bientotDispo"> bientot dispo </label>
-    <input type="checkbox" id="bientotDispo" name="bientotDispo">
-    
-    <label for="dansLeJeu"> déjà dans le jeu </label>
-    <input type="checkbox" id="dansLeJeu" name="dansLeJeu">
         
-   
-    <button type="submit" name="submit">Trier</button>
-    <button type="reset" name="reset">Supprimer les filtres </button>
+    <p>Trier par</p>
+    <a href="index.php?getmodule=modNiveau&sort=numeroNiveau">Numero</a> | 
+    <a href="index.php?getmodule=modNiveau&sort=nbEnnemis asc">Nombre d'ennemis</a> |
+    <a href="index.php?getmodule=modNiveau&sort=argentBonbon desc">Récompense Bonbon</a> |
+    <a href="index.php?getmodule=modNiveau&sort=ChocolatGagne desc">Récompense Chocolat</a> |
+    <a href="index.php?getmodule=modNiveau&sort=idTour">Tour gagnée</a> |
+    <a href="index.php?getmodule=modNiveau&sort=XPgagnees desc">XP gagnés</a> |
+    <a href="index.php?getmodule=modNiveau&sort=exist">Disponibilité</a> |
 
-</form>
 <?php
 }
 }

@@ -21,14 +21,14 @@ public function afficherBonus($tabBonus){
 
             <tbody>
                 <tr>
-                    <img src="" alt="image du bonus">
+                <img src="<?= $bonus["pathImageBonus"] ?>" alt="image de <?= $bonus["nom"] ?>" style="width: 100px; height: 100px;">
                 </tr>
                 <tr>
-                    <td><span style="color: red;">prix Chocolat:</span></td>
+                    <td><span style="color: red;">Prix Chocolat:</span></td>
                     <td><?php echo $bonus["prixEnChocolat"]; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo $bonus['description']; ?></td>
+                    <td><?php echo "Le " . $bonus['nom']. " ".$bonus['description']; ?></td>
                 </tr>
             <tbody>
         </table>
@@ -37,19 +37,13 @@ public function afficherBonus($tabBonus){
     }
 }
 
+
 public function trierBonus(){ ?>
-<form id="formTrierBonus" class ="formTri" method="post" enctype="multipart/form-data" action="">
+    Trier par
+    <a href="index.php?getmodule=modBonus&sort=nom">Nom</a> | 
+    <a href="index.php?getmodule=modBonus&sort=prixEnChocolat">Prix</a> |
+    <a href="index.php?getmodule=modBonus&sort=exist">Disponibilité</a> |
 
-    <label for="bientotDispo"> bientot dispo </label>
-    <input type="checkbox" id="bientotDispo" name="bientotDispo">
-    
-    <label for="dansLeJeu"> déjà dans le jeu </label>
-    <input type="checkbox" id="dansLeJeu" name="dansLeJeu">
-   
-    <button type="submit" name="submit">Trier</button>
-    <button type="reset" name="reset">Supprimer les filtres </button>
-
-</form>
 <?php
 }
 }

@@ -13,9 +13,9 @@ class VueCompFooter{
             <li><a href = "#">Cookies</a></li>
         </ul>
         <ul class="icon">
-            <li><a href="#"><img src="Ressources/facebookIcon.png"></a></li>
-            <li><a href="#"><img src="Ressources/twitterIcon.png"></a></li>
-            <li><a href="#"><img src="Ressources/InstagramIcon.png"></a></li>
+            <li><a href="#"><img src="ressources/footer/facebookIcon.png"></a></li>
+            <li><a href="#"><img src="ressources/footer/twitterIcon.png"></a></li>
+            <li><a href="#"><img src="ressources/footer/InstagramIcon.png"></a></li>
         </ul>
 	';
 	}

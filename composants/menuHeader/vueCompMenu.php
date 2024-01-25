@@ -7,14 +7,14 @@ class VueCompMenu{
 		$this->affichage = '
 		<ul class ="menu">
 			<li class="logo" href="accueil.html">
-				<a href="index.php?getmodule=modAccueil&action=page"><img src="Ressources/gateaux.png"/>CAKEY</a>
+				<a href="index.php?getmodule=modAccueil&action=page"><img src="ressources/header/gateaux.png"/>CAKEY</a>
 			</li>
 			<li>
 				<a href ="index.php?getmodule=modAccueil&action=page">Accueil</a>
 			</li>
 			<li class="ongletUnivers"><a href="#">Univers &ensp;</a>
 				<ul class="sousOngletsUnivers">
-					<li><a href = "index.php?getmodule=modEnnemi&action=bienvenue">Ennemi</a></li>
+					<li><a href = "index.php?getmodule=modEnnemi&action=bienvenue&sort=nom">Ennemi</a></li>
 					<li><a href = "index.php?getmodule=modUstensile&action=bienvenue">Ustensiles</a></li>
 					<li><a href = "index.php?getmodule=modNiveau&action=bienvenue">Niveaux</a></li>
 					<li><a href = "index.php?getmodule=modBonus&action=bienvenue">Bonus</a></li>

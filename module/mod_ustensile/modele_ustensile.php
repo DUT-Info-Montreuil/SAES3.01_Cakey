@@ -3,23 +3,22 @@ include_once 'connexion.php';
 class ModeleUstensile extends Connexion{
 
 
-    public function recupererDonneesUstensilesNiveau1(){
-        $sql = self::$bdd->prepare("SELECT idTour, nom, pointsAttaque, porteeAttaque, pv, prixAchat, niveau, pathImageTour, exist FROM statistiquesTour order by niveau, nom");
-	    if ($sql->execute()) {
+	private $sort;
+
+	public function __construct($sort){
+		$this->sort=$sort;
+	}
+
+    public function recupererDonneesUstensiles(){
+        $sql = self::$bdd->prepare("SELECT idTour, nom, pointsAttaque, porteeAttaque, pv, prixAchat, niveau, pathImageTour, exist FROM statistiquesTour ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'niveau'));
+		// $sql = self::$bdd->prepare("SELECT idEnnemi, nom, PV, porteeAttaque, pointsAttaque, recompense, pathImageEnnemi, exist FROM ennemi ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'nom'));
+
+		
+		if ($sql->execute()) {
 		    return $sql->fetchAll(PDO::FETCH_ASSOC);
 	    } else {
 		    return null; // Aucun résultat trouvé ou une erreur s'est produite
 	    }
     }
 
-
-	public function recupererDonneesUstensilesApresNiveau1($id){
-        $sql = self::$bdd->prepare("SELECT nom, pointsAttaque, porteeAttaque, pv, prixAchat, niveau, pathImageTour, exist FROM statistiquesTour where niveau > 1 and idTour = :id ");
-		$sql->bindParam(":id", $id, PDO::PARAM_INT);
-	    if ($sql->execute()) {
-		    return $sql->fetchAll(PDO::FETCH_ASSOC);
-	    } else {
-		    return null; // Aucun résultat trouvé ou une erreur s'est produite
-	    }
-    }
 }

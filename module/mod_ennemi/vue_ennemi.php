@@ -21,7 +21,7 @@
 
                 <tbody>
                     <tr>
-                        <img src="" alt="image de l'ennemi">
+                    <img src="<?= $ennemi["pathImageEnnemi"] ?>" alt="image de <?= $ennemi["nom"] ?>" style="width: 100px; height: 100px;">
                     </tr>
                     <tr>
                         <td><span style="color: red;">PV:</span></td>
@@ -51,22 +51,20 @@
     }
     
     public function trierEnnemis(){ ?>
-    <form id="formTrierEnnemis" class ="formTri" method="post" enctype="multipart/form-data" action="">
-        <label for="bientotDispo"> bientot dispo </label>
-        <input type="checkbox" id="bientotDispo" name="bientotDispo">
-        <label for="dansLeJeu"> déjà dans le jeu </label>
-        <input type="checkbox" id="dansLeJeu" name="dansLeJeu">
-        <label for="PVDesc">PV</label>
-        <input type="checkbox" id="PVDesc" name="PVDesc">
+   
        
-        <button>Trier</button>
-        <button type="reset" name="reset">Supprimer les filtres </button>
+        <p>Trier par</p>
+        <a href="index.php?getmodule=modEnnemi&sort=nom">Nom</a> | 
+        <a href="index.php?getmodule=modEnnemi&sort=PV desc">PV</a> |
+        <a href="index.php?getmodule=modEnnemi&sort=pointsAttaque desc">Attaque</a> |
+        <a href="index.php?getmodule=modEnnemi&sort=recompense desc">Récompense Bonbons</a> |
+        <a href="index.php?getmodule=modEnnemi&sort=exist">Disponibilité</a> |
 
-        Trier par : <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=nom">Nom</a> | <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=pv">PV</a>
     </form>
     <?php
     }
-    }
+    
+}
 ?>
 
 <!-- pr savoir de quelle manière on trie on parcourt le DOM en JS 

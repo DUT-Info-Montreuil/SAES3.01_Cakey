@@ -15,7 +15,7 @@ public function page(){
         <body>
             <div class ="histoire">
                 <div class="imgText">
-                    <img src ="Ressources/coeur.png">
+                    <img src ="ressources/accueil/coeur.png">
                     <p>Nouveautés</p>
                 </div>
                 <h3>L\'univers et l\'histoire de Cakey</h3>
@@ -28,7 +28,7 @@ public function page(){
             </div>
             <div class="gameplayVideo">
                 <video width="640" height="480" controls>
-                    <source src="Ressources/gameplayGakey.ogx" type="video/ogg"> 
+                    <source src="ressources/accueil/gameplayGakey.ogx" type="video/ogg"> 
                 </video>
             </div>
             <!--IL FAUT ENLEVER LES </BR> ET REGLER LE PROBLEME DE LA VIDEO MAL ALLIGNER-->

@@ -19,7 +19,7 @@ class ControllerUstensile{
     }
 
     public function afficherUstensiles(){
-        $this->vue->afficherUstensiles($this->modele->recupererDonneesUstensilesNiveau1());
+        $this->vue->afficherUstensiles($this->modele->recupererDonneesUstensiles());
         // $this->vue->afficherAmeliorations($this->modele->recupererDonneesUstensilesApresNiveau1($id));
     }
 
