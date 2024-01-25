@@ -200,12 +200,17 @@ class VueProfil {
 		
 		<table>
 		   <thead>
-		   <h1> Mes Amis </h1>
-		   </thead>
+		 	 	<tr>
+					<td class="titre-tab-centre"> Mes amis</td> 
+ 				</tr>
+			</thead>
 		   <tbody>
 			   <?php
 			   foreach ($amis as $ami){
-   				   ?><tr>
+   				   ?>
+				 <
+				 
+				   <tr>
 					   <td> <a href="index.php?getmodule=modProfil&action=afficheProfile&nom=<?=$ami['login']?>"><?=$ami['login']?>   </a>
 							<form action="index.php?getmodule=modProfil&action=afficheProfil&nom=<?=$ami['login']?>" method="POST">
 								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
@@ -217,8 +222,10 @@ class VueProfil {
 
 		<table>
 		   <thead>
-		   <h1> Demandes envoyées </h1>
-		   </thead>
+		  		<tr>
+					<td class="titre-tab-centre"> Demandes envoyées</td> 
+ 				</tr>
+ 		   </thead>
 		   <tbody>
 			   <?php
 			   foreach ($demandeAmis as $dmd){
@@ -237,8 +244,9 @@ class VueProfil {
 
 		<table>
 		   <thead>
-		   <h1> Demandes reçues </h1>
-		   </thead>
+ 		  		<tr>
+					<td class="titre-tab-centre"> Demandes reçues</td> 
+ 				</tr>		   </thead>
 		   <tbody>
 			   <?php
 			   foreach ($demandeRecu as $dmdrecu){
@@ -267,9 +275,11 @@ class VueProfil {
 		?>
 		
 		<table>
-		   <thead>
-		   <h1> Ses Amis </h1>
-		   </thead>
+		<thead>
+		 	 	<tr>
+					<td class="titre-tab-centre"> Ses amis</td> 
+ 				</tr>
+			</thead>
 		   <tbody>
 			   <?php
 			   foreach ($amis as $ami){
