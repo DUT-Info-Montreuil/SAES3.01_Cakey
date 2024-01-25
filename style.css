@@ -1,0 +1,84 @@
+/* Styles communs pour les formulaires de connexion et d'inscription */
+.form-container {
+    border: 2px solid #FFDAB9;
+    border-radius: 10px;
+    background-color: #fce083;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.form-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button {
+    background-color: #ff85c3;
+    color: #fce083;
+    border: 2px solid #FFDAB9;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+/* Styles spécifiques au formulaire de connexion */
+.not-registered {
+    margin-top: 10px;
+}
+
+.registration-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.registration-link:hover {
+    cursor: pointer;
+    color: #ff69b4; 
+}
+
+
+/*Styles spécifiques aux liens de tri des pages Univers*/
+.sorting-container {
+    display: flex;
+    align-items: center;
+}
+
+.sorting-label {
+    color: #ff69b4; 
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.sorting-buttons-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.sorting-button {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid #ff69b4; 
+    border-radius: 10px;
+    background-color: #ffc0cb;
+    color: #ff69b4;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-bottom :10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sorting-button:hover {
+    background-color: #ff69b4;
+    color: #ffc0cb;
+}

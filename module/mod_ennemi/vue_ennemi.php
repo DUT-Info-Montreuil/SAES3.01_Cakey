@@ -39,10 +39,6 @@
                         <td><span style="color: red;">Récompense:</span></td>
                         <td><?php echo $ennemi['recompense']; ?></td>
                     </tr>
-                    <tr>
-                        <td><span style="color: red;">EXIST:</span></td>
-                        <td><?php echo $ennemi['exist']; ?></td>
-                    </tr>
                 <tbody>
             </table>
         </div>
@@ -51,18 +47,20 @@
     }
     
     public function trierEnnemis(){ ?>
-   
-       
-        <p>Trier par</p>
-        <a href="index.php?getmodule=modEnnemi&sort=nom">Nom</a> | 
-        <a href="index.php?getmodule=modEnnemi&sort=PV desc">PV</a> |
-        <a href="index.php?getmodule=modEnnemi&sort=pointsAttaque desc">Attaque</a> |
-        <a href="index.php?getmodule=modEnnemi&sort=recompense desc">Récompense Bonbons</a> |
-        <a href="index.php?getmodule=modEnnemi&sort=exist">Disponibilité</a> |
-
-    </form>
+        <div class="sorting-container">
+            <p class="sorting-label">Trier par</p>
+            <div class="sorting-buttons-container">
+                <a href="index.php?getmodule=modEnnemi&sort=nom" class="sorting-button">Nom</a>
+                <a href="index.php?getmodule=modEnnemi&sort=PV desc" class="sorting-button">PV</a>
+                <a href="index.php?getmodule=modEnnemi&sort=pointsAttaque desc" class="sorting-button">Attaque</a>
+                <a href="index.php?getmodule=modEnnemi&sort=recompense desc" class="sorting-button">Récompense Bonbons</a>
+            </div>
+        </div>
     <?php
     }
+    
+
+    
     
 }
 ?>

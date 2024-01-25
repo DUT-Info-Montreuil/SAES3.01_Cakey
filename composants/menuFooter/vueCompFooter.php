@@ -17,6 +17,8 @@ class VueCompFooter{
             <li><a href="#"><img src="ressources/footer/twitterIcon.png"></a></li>
             <li><a href="#"><img src="ressources/footer/InstagramIcon.png"></a></li>
         </ul>
+
+        <p>&copy 2023-2024 Fiona BORGAZZI, Huseyin CAKAR, Victoire CASSIRAME, Caroline ZHENG</p>
 	';
 	}
 

@@ -39,13 +39,16 @@ public function afficherBonus($tabBonus){
 
 
 public function trierBonus(){ ?>
-    Trier par
-    <a href="index.php?getmodule=modBonus&sort=nom">Nom</a> | 
-    <a href="index.php?getmodule=modBonus&sort=prixEnChocolat">Prix</a> |
-    <a href="index.php?getmodule=modBonus&sort=exist">Disponibilité</a> |
-
+    <div class="sorting-container">
+        <p class="sorting-label">Trier par</p>
+        <div class="sorting-buttons-container">
+            <a href="index.php?getmodule=modBonus&sort=nom" class="sorting-button">Nom</a>
+            <a href="index.php?getmodule=modBonus&sort=prixEnChocolat" class="sorting-button">Prix</a>
+        </div>
+    </div>
 <?php
 }
+
 }
 
 ?>

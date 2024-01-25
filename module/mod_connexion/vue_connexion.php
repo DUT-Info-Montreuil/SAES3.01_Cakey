@@ -24,48 +24,53 @@
 <?php
 	}
 
-    public function formulaireConnexion($token){
+	public function formulaireConnexion($token){
 		if(isset($_SESSION['newsession'])){
-			 echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
+			echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
 			?> </br> 
 			<p>Ce n'est pas vous ?</p> 
 			<a href="index.php?getmodule=modConnexion&action=deconnexion">Deconnexion</a> <?php
-		} else{
-			
-?>		<p> Formulaire de connexion </p>
-		<form method="post" action="index.php?getmodule=modConnexion&action=connexion">
-			<p>Entrez votre login : </p>
-			<input type="text" name="login" maxlength="100" required />
-			<p>Entrez votre mot de passe : </p>
-			<input type="password" name="pwd" maxlength="200" required/>
-
-			<input type="hidden" name="csrfToken" value="<? $token ?>">
-
-		    <button type="submit" name="seConnecter">Valider</button>
-		<p> Pas encore inscrit ?</p>
-		<a href="index.php?getmodule=modConnexion&action=formulaireInscription">Formulaire d'inscription</a>
-		</form>
-<?php
+		} else {
+	?>
+		<div class="form-container">
+			<p class="form-title">Formulaire de connexion</p>
+			<form method="post" action="index.php?getmodule=modConnexion&action=connexion">
+				<p>Entrez votre login : </p>
+				<input type="text" name="login" maxlength="100" required class="form-input"/>
+				<p>Entrez votre mot de passe : </p>
+				<input type="password" name="pwd" maxlength="200" required class="form-input"/>
+	
+				<input type="hidden" name="csrfToken" value="<?= $token ?>">
+	
+				<button type="submit" name="seConnecter" class="submit-button">Valider</button>
+				<p class="not-registered">Pas encore inscrit ?</p>
+				<a href="index.php?getmodule=modConnexion&action=formulaireInscription" class="registration-link">Formulaire d'inscription</a>
+			</form>
+		</div>
+	<?php
 		}
 	}
+	
 
-
-    public function formulaireInscription($token){
-        ?>		
-        <p> Formulaire d'inscription </p>
-            <form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
-                <p>Créez votre login : </p>
-                <input type="text" name="login" maxlength="100" required />
-                <p>Créez votre mot de passe : </p>
-                <input type="text" name="pwd" maxlength="200" required/>
-                <p>Ajoutez votre photo de profil :</p>
-                <input type="file" name="pathPhotoProfil"/>
-
-				<input type="hidden" name="csrfToken" value="<? $token ?>">
-
-                <button type="submit" name="submit">Valider</button>
-
-            </form>
-        <?php
-    }
+	public function formulaireInscription($token){
+		?>		
+		<div class="form-container">
+			<p class="form-title">Formulaire d'inscription</p>
+			<form method="post" enctype="multipart/form-data" action="index.php?getmodule=modConnexion&action=inscription">
+				<p>Créez votre login : </p>
+				<input type="text" name="login" maxlength="100" required class="form-input" />
+				<p>Créez votre mot de passe : </p>
+				<input type="text" name="pwd" maxlength="200" required class="form-input" />
+				<p>Ajoutez votre photo de profil :</p>
+				<input type="file" name="pathPhotoProfil" class="form-input" />
+	
+				<input type="hidden" name="csrfToken" value="<?= $token ?>">
+	
+				<button type="submit" name="submit" class="submit-button">Valider</button>
+			</form>
+		</div>
+		<?php
+	}
+	
+	
 }

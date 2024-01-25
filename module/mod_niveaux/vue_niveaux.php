@@ -54,18 +54,21 @@ public function afficherNiveaux($tabNiveau){
 }
 
 public function trierNiveaux(){ ?>
-        
-    <p>Trier par</p>
-    <a href="index.php?getmodule=modNiveau&sort=numeroNiveau">Numero</a> | 
-    <a href="index.php?getmodule=modNiveau&sort=nbEnnemis asc">Nombre d'ennemis</a> |
-    <a href="index.php?getmodule=modNiveau&sort=argentBonbon desc">Récompense Bonbon</a> |
-    <a href="index.php?getmodule=modNiveau&sort=ChocolatGagne desc">Récompense Chocolat</a> |
-    <a href="index.php?getmodule=modNiveau&sort=idTour">Tour gagnée</a> |
-    <a href="index.php?getmodule=modNiveau&sort=XPgagnees desc">XP gagnés</a> |
-    <a href="index.php?getmodule=modNiveau&sort=exist">Disponibilité</a> |
-
+    <div class="sorting-container">
+        <p class="sorting-label">Trier par</p>
+        <div class="sorting-buttons-container">
+            <a href="index.php?getmodule=modNiveau&sort=numeroNiveau" class="sorting-button">Numero</a>
+            <a href="index.php?getmodule=modNiveau&sort=nbEnnemis asc" class="sorting-button">Nombre d'ennemis</a>
+            <a href="index.php?getmodule=modNiveau&sort=argentBonbon desc" class="sorting-button">Récompense Bonbon</a>
+            <a href="index.php?getmodule=modNiveau&sort=ChocolatGagne desc" class="sorting-button">Récompense Chocolat</a>
+            <a href="index.php?getmodule=modNiveau&sort=idTour" class="sorting-button">Tour gagnée</a>
+            <a href="index.php?getmodule=modNiveau&sort=XPgagnees desc" class="sorting-button">XP gagnés</a>
+        </div>
+    </div>
 <?php
 }
+
+
 }
 
 ?>

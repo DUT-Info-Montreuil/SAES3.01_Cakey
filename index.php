@@ -15,10 +15,6 @@ include_once './module/mod_profil/cont_profil.php';
 include_once './module/mod_profil/modele_profil.php';
 include_once './module/mod_profil/vue_profil.php'; 
 
-include_once './module/mod_univers/cont_univers.php';  
-include_once './module/mod_univers/modele_univers.php';
-include_once './module/mod_univers/vue_univers.php';
-
 include_once './module/mod_ustensile/cont_ustensile.php';  
 include_once './module/mod_ustensile/modele_ustensile.php';
 include_once './module/mod_ustensile/vue_ustensile.php'; 
@@ -78,10 +74,6 @@ switch ($getmodule) {
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
-        break;
-    case 'modUnivers' :
-        include_once './module/mod_univers/mod_univers.php';
-        $module = new ModUnivers;
         break;
     case 'modConnexion':
         include_once './module/mod_connexion/mod_connexion.php';

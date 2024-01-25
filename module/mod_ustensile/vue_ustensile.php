@@ -53,18 +53,20 @@
 
 
     public function trierUstensiles(){ ?>
-        
-        <p>Trier par</p>
-        <a href="index.php?getmodule=modUstensile&sort=nom">Nom</a> | 
-        <a href="index.php?getmodule=modUstensile&sort=PV desc">PV</a> |
-        <a href="index.php?getmodule=modUstensile&sort=pointsAttaque desc">Attaque</a> |
-        <a href="index.php?getmodule=modUstensile&sort=porteeAttaque desc">Porte d'attaque</a> |
-        <a href="index.php?getmodule=modUstensile&sort=prixAchat asc">Prix</a> |
-        <a href="index.php?getmodule=modUstensile&sort=niveau asc">Niveau d'amélioration</a> |
-        <a href="index.php?getmodule=modUstensile&sort=exist">Disponibilité</a> |
-
+        <div class="sorting-container">
+            <p class="sorting-label">Trier par</p>
+            <div class="sorting-buttons-container">
+                <a href="index.php?getmodule=modUstensile&sort=nom" class="sorting-button">Nom</a>
+                <a href="index.php?getmodule=modUstensile&sort=PV desc" class="sorting-button">PV</a>
+                <a href="index.php?getmodule=modUstensile&sort=pointsAttaque desc" class="sorting-button">Attaque</a>
+                <a href="index.php?getmodule=modUstensile&sort=porteeAttaque desc" class="sorting-button">Porte d'attaque</a>
+                <a href="index.php?getmodule=modUstensile&sort=prixAchat asc" class="sorting-button">Prix</a>
+                <a href="index.php?getmodule=modUstensile&sort=niveau asc" class="sorting-button">Niveau d'amélioration</a>
+            </div>
+        </div>
     <?php
     }
+    
 }
     
     ?>
