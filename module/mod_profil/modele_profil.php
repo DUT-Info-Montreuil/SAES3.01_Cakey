@@ -126,18 +126,29 @@ class ModeleProfil extends Connexion{
 	*/
 	$idUser=$this->get_idUserAvecLogin($login);
 	var_dump($idUser);
-	//pq renvoie false
+	$bool = $this->aRecuDemandeDe($idUser, $id);
+
 	
 	if ($idUser !== null) {
 		try{
-			$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
-			$pdo_req = self::$bdd->prepare($req);
-			$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
-			$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
-			$pdo_req->execute();
+			var_dump($bool);
+			if($bool){
+				$this->accepterDemandeAmi($login, $id);
+				print_r("ajouter l'ami");
+			}else{
+				print_r("envoyer demande l'ami");
+				$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
+				$pdo_req = self::$bdd->prepare($req);
+				$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
+				$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+				$pdo_req->execute();
+
  		?> 
 		<script>alert('Demande d'ami envoyé ! ');</script>;
 		<?php
+			}
+
+		
  		}catch(PDOException $e ){
 			if ($e->errorInfo[1] == 1062) {
 				echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
@@ -146,12 +157,28 @@ class ModeleProfil extends Connexion{
 			$e->getMessage();
 			echo "<script>alert('Un problème est survenu : '+$e' ');</script>";
 		}
-	}else {
-		echo "<script>alert('Mais c'est qui ? ! '); </script>";
-		print_r("user existe pas");
+		}else {
+			echo "<script>alert('Mais c'est qui ? ! '); </script>";
+			print_r("user existe pas");
 
 	}
 }
+	public function aRecuDemandeDe($id, $monid){
+		$req = "select idUserDemandeur from demandeAmis
+		where (idUserDemandeur = :monid and idUserDemande = :id) 
+			 or
+			(idUserDemandeur = :id and idUserDemande = :monid) 
+			 ";  
+		$pdo_req = self::$bdd->prepare($req);	
+		$pdo_req->bindParam("id", $id, PDO::PARAM_STR);
+		$pdo_req->bindParam("monid", $monid, PDO::PARAM_STR);
+		$pdo_req->execute(); 
+		$aRecu=$pdo_req->fetch(PDO::FETCH_ASSOC);
+		print_r($aRecu);
+		return $aRecu;
+
+
+	}
 
 	public function supprimerAmi($login, $monId) {
 		$idUser =  $this->get_idUserAvecLogin($login);
@@ -201,10 +228,11 @@ class ModeleProfil extends Connexion{
 	public function accepterDemandeAmi($login, $monId) {
 		$idUser =  $this->get_idUserAvecLogin($login);
 		var_dump($monId);
+		print_r("acceptation de ");
 		var_dump($login);
 
  		try{
-			$req = 
+ 			$req = 
 			"delete from demandeAmis
 			where (idUserDemandeur = :monid and idUserDemande = :id) 
  				or
@@ -215,16 +243,19 @@ class ModeleProfil extends Connexion{
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req->execute();
 
-			$req = 
-			"insert into amis values (:monid, id)";   
-			$pdo_req = self::$bdd->prepare($req);	
-			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
-			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
-			$pdo_req->execute();
+ 			$req2 = 
+			"insert into amis values (:monid, :id)";   
+			$pdo_req2 = self::$bdd->prepare($req2);	
+			$pdo_req2->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req2->bindParam("id",$idUser, PDO::PARAM_STR);
+			$pdo_req2->execute();
+			print_r("acceptaiton ");
+
 			
 
  		}catch(PDOException $e ){
-			$e->getMessage();
+			print_r("fail accepter");
+			print_r($e->getMessage());
 
  		}
 	}
@@ -239,14 +270,12 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
 		$pdo_req->execute();
 		$idUserRow=$pdo_req->fetch(PDO::FETCH_ASSOC);
-		var_dump($idUserRow);
-		
+ 		
 		if ($idUserRow !== false) {
 			try{
 				$idUser = (int)$idUserRow['idUser'];
 				print_r("idtrouvé : ");
-				var_dump($idUser);
- 				return $idUser;
+  				return $idUser;
 			}catch(PDOException $e ){
 					$e->getMessage();
 					echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";

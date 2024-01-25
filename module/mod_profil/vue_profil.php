@@ -196,7 +196,7 @@ class VueProfil {
    				   ?><tr>
 					   <td> <?=$dmdrecu['login']?> 
 					  		<form action="index.php?module=profil&action=accepterDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
-								<input type="submit" value ="Accepter" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+								<input type="submit" value ="Accepter" action="index.php?module=profil&action=accepterDemandeAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form> 
 							<form action="index.php?module=profil&action=supprimerDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
 								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>

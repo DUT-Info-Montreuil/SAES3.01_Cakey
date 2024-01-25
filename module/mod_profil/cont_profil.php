@@ -41,7 +41,7 @@ class ControleuProfil {
 				$this->supprimerDemandeAmi();
 				break;
 			case "accepterDemandeAmi" :
-				$this->supprimerDemandeAmi();
+				$this->accepterDemandeAmi();
 				break;
 
 			default : 
