@@ -10,7 +10,7 @@ class VueProfil {
 		var_dump($donnees);
 		var_dump($donnees["login"]);
 		?>	
-
+		<div id="photo">
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
@@ -24,14 +24,14 @@ class VueProfil {
 			border-radius: 50%;
         }
     	</style>
-
+		</div>
  		<h1> Profil <h1/> 
 		<button type="button" id="bouton">Partager mon profil</button> 
 		<button type="button" id="bouton">Voir mon inventaire</button> 
 
-	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
+	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST" id="DemandeDami">
 
-		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
+		<input type="text"  name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20" id="textProfil" /> 
 		<input type="submit" value ="Ajouter un ami " id="bouton"/> <br/>
 	</form>
 		<!--              JS pour actions bouttons -->
