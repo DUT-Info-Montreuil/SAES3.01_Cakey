@@ -43,7 +43,7 @@ public function page(){
         <div class="col-12">
             <div class="histoire" style="width: 100%;">
                 <div class="imgText d-flex align-items-center">
-                    <img src="Ressources/coeur.png" class="img-fluid" alt="Coeur">
+                    <img src="ressources/accueil/coeur.png" class="img-fluid" alt="Coeur">
                 </div>
                 <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
@@ -57,7 +57,7 @@ public function page(){
         <div class="col-12">
             <div class="gameplayVideo">
                 <video class="responsive-video" width="100%" height="auto" controls>
-                    <source src="Ressources/gameplayGakey.ogx" type="video/ogg">
+                    <source src="ressources/accueil/gameplayGakey.ogx" type="video/ogg">
                 </video>
             </div>
         </div>

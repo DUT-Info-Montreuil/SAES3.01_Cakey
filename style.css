@@ -152,8 +152,8 @@
     background-color: orange;
     width: 100%;
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    padding: 0px;
+    margin-bottom: 00px;
   }
   
   footer ul{
@@ -311,9 +311,9 @@
 
 
 
-/* Tableaux app */
+/* Tableaux app 
 
-table {
+ table {
   table-layout: fixed;
   width: 90%;
   background-color: #F081B6;
@@ -393,6 +393,8 @@ tbody tr:nth-child(even) {
   background-color: #FFC6EF;
 }
 
+*/
+
 .image-rond{
   width : 150px; height : 150px;
   border: none;
@@ -401,6 +403,273 @@ tbody tr:nth-child(even) {
   border-radius : 75px;
 
 }
+
+.tableau-parties {
+  table-layout: fixed;
+  width: 90%;
+  background-color: #F081B6;
+  border-radius: 5%;
+  margin-top: 5px;
+}
+
+.tableau-parties thead th:nth-child(1) {
+  width: 30%;
+}
+
+.tableau-parties thead th:nth-child(2) {
+  width: 20%;
+}
+
+.tableau-parties thead th:nth-child(3) {
+  width: 15%;
+}
+
+.tableau-parties thead th:nth-child(4) {
+  width: 35%;
+}
+
+.tableau-parties th,
+.tableau-parties td {
+  padding: 20px;
+}
+
+.tableau-parties thead th,
+.tableau-parties tfoot th {
+  font-family: "Rock Salt", cursive;
+}
+
+.tableau-parties th {
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.tableau-parties td {
+  letter-spacing: 1px;
+  border: solid 1px black;
+  border-radius: 5%;
+}
+
+.tableau-parties tbody td {
+  text-align: center;
+}
+
+.tableau-parties tfoot th {
+  text-align: right;
+}
+
+.tableau-parties thead,
+.tableau-parties tfoot {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.tableau-parties thead th,
+.tableau-parties tfoot th,
+.tableau-parties tfoot td {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5)
+  );
+}
+
+.tableau-parties tbody tr:nth-child(odd) {
+  background-color: #ffeaf9;
+}
+
+.tableau-parties tbody tr:nth-child(even) {
+  background-color: #FFC6EF;
+}
+
+/* Ajoutez les styles personnalisés ici */
+.ennemi {
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 2px solid #ffc107; /* Bordure jaune */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffebee; /* Fond rose */
+  width: 200px; /* Largeur de chaque carte */
+  margin-right: 20px; /* Espace entre les cartes */
+  margin-left: 20px; /* Espace à gauche des cartes */
+}
+
+.card-title {
+  text-align: center;
+  margin-top: 10px;
+  color: #e91e63; /* Couleur du texte rose */
+}
+
+.card-img-top {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body {
+  text-align: center;
+  padding: 10px;
+}
+
+.caracteristique {
+  color: #e91e63; /* Couleur du texte rose */
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.hr-divider {
+  margin: 10px 0;
+  width: 80%; /* Largeur de la ligne */
+}
+
+
+/* design ustensiles */
+
+/* Ajoutez les styles personnalisés ici */
+/* Ajoutez les styles personnalisés ici */
+.ustensile {
+  margin-bottom: 20px;
+}
+
+.card-ustensile {
+  border: 2px solid #ffc107; /* Bordure jaune */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffebee; /* Fond rose */
+  width: 200px; /* Largeur de chaque carte */
+  margin-right: 20px; /* Espace entre les cartes */
+  margin-left: 20px; /* Espace à gauche des cartes */
+}
+
+.card-title-ustensile {
+  text-align: center;
+  margin-top: 10px;
+  color: #e91e63; /* Couleur du texte rose */
+}
+
+.card-img-top-ustensile {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body-ustensile {
+  text-align: center;
+  padding: 10px;
+}
+
+.caracteristique-ustensile {
+  color: #e91e63; /* Couleur du texte rose */
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.hr-divider-ustensile {
+  border: none; /* Supprime la bordure */
+  margin: 10px 0;
+  width: 80%; /* Largeur de la ligne */
+}
+
+/* Ajoutez les styles personnalisés ici */
+.bonus {
+  margin-bottom: 20px;
+}
+
+.card-bonus {
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffebee;
+  width: 200px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.card-title-bonus {
+  text-align: center;
+  margin-top: 10px;
+  color: #e91e63;
+}
+
+.card-img-top-bonus {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body-bonus {
+  text-align: center;
+  padding: 10px;
+}
+
+.caracteristique-bonus {
+  color: #e91e63;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.hr-divider-bonus {
+  border: none;
+  margin: 10px 0;
+  width: 80%;
+}
+
+/* Ajoutez les styles personnalisés ici */
+.niveau {
+  margin-bottom: 20px;
+}
+
+.card-niveau {
+  border: 2px solid #ffc107; /* Bordure jaune */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffebee; /* Fond rose */
+  width: 200px; /* Largeur de chaque carte */
+  margin-right: 20px; /* Espace entre les cartes */
+  margin-left: 20px; /* Espace à gauche des cartes */
+}
+
+.card-title-niveau {
+  text-align: center;
+  margin-top: 10px;
+  color: #e91e63; /* Couleur du texte rose */
+}
+
+.card-img-top-niveau {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body-niveau {
+  text-align: center;
+  padding: 10px;
+}
+
+.caracteristique-niveau {
+  color: #e91e63; /* Couleur du texte rose */
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.hr-divider-niveau {
+  border: none; /* Supprime la bordure */
+  margin: 10px 0;
+  width: 80%; /* Largeur de la ligne */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

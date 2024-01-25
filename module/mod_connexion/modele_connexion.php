@@ -1,4 +1,11 @@
 <?php 
+
+
+// if (!defined("BASE_URL")) {
+//     die("il faut passer par l'index");
+// }
+
+
 include_once 'connexion.php';
 class ModeleConnexion extends Connexion{
 
@@ -24,14 +31,13 @@ class ModeleConnexion extends Connexion{
 
 
 				$photo = $_FILES['pathPhotoProfil'];
-				echo $photo;
 				$lien = $this->traitementPhoto($photo);
 				$sql->bindParam(':pathPhotoProfil', $lien, PDO::PARAM_STR);
 
 
 				if ($sql->execute()) {
 					echo 'Votre inscription a été prise en compte. Vous allez être redirigé vers la page de connexion.';
-					header('Refresh: 4; URL=index.php?getmodule=modConnexion&action=formulaireConnexion');
+					header('Refresh: 0; URL=index.php?getmodule=modConnexion&action=formulaireConnexion');
 					exit;
 				}
 				else {
@@ -84,7 +90,7 @@ class ModeleConnexion extends Connexion{
 				/*verifier si la case de $_SESSION est set, si oui ça veut dire que l'user est connecté sinon non*/
 				if(isset($_SESSION["newsession"])){
 					//echo "vous êtes connecté !"; 
-					header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+					header('Refresh: 0; URL=index.php?getmodule=modAccueil&action=page');
 					//ou rediriger vers la page d'accueil ou la page de profil ?
 				}
 				else {"erreur de connexion";}	
