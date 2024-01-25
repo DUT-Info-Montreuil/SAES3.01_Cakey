@@ -1,0 +1,410 @@
+/* active
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Avenir, sans-serif;
+  }
+  */
+  /*
+  nav{
+    width: 100%;
+    margin: 0 auto;
+    background-color: orange;
+    position: sticky;
+    top: 0px;
+  }
+  
+  nav ul{
+    list-style-type: none;
+  }
+  
+  nav ul li{
+    float: left;
+    width: 10%;
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+  }
+  
+  nav ul li:last-child{
+    margin-right: 0;
+  }
+  
+  nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  nav a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+  }
+  
+  nav a:hover{
+    color: red;
+    border-bottom: 2px solid gold;
+  }
+  
+  .sousOngletsUnivers{
+    display: none;
+    box-shadow: 0px 1px 2px #CCC;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+  }
+  nav > ul li:hover .sousOngletsUnivers{
+    display: block;
+  }
+  .sousOngletsUnivers li{
+    float: none;
+    width: 100%;
+    text-align: left;
+  }
+  .sousOngletsUnivers a{
+    padding: 10px;
+    border-bottom: none;
+  }
+  .sousOngletsUnivers a:hover{
+    border-bottom: none;
+    background-color: RGBa(200,200,200,0.1);
+  }
+  .ongletUnivers > a::after{
+    content:" ▼";
+    font-size: 12px;
+  }
+  
+  .barreRecherche {
+    height: 100%;
+    margin: 0 1rem;
+    position: relative;
+  }
+  
+  .searchbar {
+    font-size: 2.4rem;
+    width: 125px;
+    height: 5px;
+    border: none;
+    outline: none;
+    border-radius: 10rem;
+    padding: 10px;
+    transition: all 0.1s;
+    transition-delay: 0.1s;
+    font-size: 18px;
+  }
+  
+  .searchbar:hover {
+    width: 135px;
+    height: 7px;
+  }
+  
+  .button {
+    height: 1rem;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.6rem;
+    transition: all 0.1s;
+    transition-delay: 0.1s;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+  
+  .searchbar:hover + .button {
+    height: 2.5rem;
+    top: 1.8rem;
+    right: 0;
+  }
+  
+  .searchbar::placeholder {
+    opacity: 0.3;
+    font-size: 18px;
+  
+  }
+  
+  .input-search {
+    width: 150px;
+    margin-right: 10px;
+  }
+  */
+  /*
+  .logo-img{
+    width: 70px;
+    height: 70px;
+  }
+  */
+  
+  footer{
+    /*
+    width: 100%;
+    margin: 0 auto;
+    background-color: orange;
+    position: sticky;
+    top: 0px;
+    */
+    position: absolute;
+    bottom: 0;
+    background-color: orange;
+    width: 100%;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  footer ul{
+    list-style-type: none;
+  }
+  
+  footer ul li{
+    float: left;
+    width: 20%;
+    text-align: center;
+    position: relative;
+  }
+  
+  footer ul::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  footer a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+  }
+  
+  footer a:hover{
+    color: red;
+    border-bottom: 2px solid gold;
+  }
+  
+  .logo img{
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+  }
+  
+  .logo{
+    text-align: center;
+  }
+  
+  .icon img{
+    width: 20px;
+    height: 20px;
+    align-items: right;
+  }
+  
+  .icon ul{
+    padding: 0;
+    margin: 0;
+  }
+  
+  html{
+    height: 100%;
+  }
+  
+  body{
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+  }
+  
+  html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body{
+    display: table;
+    width: 100%;
+  }
+  
+  
+  #main{
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+  }
+  
+  .histoire{
+    /*border: 5px solid;*/
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  .histoire h3{
+    color: lightpink;
+  }
+  
+  .histoire img{
+    width: 15%;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .imgText p{
+    border: 2px solid;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 115px;
+  }
+  
+  .gameplayVideo{
+    text-align: center;
+  }
+  
+  .bg-orange {
+    background-color: orange;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+ .navbar-nav .nav-item {
+    flex: 1;
+    text-align: center;
+ }
+ main{
+  flex: 1;
+  overflow: auto;
+  color:black;
+  background-image: url(Ressources/imagedefond.jpg);
+  width: 100%;
+  height: 750px;
+
+}
+
+.responsive-video{
+  margin-bottom: 50px;
+}
+
+.Telechargement{
+  margin-bottom: 50px;
+}
+
+.lienJeu{
+  margin-bottom: 0px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+
+
+
+
+/* Tableaux app */
+
+table {
+  table-layout: fixed;
+  width: 90%;
+  background-color: #F081B6;
+  border-radius: 5%;
+  margin-top: 5px;
+
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 20px;
+}
+
+thead th,
+tfoot th {
+  font-family: "Rock Salt", cursive;
+}
+
+th {
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+td {
+  letter-spacing: 1px;
+  border: solid 1px black;
+  border-radius: 5%;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+thead,
+tfoot {
+ 
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+thead th,
+tfoot th,
+tfoot td {
+  background: linear-gradient(
+    to bottom,
+    
+    rgba(0, 0, 0, 0.5)
+  );
+ 
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffeaf9;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #FFC6EF;
+}
+
+.image-rond{
+  width : 150px; height : 150px;
+  border: none;
+  -moz-border-radius : 75px;
+  -webkit-border-radius : 75px;
+  border-radius : 75px;
+
+}
+
+
+
+
+
+
+
