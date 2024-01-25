@@ -7,13 +7,14 @@ class ModProfil{
 	private $controleur;
 	
 	public function __construct () {
+ 
 		$this->title = "";
 		$this->controleur = new ControleuProfil();
+		$this->exec();
 	}
 	
 	public function exec () {
-		print_r("ok");
- 		$this->controleur->exec();
+  		$this->controleur->exec();
 	}
 
 

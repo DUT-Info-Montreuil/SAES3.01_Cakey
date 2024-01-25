@@ -27,7 +27,7 @@ class VueProfil {
 		<button type="button" id="boutonPartagerProfil">Partager mon profil</button> 
 		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
 
-	<form action="index.php?module=profil&action=ajoutAmi" method="POST">
+	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
 
 		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
 		<input type="submit" value ="Ajouter un ami "/> <br/>
@@ -51,7 +51,7 @@ class VueProfil {
   
 		<br/>
 
-		<form action="index.php?module=profil&action=modifProfil" method="POST">
+		<form action="index.php?getmodule=modProfil&action=modifProfil" method="POST">
 
  			Nom d'utilisateur : <input type="text" id="login" name="login" placeholder="<?=$donnees["login"]?>"  maxlength="20"  /> <br/>
 				 
@@ -158,10 +158,10 @@ class VueProfil {
 		   <tbody>
 			   <?php
 			   foreach ($amis as $ami){
-   				   ?><tr>/
+   				   ?><tr>
 					   <td> <?=$ami['login']?> 
-							<form action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" method="POST">
-								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+							<form action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form>
 					</td>	   
 			  		</tr>
@@ -177,8 +177,8 @@ class VueProfil {
 			   foreach ($demandeAmis as $dmd){
   				   ?><tr>
 					   <td> <?=$dmd['login']?>
-					   		<form action="index.php?module=profil&action=supprimerDemandeAmi&nom=<?=$dmd['login']?>" method="POST">
-								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$dmd['login']?>" /> <br/>
+					   		<form action="index.php?getmodule=modProfil&action=supprimerDemandeAmi&nom=<?=$dmd['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$dmd['login']?>" /> <br/>
 							</form>
 			 		  	</td>	   
 			  		</tr>
@@ -195,11 +195,11 @@ class VueProfil {
 			   foreach ($demandeRecu as $dmdrecu){
    				   ?><tr>
 					   <td> <?=$dmdrecu['login']?> 
-					  		<form action="index.php?module=profil&action=accepterDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
-								<input type="submit" value ="Accepter" action="index.php?module=profil&action=accepterDemandeAmi&nom=<?=$ami['login']?>" /> <br/>
+					  		<form action="index.php?getmodule=modProfil&action=accepterDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
+								<input type="submit" value ="Accepter" action="index.php?getmodule=modProfil&action=accepterDemandeAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form> 
-							<form action="index.php?module=profil&action=supprimerDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
-								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+							<form action="index.php?getmodule=modProfil&action=supprimerDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form>
 							</td>	 
 			  		</tr>

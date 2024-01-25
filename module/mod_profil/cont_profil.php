@@ -14,12 +14,12 @@ class ControleuProfil {
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
-		
+		print_r("oui");
 		switch ($this->action) {
  			case "profil" :
 				$this->donneesProfil();
 				break;
-			case "partager" : // ou avec js
+			case "partager" :  
 				$this->partagerProfil(); 
 				break;
 			case "modifProfil" :
@@ -29,6 +29,7 @@ class ControleuProfil {
 				$this->inventaire();
 				break;
 			case "ajoutAmi" :
+				print_r("oui");
 				$this->ajoutAmi();
 				break;
 			case "changerPhotoProfil" :
@@ -48,6 +49,7 @@ class ControleuProfil {
 				die ("Action inexistante");
 			
 		}
+
 	}
 
 	
@@ -113,13 +115,14 @@ exemple de pdp
 		$id = 1;  //$_SESSION['id']?
 		$loginJoueur = isset($_POST['login']) ? $_POST['login'] : '';
  		if ($loginJoueur !== '') {
-			
+			print_r("joueur vide");
+
 			$this->modele->ajouterAmi($loginJoueur, $id);
 		}else{
 			print_r("erreur login joueur vide? ");
-			//todo : popup "invalide"? 
-		}
+ 		}
 		$this->donneesProfil();
+		print_r("donne");
 	}
 
 	private function supprimerAmi () {

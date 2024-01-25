@@ -1,4 +1,5 @@
 <?php session_start();
+// à supprimer c'est un affichage d'erreur pour le pc de caroline car ca ne s'affiche pas de base
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
