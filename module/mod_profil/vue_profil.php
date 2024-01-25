@@ -24,13 +24,13 @@ class VueProfil {
     	</style>
 
  		<h1> Profil <h1/> 
-		<button type="button" id="boutonPartagerProfil">Partager mon profil</button> 
-		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
+		<button type="button" id="bouton">Partager mon profil</button> 
+		<button type="button" id="bouton">Voir mon inventaire</button> 
 
 	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
 
 		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
-		<input type="submit" value ="Ajouter un ami "/> <br/>
+		<input type="submit" value ="Ajouter un ami " id="bouton"/> <br/>
 	</form>
 		<!--              JS pour actions bouttons -->
 		<script type="text/javascript">
