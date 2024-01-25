@@ -26,8 +26,7 @@ class VueProfil {
 
  		<h1> Profil <h1/> 
 		<button type="button" id="boutonPartagerProfil">Partager mon profil</button> 
-		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
-
+ 
 	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
 
 		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
@@ -51,9 +50,7 @@ class VueProfil {
 			document.getElementById("boutonAjouterAmi").onclick = function () {
    	     		location.href = "index.php?getmodule=modProfil&action=ajoutAmi";
    	 		};
-				document.getElementById("boutonInventaire").onclick = function () {
-   	     		location.href = "index.php?getmodule=modProfil&action=inventaire";
-   	 		};
+				 
 			
 		</script>
   
@@ -81,9 +78,6 @@ class VueProfil {
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
-
-		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="changerPhotoProfil" > Modifier photo </button> 
-
 		 <style>
         .photoProfil {
             width: 3cm;
@@ -92,15 +86,11 @@ class VueProfil {
         }
     	</style>
 
- 		<h1> Profil <h1/> 
+ 		<div> <h1><?=$donnees["login"]?><h1/></div> 
+		 <div> <?=$donnees["description"]?></div>
+
 		<button type="button" id="boutonPartagerProfil">Partager profil</button> 
-		<button type="button" id="boutonInventaire">Voir mon inventaire</button> 
 
-	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
-
-		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
-		<input type="submit" value ="Ajouter un ami "/> <br/>
-	</form>
 		<!--              JS pour actions bouttons -->
 		<script type="text/javascript">
      		document.getElementById("boutonPartagerProfil").onclick = function () {
@@ -115,12 +105,11 @@ class VueProfil {
 		</script>
   
 		<br/>
-		 <div> <?=$donnees["login"]?></div>
-		 <div> <?=$donnees["description"]?></div>
+		 
 
 		<?php
 		   $this->get_classement($donneesClassement, $classementAllLevel);
- 		   $this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
+ 		   $this->afficherPartieAmisNonModifiable($amis, $demandeAmis, $demandeRecu);
 	}
 
 
@@ -152,7 +141,7 @@ class VueProfil {
 
 	public function get_classement($donneesClassement, $classementAllLevel){
 		?>
-		Statistique des 10 niveaux avec les meilleurs scores
+		<h1> Statistique des 10 niveaux avec les meilleurs scores</h1>
 		<table>
 		   <thead>
 			   <tr>
@@ -211,14 +200,14 @@ class VueProfil {
 		
 		<table>
 		   <thead>
-		   <h1> Mes amis </h1>
+		   <h1> Mes Amis </h1>
 		   </thead>
 		   <tbody>
 			   <?php
 			   foreach ($amis as $ami){
    				   ?><tr>
-					   <td> <a href="index.php?getmodule=modProfil&nom=<?=$ami['login']?>"><?=$ami['login']?>   </a>
-							<form action="index.php?getmodule=modProfil&nom=<?=$ami['login']?>" method="POST">
+					   <td> <a href="index.php?getmodule=modProfil&action=afficheProfile&nom=<?=$ami['login']?>"><?=$ami['login']?>   </a>
+							<form action="index.php?getmodule=modProfil&action=afficheProfil&nom=<?=$ami['login']?>" method="POST">
 								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
 							</form>
 					</td>	   
@@ -234,8 +223,10 @@ class VueProfil {
 			   <?php
 			   foreach ($demandeAmis as $dmd){
   				   ?><tr>
-					   <td> <?=$dmd['login']?>
-					   		<form action="index.php?getmodule=modProfil&action=supprimerDemandeAmi&nom=<?=$dmd['login']?>" method="POST">
+					   <td> 
+						 <a href="index.php?getmodule=modProfil&action=afficheProfile&nom=<?=$dmd['login']?>"><?=$dmd['login']?>   </a>
+
+ 					   		<form action="index.php?getmodule=modProfil&action=supprimerDemandeAmi&nom=<?=$dmd['login']?>" method="POST">
 								<input type="submit" value ="Supprimer" action="index.php?getmodule=modProfil&action=supprimerAmi&nom=<?=$dmd['login']?>" /> <br/>
 							</form>
 			 		  	</td>	   
@@ -266,6 +257,29 @@ class VueProfil {
 		</table>
 
 
+			   <?php 
+	
+	}
+	public function afficherPartieAmisNonModifiable($amis, $demandeAmis, $demandeRecu ){
+		//todo : ajouter colonne rang
+		//<input type="text" id="amiSupp" name="loginSupp" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
+
+		?>
+		
+		<table>
+		   <thead>
+		   <h1> Ses Amis </h1>
+		   </thead>
+		   <tbody>
+			   <?php
+			   foreach ($amis as $ami){
+   				   ?><tr>
+					   <td> <a href="index.php?getmodule=modProfil&action=afficheProfile&nom=<?=$ami['login']?>"><?=$ami['login']?>   </a>
+					
+					</td>	   
+			  		</tr>
+					<?php } ?>
+			   </table>
 			   <?php 
 	
 	}

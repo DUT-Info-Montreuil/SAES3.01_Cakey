@@ -19,8 +19,10 @@ class ControleuProfil {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
 
 		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-
+		print_r("on cherche le profil de ");
+		print_r($this->nom);
 		if($this->nom=$_SESSION['newsession']){
+			print_r("cest mon profil");
 			switch ($this->action) {
 				case "profil" :
 					$this->afficheProfilModifiable();
@@ -30,9 +32,6 @@ class ControleuProfil {
 					break;
 				case "modifProfil" :
 					$this->modifProfil();
-					break;
-				case "inventaire" :
-					$this->inventaire();
 					break;
 				case "ajoutAmi" :
 					print_r("oui");
@@ -124,8 +123,7 @@ class ControleuProfil {
 		$dmdAmisRecu = $this->modele->get_demandeRecu ($nom);
 		
 		$this->vue->afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
-		$this->donneesProfil();
-
+ 
 }
 /*
 exemple de pdp
@@ -175,14 +173,6 @@ exemple de pdp
 		$this->donneesProfil();
 
 	}
-
-
-	
-
-	private function inventaire () {
-  
-	}
-
 
 	/*
 	private function afficheProfil () {
