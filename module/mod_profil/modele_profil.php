@@ -118,19 +118,18 @@ class ModeleProfil extends Connexion{
   public function ajouterAmi($login, $id) {
 	print_r("dmd d'ami pour  : ");
     var_dump($login);
+	/*
 	$req = "select idUser from utilisateur where lower(login) =lower(:login)";
 	$pdo_req = self::$bdd->prepare($req);	
 	$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
 	$pdo_req->execute();
-	$idUserRow=$pdo_req->fetch(PDO::FETCH_ASSOC);
-	var_dump($idUserRow);
+	*/
+	$idUser=$this->get_idUserAvecLogin($login);
+	var_dump($idUser);
 	//pq renvoie false
 	
-	if ($idUserRow !== false) {
+	if ($idUser !== null) {
 		try{
-			$idUser = (int)$idUserRow['idUser'];
-			var_dump($idUser);
-
 			$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
 			$pdo_req = self::$bdd->prepare($req);
 			$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
@@ -148,15 +147,126 @@ class ModeleProfil extends Connexion{
 			echo "<script>alert('Un problème est survenu : '+$e' ');</script>";
 		}
 	}else {
-		
 		echo "<script>alert('Mais c'est qui ? ! '); </script>";
 		print_r("user existe pas");
 
 	}
+}
+
+	public function supprimerAmi($login, $monId) {
+		$idUser =  $this->get_idUserAvecLogin($login);
+		var_dump($monId);
+		var_dump($login);
+
+ 		try{
+			$req = 
+			"delete from amis
+			where (idUser1 = :monid and idUser2 = :id) 
+				or (idUser1 = :id and idUser2 = :monid)";   
+			$pdo_req = self::$bdd->prepare($req);	
+			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
+			$pdo_req->execute();
+
+ 		}catch(PDOException $e ){
+			$e->getMessage();
+
+ 		}
+	}
+
+	public function supprimerDemandeAmi($login, $monId) {
+		$idUser =  $this->get_idUserAvecLogin($login);
+		var_dump($monId);
+		var_dump($login);
+
+ 		try{
+			$req = 
+			"delete from demandeAmis
+			where (idUserDemandeur = :monid and idUserDemande = :id) 
+				and (idUserDemande = :id and idUserDemandeur = :monid)
+				or
+				(idUserDemandeur = :id and idUserDemande = :monid) 
+				and (idUserDemande = :monid and idUserDemandeur = :id)
+				";   
+			$pdo_req = self::$bdd->prepare($req);	
+			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
+			$pdo_req->execute();
+
+ 		}catch(PDOException $e ){
+			$e->getMessage();
+
+ 		}
+	}
+
+
+	public function accepterDemandeAmi($login, $monId) {
+		$idUser =  $this->get_idUserAvecLogin($login);
+		var_dump($monId);
+		var_dump($login);
+
+ 		try{
+			$req = 
+			"delete from demandeAmis
+			where (idUserDemandeur = :monid and idUserDemande = :id) 
+				and (idUserDemande = :id and idUserDemandeur = :monid)
+				or
+				(idUserDemandeur = :id and idUserDemande = :monid) 
+				and (idUserDemande = :monid and idUserDemandeur = :id)
+				";   
+			$pdo_req = self::$bdd->prepare($req);	
+			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
+			$pdo_req->execute();
+
+			$req = 
+			"insert into amis values (:monid, id)";   
+			$pdo_req = self::$bdd->prepare($req);	
+			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
+			$pdo_req->execute();
+			
+
+ 		}catch(PDOException $e ){
+			$e->getMessage();
+
+ 		}
+	}
+
+ 
+
+ 
+ 
+	public function get_idUserAvecLogin($login){
+		$req = "select idUser from utilisateur where lower(login) =lower(:login)";
+		$pdo_req = self::$bdd->prepare($req);	
+		$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
+		$pdo_req->execute();
+		$idUserRow=$pdo_req->fetch(PDO::FETCH_ASSOC);
+		var_dump($idUserRow);
+		
+		if ($idUserRow !== false) {
+			try{
+				$idUser = (int)$idUserRow['idUser'];
+				print_r("idtrouvé : ");
+				var_dump($idUser);
+ 				return $idUser;
+			}catch(PDOException $e ){
+					$e->getMessage();
+					echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
+					return 0;
+				}	
+			
+			}else {
+				
+				print_r("iduser row false");
+
+		}
+	}
 	
 
     
-}
+
 
 
 

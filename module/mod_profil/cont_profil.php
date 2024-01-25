@@ -34,6 +34,15 @@ class ControleuProfil {
 			case "changerPhotoProfil" :
 				$this->changerPhotoProfil();
 				break;
+			case "supprimerAmi":
+				$this->supprimerAmi();
+				break;
+			case "supprimerDemandeAmi" :
+				$this->supprimerDemandeAmi();
+				break;
+			case "accepterDemandeAmi" :
+				$this->supprimerDemandeAmi();
+				break;
 
 			default : 
 				die ("Action inexistante");
@@ -58,17 +67,11 @@ class ControleuProfil {
 			die("Erreur dans la récupération des données classements tout niveau");
 		}
 		$amis = $this->modele->get_amis ($id_profil);
-		if (!$amis) {
-			die("Erreur dans la récupération des données des amis");
-		}
+		 
 		$dmdamis = $this->modele->get_demandeAmis ($id_profil);
-		if (!$dmdamis) {
-			die("Erreur dans la récupération des données des amis");
-		}
+		 
 		$dmdAmisRecu = $this->modele->get_demandeRecu ($id_profil);
-		if (!$dmdAmisRecu) {
-			die("Erreur dans la récupération des données des amis recu");
-		}
+		 
  		$this->vue->donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $dmdamis, $dmdAmisRecu );
  		
 	}
@@ -118,6 +121,32 @@ exemple de pdp
 		}
 		$this->donneesProfil();
 	}
+
+	private function supprimerAmi () {
+		$id = 1;  //$_SESSION['id']?
+		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->supprimerAmi($nom, $id);
+		$this->donneesProfil();
+
+	}
+	private function supprimerDemandeAmi () {
+		$id = 1;  //$_SESSION['id']?
+		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->supprimerDemandeAmi($nom, $id);
+		$this->donneesProfil();
+
+	}
+
+	private function accepterDemandeAmi () {
+		$id = 1;  //$_SESSION['id']?
+		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->modele->accepterDemandeAmi($nom, $id);
+		$this->donneesProfil();
+
+	}
+
+ 
+
 	private function partagerProfil () {	
   
 	}

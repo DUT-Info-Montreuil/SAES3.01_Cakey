@@ -147,6 +147,8 @@ class VueProfil {
 
  	public function afficherPartieAmis($amis, $demandeAmis, $demandeRecu ){
 		//todo : ajouter colonne rang
+		//<input type="text" id="amiSupp" name="loginSupp" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
+
 		?>
 		
 		<table>
@@ -156,8 +158,12 @@ class VueProfil {
 		   <tbody>
 			   <?php
 			   foreach ($amis as $ami){
-   				   ?><tr>
-					   <td> <?=$ami['login']?></td>	   
+   				   ?><tr>/
+					   <td> <?=$ami['login']?> 
+							<form action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+							</form>
+					</td>	   
 			  		</tr>
 					<?php } ?>
 		</table>
@@ -170,7 +176,11 @@ class VueProfil {
 			   <?php
 			   foreach ($demandeAmis as $dmd){
   				   ?><tr>
-					   <td> <?=$dmd['login']?></td>	   
+					   <td> <?=$dmd['login']?>
+					   		<form action="index.php?module=profil&action=supprimerDemandeAmi&nom=<?=$dmd['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$dmd['login']?>" /> <br/>
+							</form>
+			 		  	</td>	   
 			  		</tr>
 					  <?php } ?>
 
@@ -184,7 +194,14 @@ class VueProfil {
 			   <?php
 			   foreach ($demandeRecu as $dmdrecu){
    				   ?><tr>
-					   <td> <?=$dmdrecu['login']?></td>	   
+					   <td> <?=$dmdrecu['login']?> 
+					  		<form action="index.php?module=profil&action=accepterDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
+								<input type="submit" value ="Accepter" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+							</form> 
+							<form action="index.php?module=profil&action=supprimerDemandeAmi&nom=<?=$dmdrecu['login']?>" method="POST">
+								<input type="submit" value ="Supprimer" action="index.php?module=profil&action=supprimerAmi&nom=<?=$ami['login']?>" /> <br/>
+							</form>
+							</td>	 
 			  		</tr>
 					  <?php } ?>
 
