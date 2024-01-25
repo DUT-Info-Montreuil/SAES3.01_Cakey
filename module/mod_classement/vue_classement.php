@@ -1,7 +1,7 @@
 <?php
 class VueClassement{
     public function menuNotPerso(){
-        ?> <ul>
+        ?> 
             <a href="index.php?getmodule=modClassement&action=general"id="menuClassement">Classement général</a>
             <a href="index.php?getmodule=modClassement&action=niveau"id="menuClassement">Classement par niveau</a>
    
@@ -97,7 +97,7 @@ class VueClassement{
     }
     public function formselNiveau($niveau){
         ?>
-        <br>
+         
         <form action="index.php?getmodule=modClassement&action=niveausel" method="POST">
     <fieldset>
     <label for="choixNiveau" id="labelNiveau">Choisir un niveau</label>

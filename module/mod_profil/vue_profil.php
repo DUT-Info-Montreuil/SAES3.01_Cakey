@@ -9,11 +9,12 @@ class VueProfil {
 	public function donneesProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
 		//print_r($donnees);
 		?>	
+
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
 
-		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="changerPhotoProfil" > Modifier photo </button> 
+		<button onclick = "index.php?getmodule=modProfil&action=changerPhotoProfil" type="button" id="bouton" > Modifier photo </button> 
 
 		 <style>
         .photoProfil {
