@@ -24,8 +24,7 @@
 <?php
 	}
 
-    public function formulaireConnexion(){
-		self::header();
+    public function formulaireConnexion($token){
 		if(isset($_SESSION['newsession'])){
 			 echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
 			?> </br> 
@@ -40,17 +39,18 @@
 			<p>Entrez votre mot de passe : </p>
 			<input type="password" name="pwd" maxlength="200" required/>
 
+			<input type="hidden" name="csrfToken" value="<? $token ?>">
+
 		    <button type="submit" name="seConnecter">Valider</button>
 		<p> Pas encore inscrit ?</p>
 		<a href="index.php?getmodule=modConnexion&action=formulaireInscription">Formulaire d'inscription</a>
 		</form>
 <?php
 		}
-		self::footer();
 	}
 
 
-    public function formulaireInscription(){
+    public function formulaireInscription($token){
 		self::header();
         ?>		
         <p> Formulaire d'inscription </p>
@@ -61,6 +61,8 @@
                 <input type="text" name="pwd" maxlength="200" required/>
                 <p>Ajoutez votre photo de profil :</p>
                 <input type="file" name="pathPhotoProfil"/>
+
+				<input type="hidden" name="csrfToken" value="<? $token ?>">
 
                 <button type="submit" name="submit">Valider</button>
 
