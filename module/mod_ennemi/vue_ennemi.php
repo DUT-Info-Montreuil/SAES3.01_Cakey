@@ -50,8 +50,6 @@
         }
     }
     
-
-
     public function trierEnnemis(){ ?>
     <form id="formTrierEnnemis" class ="formTri" method="post" enctype="multipart/form-data" action="">
         <label for="bientotDispo"> bientot dispo </label>
@@ -60,9 +58,11 @@
         <input type="checkbox" id="dansLeJeu" name="dansLeJeu">
         <label for="PVDesc">PV</label>
         <input type="checkbox" id="PVDesc" name="PVDesc">
+       
         <button>Trier</button>
         <button type="reset" name="reset">Supprimer les filtres </button>
-        Trier par : <a href="/index.php?getmodule=modEnnemi&sort=nom">Nom</a> | <a href="/index.php?getmodule=modEnnemi&sort=pv">PV</a>
+
+        Trier par : <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=nom">Nom</a> | <a href="/index.php?getmodule=modEnnemi&action=bienvenue&sort=pv">PV</a>
     </form>
     <?php
     }
