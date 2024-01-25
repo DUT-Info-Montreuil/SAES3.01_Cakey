@@ -1,31 +1,51 @@
 <?php
 
 class ModeleProfil extends Connexion{
-	/*
-	public function get_liste () {
-		$req = "SELECT * FROM equipe";
-		$pdo_req = self::$bdd->query($req);
-		return $pdo_req->fetchAll();
-	}
-	*/ 
+    private $id;
+
+    public function __construct(){
+        $sql = self::$bdd->prepare("select idUser from utilisateur where login = :login");
+		$sql->bindParam(':login', $_SESSION["newsession"], PDO::PARAM_STR);
+		$sql->execute();
+		$result = $sql->fetch();
+
+        $this->id = $result['idUser'];
+		print_r("mon id est : ");
+		print_r($this->id);
+     }
+
+	public function get_detailsProfil ($login) {
+		$req = "SELECT utilisateur.login , utilisateur.description , utilisateur.pathPhotoProfil 
+			  FROM utilisateur  
+			  WHERE utilisateur.idUser=:id";
+
+	  $pdo_req = self::$bdd->prepare($req);
+	  $id = $this->get_idUserAvecLogin($login);
+	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+	  $pdo_req->execute();
+	  $resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
+	  var_dump($resultat["login"]);
+
+ 	  return $resultat;
+  }
 
 
-	//modification profil : pdp à faire
-	public function modifLogin($id, $nouvLogin) {
+
+ 	public function modifLogin($id, $nouvLogin) {
         $req = "update utilisateur set login = :login where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
-        $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+        $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
         $pdo_req->bindParam("login", $nouvLogin, PDO::PARAM_STR);
     
         return $pdo_req->execute();
     }
 
-    public function modifDescription($id, $nouvdescription) {
+    public function modifDescription($nouvdescription) {
         $req = "update utilisateur set description = :description where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
-        $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+        $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
         $pdo_req->bindParam("description", $nouvdescription, PDO::PARAM_STR);
     
         return $pdo_req->execute();
@@ -36,86 +56,79 @@ class ModeleProfil extends Connexion{
         $req = "update utilisateur set pathPhotoProfil = :pathPhotoProfil where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
-        $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+        $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
          $pdo_req->bindParam("pathPhotoProfil", $pathPhotoProfil, PDO::PARAM_STR);
     
         return $pdo_req->execute();
     }
 
-	public function get_detailsProfil ($id) {
-		$req = "SELECT utilisateur.login , utilisateur.description , utilisateur.pathPhotoProfil 
-			  FROM utilisateur  
-			  WHERE utilisateur.idUser=:id";
 
-	  $pdo_req = self::$bdd->prepare($req);
-	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
-	  $pdo_req->execute();
-		return $pdo_req->fetch(PDO::FETCH_ASSOC);
-  }
-
-  public function get_classementProfil ($id) {
+  public function get_classementProfil ($nom) {
  	  $req = "SELECT partie.numeroniveau, partie.score, partie.temps   
 		  FROM partie   
 		  WHERE partie.idUser=:id ORDER BY score DESC limit 10" ;
-	  
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
 	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
-	  //print_r($pdo_req->fetch(PDO::FETCH_ASSOC));
-	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	  return $resultat;
 		  
   }
 
-  public function get_classementAllLevel ($id) {
+  public function get_classementAllLevel ($nom) {
  	  $req = "SELECT distinct partie.numeroniveau, max(score) over (partition by numeroniveau) as scoremax, min(temps) over (partition by numeroniveau) as mintemps  
 		  FROM partie   
-		  WHERE partie.idUser=:id   ORDER BY numeroniveau " ;
-	  
+		  WHERE partie.idUser=:id ORDER BY numeroniveau " ;
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
 	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
- 	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	  return $resultat;
 		  
   }
 
-  public function get_amis($id){
+  public function get_amis($nom){
   	  $req =
 	  "select login from utilisateur where idUser in (select idUser1 from amis where idUser2 =:id)
 	  union
 	  select login from utilisateur where idUser in (select idUser2 from amis where idUser1 =:id) ";
+	  $id=$this->get_idUserAvecLogin($nom);
 	  $pdo_req = self::$bdd->prepare($req);
 	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	  $pdo_req->execute();
-	  //print_r($pdo_req->fetch(PDO::FETCH_ASSOC));
-	  return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
-  
+	  $resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+ 	  return $resultat;
   }
 
-  public function get_demandeAmis($id){
+  public function get_demandeAmis($nom){
 	$req =
 	"select login from utilisateur where idUser in (select idUserDemande from demandeAmis where idUserDemandeur =:id) ";
-	$pdo_req = self::$bdd->prepare($req);
-	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
-	$pdo_req->execute();
- 	return  $pdo_req->fetchAll(PDO::FETCH_ASSOC);
-  }
-
-  public function get_demandeRecu($id){
-	$req =
-	"select login from utilisateur where idUser in (select idUserDemandeur from demandeAmis where idUserDemande =:id) ";
+	$id=$this->get_idUserAvecLogin($nom);
 	$pdo_req = self::$bdd->prepare($req);
 	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 	$pdo_req->execute();
 	$resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
- 
-    return $resultat;
+	 return $resultat;
+  }
+
+  public function get_demandeRecu($nom){
+	$req =
+	"select login from utilisateur where idUser in (select idUserDemandeur from demandeAmis where idUserDemande =:id) ";
+	$id=$this->get_idUserAvecLogin($nom);
+	$pdo_req = self::$bdd->prepare($req);
+	$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+	$pdo_req->execute();
+	$resultat = $pdo_req->fetchAll(PDO::FETCH_ASSOC);
+	 return $resultat;
   }
 
   //creer un trigger, quand on ajoute une demande et que l'inverse existe : ami 
   // todo : possibilité de supp un ami, une demande , une demande recu 
   // todo : fix echo 
 
-  public function ajouterAmi($login, $id) {
+  public function ajouterAmi($login) {
 	print_r("dmd d'ami pour  : ");
     var_dump($login);
 	/*
@@ -126,21 +139,21 @@ class ModeleProfil extends Connexion{
 	*/
 	$idUser=$this->get_idUserAvecLogin($login);
 	var_dump($idUser);
-	$bool = $this->aRecuDemandeDe($idUser, $id);
+	$bool = $this->aRecuDemandeDe($idUser, $this->id);
 
 	
 	if ($idUser !== null) {
 		try{
 			var_dump($bool);
 			if($bool){
-				$this->accepterDemandeAmi($login, $id);
+				$this->accepterDemandeAmi($login, $this->id);
 				print_r("ajouter l'ami");
 			}else{
 				print_r("envoyer demande l'ami");
 				$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
 				$pdo_req = self::$bdd->prepare($req);
 				$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
-				$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+				$pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
 				$pdo_req->execute();
 
  		?> 
@@ -163,7 +176,7 @@ class ModeleProfil extends Connexion{
 
 	}
 }
-	public function aRecuDemandeDe($id, $monid){
+	public function aRecuDemandeDe($id){
 		$req = "select idUserDemandeur from demandeAmis
 		where (idUserDemandeur = :monid and idUserDemande = :id) 
 			 or
@@ -171,7 +184,7 @@ class ModeleProfil extends Connexion{
 			 ";  
 		$pdo_req = self::$bdd->prepare($req);	
 		$pdo_req->bindParam("id", $id, PDO::PARAM_STR);
-		$pdo_req->bindParam("monid", $monid, PDO::PARAM_STR);
+		$pdo_req->bindParam("monid", $this->id, PDO::PARAM_STR);
 		$pdo_req->execute(); 
 		$aRecu=$pdo_req->fetch(PDO::FETCH_ASSOC);
 		print_r($aRecu);
@@ -180,10 +193,9 @@ class ModeleProfil extends Connexion{
 
 	}
 
-	public function supprimerAmi($login, $monId) {
+	public function supprimerAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($monId);
-		var_dump($login);
+ 		var_dump($login);
 
  		try{
 			$req = 
@@ -191,7 +203,7 @@ class ModeleProfil extends Connexion{
 			where (idUser1 = :monid and idUser2 = :id) 
 				or (idUser1 = :id and idUser2 = :monid)";   
 			$pdo_req = self::$bdd->prepare($req);	
-			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("monid", $this->id, PDO::PARAM_STR);
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req->execute();
 
@@ -201,9 +213,9 @@ class ModeleProfil extends Connexion{
  		}
 	}
 
-	public function supprimerDemandeAmi($login, $monId) {
+	public function supprimerDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($monId);
+		var_dump($this->id);
 		var_dump($login);
 
  		try{
@@ -214,7 +226,7 @@ class ModeleProfil extends Connexion{
 				(idUserDemandeur = :id and idUserDemande = :monid) 
  				";   
 			$pdo_req = self::$bdd->prepare($req);	
-			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("monid", $this->id, PDO::PARAM_STR);
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req->execute();
 
@@ -225,9 +237,9 @@ class ModeleProfil extends Connexion{
 	}
 
 
-	public function accepterDemandeAmi($login, $monId) {
+	public function accepterDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($monId);
+		var_dump($this->id);
 		print_r("acceptation de ");
 		var_dump($login);
 
@@ -239,14 +251,14 @@ class ModeleProfil extends Connexion{
 				(idUserDemandeur = :id and idUserDemande = :monid) 
  				";   
 			$pdo_req = self::$bdd->prepare($req);	
-			$pdo_req->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req->bindParam("monid", $this->id, PDO::PARAM_STR);
 			$pdo_req->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req->execute();
 
  			$req2 = 
 			"insert into amis values (:monid, :id)";   
 			$pdo_req2 = self::$bdd->prepare($req2);	
-			$pdo_req2->bindParam("monid", $monId, PDO::PARAM_STR);
+			$pdo_req2->bindParam("monid", $this->id, PDO::PARAM_STR);
 			$pdo_req2->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req2->execute();
 			print_r("acceptaiton ");
@@ -281,26 +293,9 @@ class ModeleProfil extends Connexion{
 					echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
 					return 0;
 				}	
-			
 			}else {
-				
 				print_r("iduser row false");
 
 		}
-	}
-	
-
-    
-
-
-
-
-
-	
-
-
-
-	
-	
-	
+	}	
 }
