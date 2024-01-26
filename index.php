@@ -15,10 +15,6 @@ include_once './module/mod_profil/cont_profil.php';
 include_once './module/mod_profil/modele_profil.php';
 include_once './module/mod_profil/vue_profil.php'; 
 
-include_once './module/mod_univers/cont_univers.php';  
-include_once './module/mod_univers/modele_univers.php';
-include_once './module/mod_univers/vue_univers.php';
-
 include_once './module/mod_ustensile/cont_ustensile.php';  
 include_once './module/mod_ustensile/modele_ustensile.php';
 include_once './module/mod_ustensile/vue_ustensile.php'; 
@@ -35,9 +31,9 @@ include_once './module/mod_connexion/cont_connexion.php';
 include_once './module/mod_connexion/modele_connexion.php';
 include_once './module/mod_connexion/vue_connexion.php';
 
-include_once './module/mod_statistiques/cont_statistiques.php';
-include_once './module/mod_statistiques/modele_statistiques.php';
-include_once './module/mod_statistiques/vue_statistiques.php';
+include_once './module/mod_historique/cont_historique.php';
+include_once './module/mod_historique/modele_historique.php';
+include_once './module/mod_historique/vue_historique.php';
 
 include_once './module/mod_accueil/vue_accueil.php';
 
@@ -85,17 +81,13 @@ switch ($getmodule) {
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
         break;
-    case 'modUnivers' :
-        include_once './module/mod_univers/mod_univers.php';
-        $module = new ModUnivers;
-        break;
     case 'modConnexion':
         include_once './module/mod_connexion/mod_connexion.php';
         $module = new ModConnexion;
         break;
     case 'modStatistiques' :
-            include_once './module/mod_statistiques/mod_statistiques.php';
-            $module = new ModStatisques;
+            include_once './module/mod_historique/mod_historique.php';
+            $module = new ModHistorique;
             break;    
     default : die("Module inconnu");
 }

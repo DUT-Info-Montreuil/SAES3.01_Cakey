@@ -45,10 +45,11 @@ public function page(){
                 <div class="imgText d-flex align-items-center">
                     <img src="ressources/accueil/coeur.png" class="img-fluid" alt="Coeur">
                 </div>
-                <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                    <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
+                    <p class="AccTexte">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                    </p>  
             </div>
         </div>
     </div>

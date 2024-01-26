@@ -23,7 +23,7 @@ public function afficherNiveaux($tabNiveau){
                 <div class="card-body-niveau">
                     <p class="caracteristique-niveau"><span style="color: #e91e63;">Nombre d'ennemis dans ce niveau:</span> <span style="color: black;"><?= $niveau["nbEnnemis"] ?></span></p>
                     <p class="caracteristique-niveau"><span style="color: #e91e63;">Argent bonbon pour ce niveau:</span> <span style="color: black;"><?= $niveau["argentBonbon"] ?></span></p>
-                    <p class="caracteristique-niveau"><span style="color: #e91e63;">Ce niveau vous donnera:</span> <span style="color: black;"><?= $niveau["XPgagnees"] . " XP, " ?><span style="color: #ffc107;"><?= $niveau["ChocolatGagne"] . " chocolats" ?></span></p>
+                    <p class="caracteristique-niveau"><span style="color: #e91e63;">Ce niveau vous donnera:</span> <span style="color: black;"><?= $niveau["XPgagnees"] . " XP, " ?><span style="color: black;"><?= $niveau["ChocolatGagne"] . " chocolats" ?></span></p>
                     <div class="hr-divider-niveau"></div>
                 </div>
             </div>

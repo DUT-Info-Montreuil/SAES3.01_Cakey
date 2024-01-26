@@ -30,7 +30,7 @@ class VueCompMenu{
 
 		$affichage = '
 			<nav class="navbar navbar-expand-md navbar-light bg-orange">
-				<a class="navbar-brand"  href="index.php?getmodule=modAccueil&action=page"><img src="Ressources/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>CAKEY</a>
+				<a class="navbar-brand"  href="index.php?getmodule=modAccueil&action=page"><img src="ressources/header/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>CAKEY</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -47,11 +47,11 @@ class VueCompMenu{
 								Univers
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="index.php?getmodule=modEnnemi&action=bienvenue">Ennemi</a>
-								<a class="dropdown-item" href="index.php?getmodule=modUstensile&action=bienvenue">Ustensiles</a>
+								<a class="dropdown-item" href="index.php?getmodule=modEnnemi">Ennemi</a>
+								<a class="dropdown-item" href="index.php?getmodule=modUstensile">Ustensiles</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.php?getmodule=modNiveau&action=bienvenue">Niveaux</a>
-								<a class="dropdown-item" href="index.php?getmodule=modBonus&action=bienvenue">Bonus</a>
+								<a class="dropdown-item" href="index.php?getmodule=modNiveau">Niveaux</a>
+								<a class="dropdown-item" href="index.php?getmodule=modBonus">Bonus</a>
 							</div>
 						</li>
 						<li class="nav-item">
