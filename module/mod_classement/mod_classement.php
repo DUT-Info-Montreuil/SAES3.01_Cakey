@@ -9,6 +9,8 @@ class ModClassement {
 	public function __construct () {
 		$this->title = "";
 		$this->controleur = new ControleurClassement();
+		$this->exec();
+
 	}
 	
 	public function exec () {

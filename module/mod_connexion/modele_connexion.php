@@ -11,7 +11,6 @@ include_once 'securite.php';
 
 class ModeleConnexion extends Connexion{
 
-
     public function recupDonneesInscriptionEtAjoutBD(){
 		// if($SERVER['REQUEST_METHOD'] === 'POST'){
 			if(isset($_POST['submit'])){
@@ -27,6 +26,8 @@ class ModeleConnexion extends Connexion{
 				$result = $sql->fetch();
 				if($result['compteur'] > 0){
 					echo "login déjà pris";
+				} else if ($_POST["pwd"] != $_POST["pwdConf"]){
+					echo "Les mots de passe ne sont pas identiques";
 				} else{
 
 					$sql = self::$bdd->prepare("insert into utilisateur (login, pwd , description, argentChocolat, pathPhotoProfil) values(:login, :pwd, :description, :argentChocolat, :pathPhotoProfil)");
@@ -59,6 +60,9 @@ class ModeleConnexion extends Connexion{
     public function traitementPhoto($photo){	
 		if ($photo['error'] === UPLOAD_ERR_OK) {
 			$uploadDir = 'ressources/photoProfil/';
+			$path_part = pathinfo(basename($photo['name']));
+			$typeImg = $path_part['extension'];
+	
 			$uploadFile = $uploadDir . basename($photo['name']);
 
 			$allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -73,7 +77,7 @@ class ModeleConnexion extends Connexion{
 				$sql->execute();
 				$result = $sql->fetch();
 				$newId = $result['idUser'] + 1; 
-				$newFilePath = 'ressources/photoProfil/user' . $newId;
+				$newFilePath = 'ressources/photoProfil/user' . $newId . '.' . $typeImg;
 				//a modifier si on veut que le num de la pp match avec l'idUser si suppression dans les lignes précédentes
 				
 				if (rename($uploadFile, $newFilePath)) {
@@ -88,43 +92,43 @@ class ModeleConnexion extends Connexion{
 	}
 
 	public function recupDonneesEtConnexion(){
-		// if ($_SERVER["REQUEST_METHOD"] === "POST") {
-			if(isset($_POST['seConnecter'])){
-				$sql = self::$bdd->prepare("select pwd from utilisateur where login = :login");
-				$sql->bindParam(':login', $_POST['login'], PDO::PARAM_STR);
-				$sql->execute();
-				$result = $sql->fetch();
-				$hash = $result['pwd'];
-				
-				if(password_verify($_POST['pwd'], $hash)){
-					
-					$token = $_SESSION['csrfToken'];
-					if(!Securite::isTokenValid($token)){
-						die('Session expirée. Veuillez réessayer');
-					}
+		if(isset($_POST['seConnecter'])){
+			$sql = self::$bdd->prepare("select pwd, idUser from utilisateur where login = :login");
+			$sql->bindParam(':login', $_POST['login'], PDO::PARAM_STR);
+			$sql->execute();
+			$result = $sql->fetch();
+			$hash = $result['pwd'];
+			$id = $result['idUser'];
 
-					$_SESSION["newsession"] = $_POST['login'];
-					/*verifier si la case de $_SESSION est set, si oui ça veut dire que l'user est connecté sinon non*/
-					if(isset($_SESSION["newsession"])){
-						//echo "vous êtes connecté !"; 
-						header('Refresh: 0; URL=index.php'); //TODO ICI
-						//header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
-						//ou rediriger vers la page d'accueil ou la page de profil ?
-					}
-					else {"erreur de connexion";}	
-				} else echo 'mot de passe invalide';
-			}
-		// }
+			
+			if(password_verify($_POST['pwd'], $hash)){
+
+				$token = $_SESSION['csrfToken'];
+				if(!Securite::isTokenValid($token)){
+					die('Session expirée. Veuillez réessayer');
+				}
+
+				$_SESSION["newsession"] = $_POST['login'];
+				$_SESSION["idUser"] = $id;
+				
+				if(isset($_SESSION["newsession"])){
+					header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+				}
+				else {"erreur de connexion";}	
+			} else {
+			 	echo 'mot de passe invalide';
+			} 
+		}
 	}
 
 	public function deconnexion(){
 		if(isset($_SESSION["newsession"])){
 			unset($_SESSION["newsession"]);
 			if(!isset($_SESSION["newsession"])){
-				header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+				header('Refresh: 0; URL=index.php?getmodule=modAccueil&action=page');
 			}	
 		} else {
-			header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+			header('Refresh: 0; URL=index.php?getmodule=modAccueil&action=page');
 
 		}
 	}
