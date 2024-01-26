@@ -15,10 +15,11 @@ public function page(){
                     <img src="ressources/accueil/coeur.png" class="img-fluid" alt="Coeur">
                 </div>
                 <h3 class="text-center">L\'univers et l\'histoire de Cakey</h3>
-                <p>Bienvenue chez Cakey ! Dans ce jeu de type tower defense, tu essayes de cusiner un gâteau. 
-                Mais des ennemis veulent t\'en empêcher ! Tu vas devoir affronter des patates, des poissons, des petits pois et tant d\'autres qui essayent de gâcher ton délicieux gâteau
-                Pour les empêcher d\'atteindre ton saladier, tu peux utiliser différents instrument de cuisine, des couteaux, des fouets etc. 
+                <p id="loreDuJeu">Bienvenue chez Cakey ! Dans ce jeu de type tower defense, tu essayes de cusiner un gâteau. 
+                Mais des ennemis veulent t\'en empêcher ! Tu vas devoir affronter des patates, des poissons, des petits pois et tant d\'autres qui essayent de gâcher ton délicieux gâteau.
+                Pour les empêcher d\'atteindre ton saladier, tu peux utiliser différents instruments de cuisine, des couteaux, des fouets, etc.
                 </p>
+              
             </div>
         </div>
     </div>
