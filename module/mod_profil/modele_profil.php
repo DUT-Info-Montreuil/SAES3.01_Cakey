@@ -5,15 +5,9 @@ class ModeleProfil extends Connexion{
 
     public function __construct(){
 		if (isset($_SESSION['newsession'])) {
-
-        $sql = self::$bdd->prepare("select idUser from utilisateur where login = :login");
-		$sql->bindParam(':login', $_SESSION["newsession"], PDO::PARAM_STR);
-		$sql->execute();
-		$result = $sql->fetch();
-
-        $this->id = $result['idUser'];
-		print_r("mon id est : ");
-		print_r($this->id);
+			$this->id = $this->get_idUserAvecLogin($_SESSION["newsession"]);
+			print_r("mon id est : ");
+			print_r($this->id);
      	}
 	}
 
@@ -27,24 +21,38 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 		$pdo_req->execute();
 		$resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
-		var_dump($resultat["login"]);
-		
+		var_dump($resultat);
+
+		if($resultat["pathPhotoProfil"]==null)	{
+			$resultat["pathPhotoProfil"]="Ressources/photoProfil/photoProfilDefault.png";
+		}	
  	  	return $resultat;
   }
 
 
 
- 	public function modifLogin($id, $nouvLogin) {
+ 	public function modifLogin($nouvLogin) {
+		$nouvLogin = strip_tags($nouvLogin);
+		$nouvLogin = htmlentities($nouvLogin, ENT_QUOTES, 'UTF-8');
+ 
         $req = "update utilisateur set login = :login where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
         $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
         $pdo_req->bindParam("login", $nouvLogin, PDO::PARAM_STR);
-    
-        return $pdo_req->execute();
-    }
+		$exe = $pdo_req->execute();
+		if($exe== true){
+			session_start();
+			$_SESSION['newsession'] = $nouvLogin;
+
+		}
+     }
 
     public function modifDescription($nouvdescription) {
+
+ 		$nouvdescription = htmlentities($nouvdescription, ENT_QUOTES, 'UTF-8');
+
+		var_dump($nouvdescription);
         $req = "update utilisateur set description = :description where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
@@ -97,9 +105,7 @@ class ModeleProfil extends Connexion{
 				$sql->execute();
 				$result = $sql->fetch();
 				$newId = $result['idUser'] + 1; 
-				$newFilePath = 'ressources/photoProfil/user' . $newId . '.' . $typeImg;
-				//a modifier si on veut que le num de la pp match avec l'idUser si suppression dans les lignes précédentes
-				
+				$newFilePath = 'ressources/photoProfil/user' . $newId . '.' . $typeImg;				
 				if (rename($uploadFile, $newFilePath)) {
 					return $newFilePath;
 				} else {
@@ -172,19 +178,12 @@ class ModeleProfil extends Connexion{
 	 return $resultat;
   }
 
-  //creer un trigger, quand on ajoute une demande et que l'inverse existe : ami 
-  // todo : possibilité de supp un ami, une demande , une demande recu 
-  // todo : fix echo 
+  
 
   public function ajouterAmi($login) {
 	print_r("dmd d'ami pour  : ");
     var_dump($login);
-	/*
-	$req = "select idUser from utilisateur where lower(login) =lower(:login)";
-	$pdo_req = self::$bdd->prepare($req);	
-	$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
-	$pdo_req->execute();
-	*/
+ 
 	$idUser=$this->get_idUserAvecLogin($login);
 	var_dump($idUser);
 	$bool = $this->aRecuDemandeDe($idUser, $this->id);
@@ -208,8 +207,6 @@ class ModeleProfil extends Connexion{
 		<script>alert('Demande d'ami envoyé ! ');</script>;
 		<?php
 			}
-
-		
  		}catch(PDOException $e ){
 			if ($e->errorInfo[1] == 1062) {
 				echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";
@@ -309,9 +306,6 @@ class ModeleProfil extends Connexion{
 			$pdo_req2->bindParam("monid", $this->id, PDO::PARAM_STR);
 			$pdo_req2->bindParam("id",$idUser, PDO::PARAM_STR);
 			$pdo_req2->execute();
-			print_r("acceptaiton ");
-
-			
 
  		}catch(PDOException $e ){
 			print_r("fail accepter");
@@ -330,12 +324,12 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("login", $login, PDO::PARAM_STR);
 		$pdo_req->execute();
 		$idUserRow=$pdo_req->fetch(PDO::FETCH_ASSOC);
- 		
+ 
+
 		if ($idUserRow !== false) {
 			try{
 				$idUser = (int)$idUserRow['idUser'];
-				print_r("idtrouvé : ");
-  				return $idUser;
+   				return $idUser;
 			}catch(PDOException $e ){
 					$e->getMessage();
 					echo "<script>alert('Vous avez déjà envoyé une demande à cette ami ! ');</script>";

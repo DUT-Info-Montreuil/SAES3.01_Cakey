@@ -538,7 +538,10 @@ border-radius: 10%;
 }
 
 /* Profil  */
-/*profile haut bon */
+ 
+.profile-container{
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
 
 #photoProfil, 
 #photoProfil2 {
@@ -552,18 +555,32 @@ border-radius: 10%;
   justify-content: flex-start;
 }
 
-.user-info,
-.colonne-classement {
+.user-info {
   flex: 1;
   margin-right: 30px;   
 }
 
+.colonne-classement {
+  flex: 1;
+  width: 100%;
+  margin-right: 30px;   
+}
+
+
 .table-amis {
-  max-width: 30%;
+  border: 1px solid transparent;  
+  border-color: none;
+  max-width: 40%;
   border-radius: 20px;
  
- 
  }
+ .table-cell a, .table-cell form {
+  display: inline-block;
+  margin-right: 10px; /* Ajustez cette valeur selon vos besoins */
+}
+
+
+
  .classementEtAmi {
   display: flex;
   justify-content: center;
@@ -573,6 +590,72 @@ border-radius: 10%;
   border-radius: 20%;
 }
 
+ .profilClassement{
+  width: 100%;
+
+ }
+
+ .table-amis{
+  margin-left:100px;
+  margin-bottom:10px;
+
+}
+
+ .profile-container.table-cell form input[type="submit"] {
+  background-color: #F081B6;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.profile-container.table-cell form input[type="submit"]:hover {
+  background-color: #ffeaf9;
+  color: #F081B6;
+}
+
+ /* test*/
+
+.profile-container button, 
+submit {
+  border-radius: 20px;
+
+}
+ .profile-info {
+  background-color: #f4d7eb;
+  padding: 20px;
+  margin: 20px;
+  justify-content: center;
+  border-radius: 30px;
+
+}
+
+
+
+.profile-info button {
+  border-radius: 20px;
+
+}
+#login, 
+#description {
+    border: 1px solid #ff66b2;
+    border-radius: 20px;
+    padding: 5px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+ 
+
+ 
+
+ 
+
+ 
 #bouton1{
   background-color:#F081B6;
   border: none;
