@@ -354,10 +354,16 @@
     width: 100%;
   }
   
+
+  main{
+    flex: 1;
+    overflow: auto;
+    color:black;
+    background-image: url(ressources/tous/imagedefond.jpg);
+    width: 100%;
+    height: 785px;
   
-  #main{
   }
-  
   
   #main{
     min-height: 100%;
