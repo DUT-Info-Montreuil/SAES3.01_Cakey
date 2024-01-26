@@ -1,18 +1,12 @@
 <?php 
 
 
-// if (!defined("BASE_URL")) {
-//     die("il faut passer par l'index");
-// }
-
-
 include_once 'connexion.php';
 include_once 'securite.php';
 
 class ModeleConnexion extends Connexion{
 
     public function recupDonneesInscriptionEtAjoutBD(){
-		// if($SERVER['REQUEST_METHOD'] === 'POST'){
 			if(isset($_POST['submit'])){
 
 				$token = $_SESSION['csrfToken'];
@@ -53,7 +47,6 @@ class ModeleConnexion extends Connexion{
 					}
 				}
 			}
-		// }
 	}
 
 
@@ -112,7 +105,7 @@ class ModeleConnexion extends Connexion{
 				$_SESSION["idUser"] = $id;
 				
 				if(isset($_SESSION["newsession"])){
-					header('Refresh: 1; URL=index.php?getmodule=modAccueil&action=page');
+					header('Refresh: 0; URL=index.php?getmodule=modAccueil&action=page');
 				}
 				else {"erreur de connexion";}	
 			} else {

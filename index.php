@@ -30,9 +30,9 @@ include_once './module/mod_connexion/cont_connexion.php';
 include_once './module/mod_connexion/modele_connexion.php';
 include_once './module/mod_connexion/vue_connexion.php';
 
-include_once './module/mod_statistiques/cont_statistiques.php';
-include_once './module/mod_statistiques/modele_statistiques.php';
-include_once './module/mod_statistiques/vue_statistiques.php';
+include_once './module/mod_historique/cont_historique.php';
+include_once './module/mod_historique/modele_historique.php';
+include_once './module/mod_historique/vue_historique.php';
 
 include_once './module/mod_accueil/vue_accueil.php';
 
@@ -84,10 +84,10 @@ switch ($getmodule) {
         include_once './module/mod_connexion/mod_connexion.php';
         $module = new ModConnexion;
         break;
-    case 'modStatistiques' :
-        include_once './module/mod_statistiques/mod_statistiques.php';
-        $module = new ModStatisques;
-        break;
+    case 'modHistorique' :
+            include_once './module/mod_historique/mod_historique.php';
+            $module = new ModHistorique;
+            break;    
     default : die("Module inconnu");
 }
 

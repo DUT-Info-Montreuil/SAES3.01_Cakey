@@ -1,6 +1,6 @@
 <?php
 
-class ModStatisques{
+class ModHistorique{
 
 
 	private $controller;
@@ -13,9 +13,9 @@ class ModStatisques{
 		$action = isset($_GET['action']) ? $_GET['action'] : 'pageNiveau';
 		$niveau = isset($_GET['niveau']) ? $_GET['niveau'] : 1;
 
-		$vue = new VueStatistiques();
-		$modele = new ModeleStatistiques();
-		$this->controller = new ControllerStatistiques($vue, $modele); 
+		$vue = new VueHistorique();
+		$modele = new ModeleHistorique();
+		$this->controller = new ControllerHistorique($vue, $modele); 
 	
 		
 		

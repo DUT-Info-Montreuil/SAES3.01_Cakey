@@ -1,14 +1,13 @@
 <?php
- class VueStatistiques extends VueGenerique{
+ class VueHistorique extends VueGenerique{
 
     public function __contruct(){
         parent::__construct();
     }
-
-    
     public function afficherTableauParties($donnees) {
         echo '<div class="table-responsive">';
-        echo '<table class="table">';
+        echo '<div class="tabHistorique">';
+        echo '<table class="table tableau-parties">';
         echo '<thead><tr><th>Numéro de Niveau</th><th>Temps</th><th>Score</th><th>Est Gagnée</th></tr></thead>';
         echo '<tbody>';
         foreach ($donnees as $partie) {
@@ -21,7 +20,9 @@
         }
         echo '</tbody></table>';
         echo '</div>';
+        echo '</div>';
     }
+    
     
     
         

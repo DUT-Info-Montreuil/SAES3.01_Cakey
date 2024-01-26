@@ -5,40 +5,28 @@ public function __contruct(){
 }
 
 public function afficherNiveaux($tabNiveau){
-        foreach($tabNiveau as $niveau){
+    echo '<div class="d-flex flex-wrap">';
+    foreach($tabNiveau as $niveau){
+?>
 
-       
-        ?>      
-
-       <table style="border: 3px solid pink; margin-bottom: 20px;">                
-            <tr>  <?php echo "Niveau " .$niveau["numeroNiveau"]; ?> </tr>
-
-            <tbody>
-                <tr>
-                    <img src="" alt="image du niveau">
-                </tr>
-                <tr>
-                    <td><span style="color: red;">nombre d'ennemis dans ce niveau : </span></td>
-                    <td><?php echo $niveau["nbEnnemis"]; ?></td>
-                    <!-- possibilité d'afficher le nb d'ennemis par niveau -->
-                </tr>
-                <tr>
-                    <td><span style="color: red;">Argent bonbon pour ce niveau : </span></td>
-                    <td><?php echo $niveau["argentBonbon"]; ?></td>
-                </tr>
-                <tr>
-                    <td><span style="color: red;">Ce niveau vous donnera : </span></td>
-                    <td><?php echo $niveau["XPgagnees"] . "XP"; ?></td>
-                    <td><?php echo $niveau["ChocolatGagne"] . "chocolats"; ?></td>
-
-           </tr>
-            <tbody>
-            </tr>
-        </table>
-    </div>
+            <div class="card-niveau">
+                <h5 class="card-title-niveau"><?= "Niveau " . $niveau["numeroNiveau"] ?></h5>
+                <div class="card-img-top-niveau"></div>
+                <div class="card-body-niveau">
+                    <p class="caracteristique-niveau"><span style="color: #e91e63;">Nombre d'ennemis dans ce niveau:</span> <span style="color: black;"><?= $niveau["nbEnnemis"] ?></span></p>
+                    <p class="caracteristique-niveau"><span style="color: #e91e63;">Argent bonbon pour ce niveau:</span> <span style="color: black;"><?= $niveau["argentBonbon"] ?></span></p>
+                    <p class="caracteristique-niveau"><span style="color: #e91e63;">Ce niveau vous donnera:</span> <span style="color: black;"><?= $niveau["XPgagnees"] . " XP, " ?><span style="color: black;"><?= $niveau["ChocolatGagne"] . " chocolats" ?></span></p>
+                    <div class="hr-divider-niveau"></div>
+                </div>
+            </div>
+        </div>
 <?php
     }
+    echo '</div>'; 
 }
+
+
+
 
 public function trierNiveaux(){ ?>
     <div class="sorting-container">

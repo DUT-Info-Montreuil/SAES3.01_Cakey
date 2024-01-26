@@ -4,8 +4,9 @@ class VueCompMenu{
 	private $affichage;
 
 	public function __construct(){
+	
 	}
-
+	
 	public function affiche($lien){
 		if(isset($_SESSION['newsession'])){
 			$connect = '
@@ -23,10 +24,10 @@ class VueCompMenu{
 		}
 		else { 
 			$connect = 
-			    '<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=formulaireConnexion">Connexion</a></li>
+				'<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=formulaireConnexion">Connexion</a></li>
 				<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modConnexion&action=formulaireInscription">Inscription</a></li>';
-		}		                         
-		
+		}
+
 		$affichage = '
 			<nav class="navbar navbar-expand-md navbar-light bg-orange">
 				<a class="navbar-brand"  href="index.php?getmodule=modAccueil&action=page"><img src="ressources/header/gateaux.png" style="width: 70px; height: 70px;" class="logo-img"/>CAKEY</a>
@@ -46,11 +47,12 @@ class VueCompMenu{
 								Univers
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="index.php?getmodule=modEnnemi&action=page">Ennemi</a>
-								<a class="dropdown-item" href="index.php?getmodule=modUstensile&action=page">Ustensiles</a>
+
+								<a class="dropdown-item" href="index.php?getmodule=modEnnemi">Ennemi</a>
+								<a class="dropdown-item" href="index.php?getmodule=modUstensile">Ustensiles</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.php?getmodule=modNiveau&action=page">Niveaux</a>
-								<a class="dropdown-item" href="index.php?getmodule=modBonus&action=page">Bonus</a>
+								<a class="dropdown-item" href="index.php?getmodule=modNiveau">Niveaux</a>
+								<a class="dropdown-item" href="index.php?getmodule=modBonus">Bonus</a>
 							</div>
 						</li>
 						<li class="nav-item">

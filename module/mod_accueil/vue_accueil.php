@@ -5,10 +5,10 @@ public function __contruct(){
 }
 
 public function page(){
-   
-    echo '
+   ?>
     <div class="container">
     <div class="row">
+    
         <div class="col-12">
             <div class="histoire" style="width: 100%;">
                 <div class="imgText d-flex align-items-center">
@@ -27,7 +27,6 @@ public function page(){
     <div class="row">
         <div class="col-12">
             <div class="gameplayVideo">
-
                 <video class="responsive-video" width="100%" height="auto" controls>
                     <source src="ressources/accueil/gameplayGakey.ogx" type="video/ogg">
                 </video>
@@ -45,6 +44,7 @@ public function page(){
 </div>
     
     ';
+    <?php
 }
 
 }

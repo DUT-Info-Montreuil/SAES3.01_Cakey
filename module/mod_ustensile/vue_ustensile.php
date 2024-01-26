@@ -5,39 +5,28 @@
     }
 
     public function afficherUstensiles($tabUstensiles){
-        echo "dans afficher ustensile";
+        echo '<div class="d-flex flex-wrap">';
         foreach($tabUstensiles as $ustensile){
-                    ?>      
 
-                    <table style="border: 3px solid pink; margin-bottom: 20px;">                
-                        <tr>  <?php echo $ustensile["nomTour"]; ?> </tr>
-
-                        <tbody>
-                            <tr>
-                            <img src="<?= $ustensile["pathImageTour"] ?>" alt="image de l'ustensile" style="width: 100px; height: 100px;">
-                            </tr>
-                            <tr>
-                                <td><span style="color: red;">NIVEAU: </span></td>
-                                <td><?php echo $ustensile["niveau"]; ?></td>
-                            </tr>
-                            <tr>
-                                <td><span style="color: red;">pointsAttaque: </span></td>
-                                <td><?php echo $ustensile["pointsAttaque"]; ?></td>
-                            </tr>
-                            <tr>
-                                <td><span style="color: red;">PV: </span></td>
-                                <td><?php echo $ustensile["pv"]; ?></td>
-                            </tr>
-                            <tr>
-                                <td><span style="color: red;">prix d'achat: </span></td>
-                                <td><?php echo $ustensile["prixAchat"]; ?></td>
-                        <tbody>
-                        </tr>
-                    </table>
+    ?>
+    
+                <div class="card-ustensile">
+                    <h5 class="card-title-ustensile"><?= $ustensile["nomTour"] ?></h5>
+                    <img src="<?= $ustensile["pathImageTour"] ?>" class="card-img-top-ustensile" alt="image de l'ustensile">
+                    <div class="card-body-ustensile">
+                        <p class="caracteristique-ustensile">NIVEAU: <?= $ustensile["niveau"] ?></p>
+                        <p class="caracteristique-ustensile">pointsAttaque: <?= $ustensile["pointsAttaque"] ?></p>
+                        <p class="caracteristique-ustensile">PV: <?= $ustensile["pv"] ?></p>
+                        <p class="caracteristique-ustensile">prix d'achat: <?= $ustensile["prixAchat"] ?></p>
+                        <div class="hr-divider-ustensile"></div>
+                    </div>
                 </div>
+            </div>
     <?php
         }
+        echo '</div>'; 
     }
+    
 
 
     public function trierUstensiles(){ ?>

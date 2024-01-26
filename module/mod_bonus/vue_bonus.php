@@ -5,28 +5,26 @@ public function __contruct(){
 }
 
 public function afficherBonus($tabBonus){
+    echo '<div class="d-flex flex-wrap">';
     foreach($tabBonus as $bonus){
-        ?>      
-        <table style="border: 3px solid pink; margin-bottom: 20px;">                
-            <tr>  <?php echo strtoupper($bonus["nomBonus"]); ?> </tr>
-
-            <tbody>
-                <tr>
-                <img src="<?= $bonus["pathImageBonus"] ?>" alt="image de <?= $bonus["nomBonus"] ?>" style="width: 100px; height: 100px;">
-                </tr>
-                <tr>
-                    <td><span style="color: red;">Prix Chocolat:</span></td>
-                    <td><?php echo $bonus["prixEnChocolat"]; ?></td>
-                </tr>
-                <tr>
-                    <td><?php echo "Le " . $bonus['nomBonus']. " ".$bonus['description']; ?></td>
-                </tr>
-            <tbody>
-        </table>
-    </div>
+?>
+      
+            <div class="card-bonus">
+                <h5 class="card-title-bonus"><?= strtoupper($bonus["nomBonus"]) ?></h5>
+                <img src="<?= $bonus["pathImageBonus"] ?>" class="card-img-top-bonus" alt="image de <?= $bonus["nom"] ?>">
+                <div class="card-body-bonus">
+                    <p class="caracteristique-bonus">Prix Chocolat: <?= $bonus["prixEnChocolat"] ?></p>
+                    <p class="caracteristique-bonus"><?= "Le " . $bonus['nom'] . " " . $bonus['description'] ?></p>
+                    <div class="hr-divider-bonus"></div>
+                </div>
+            </div>
+        </div>
 <?php
     }
+    echo '</div>'; 
 }
+
+
 
 
 public function trierBonus(){ ?>

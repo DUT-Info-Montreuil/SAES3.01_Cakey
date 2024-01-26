@@ -5,38 +5,32 @@
     }
 
     public function afficherEnnemis($tabEnnemis){
+        echo '<div class="d-flex flex-wrap">';
         foreach($tabEnnemis as $ennemi){
-    ?>      
 
-            <table style="border: 3px solid pink; margin-bottom: 20px;" class="tabEnnemi">                
-                <tr>  <?php echo strtoupper($ennemi["nomEnnemi"]); ?> </tr>
-
-                <tbody>
-                    <tr>
-                    <img src="<?= $ennemi["pathImageEnnemi"] ?>" alt="image de <?= $ennemi["nomEnnemi"] ?>" style="width: 100px; height: 100px;">
-                    </tr>
-                    <tr>
-                        <td><span style="color: red;">PV:</span></td>
-                        <td class="PVvalue"><?php echo $ennemi["PV"]; ?></td>
-                    </tr>
-                    <tr>
-                        <td><span style="color: red;">Portée Attaque:</span></td>
-                        <td><?php echo $ennemi['porteeAttaque']; ?></td>
-                    </tr>
-                    <tr>
-                        <td><span style="color: red;">Points Attaque:</span></td>
-                        <td><?php echo $ennemi['pointsAttaque']; ?></td>
-                    </tr>
-                    <tr>
-                        <td><span style="color: red;">Récompense:</span></td>
-                        <td><?php echo $ennemi['recompense']; ?></td>
-                    </tr>
-                <tbody>
-            </table>
-        </div>
+    ?>
+           
+        
+                <div class="card">
+                    <h5 class="card-title"><?= strtoupper($ennemi["nomEnnemi"]) ?></h5>
+                    <img src="<?= $ennemi["pathImageEnnemi"] ?>" class="card-img-top" alt="image de <?= $ennemi["nomEnnemi"] ?>">
+                    <div class="card-body">
+                        <p class="caracteristique">PV: <?= $ennemi["PV"] ?></p>
+                        <p class="caracteristique">Portée Attaque: <?= $ennemi['porteeAttaque'] ?></p>
+                        <p class="caracteristique">Points Attaque: <?= $ennemi['pointsAttaque'] ?></p>
+                        <p class="caracteristique">Récompense: <?= $ennemi['recompense'] ?></p>
+                        <div class="hr-divider"></div>
+                    </div>
+                </div>
+            </div>
     <?php
         }
+        echo '</div>';
     }
+    
+    
+    
+    
     
     public function trierEnnemis(){ ?>
         <div class="sorting-container">
