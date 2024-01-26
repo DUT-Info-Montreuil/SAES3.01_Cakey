@@ -83,6 +83,15 @@
     color: #ffc0cb;
 }
 
+/*page Accueil*/
+#loreDuJeu {
+  background-color: #ffffcc; /* Fond jaune */
+  border: 2px solid #e6e600; /* Bordure jaune un peu plus foncée */
+  border-radius: 10px; /* Bordure arrondie */
+  padding: 15px; /* Espace intérieur du paragraphe */
+}
+
+
 
 /* active
 *{
@@ -337,12 +346,14 @@
   
   .histoire h3{
     color: lightpink;
+
   }
   
   .histoire img{
     width: 15%;
     margin: auto;
     padding: 10px;
+
   }
   
   .imgText p{

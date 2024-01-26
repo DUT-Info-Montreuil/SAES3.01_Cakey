@@ -9,9 +9,7 @@ class ModeleBonus extends Connexion{
 	}
 
 	public function recupererDonneesBonus(){
-		$sql = self::$bdd->prepare("SELECT nom, prixEnChocolat, description, pathImageBonus, exist FROM bonus ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'nom'));																		
-		// $sql = self::$bdd->prepare("SELECT idEnnemi, nom, PV, porteeAttaque, pointsAttaque, recompense, pathImageEnnemi, exist FROM ennemi ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'nom'));
-
+		$sql = self::$bdd->prepare("SELECT nomBonus, prixEnChocolat, description, pathImageBonus FROM bonus ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'nomBonus'));																		
 		
 		if ($sql->execute()) {
 			return $sql->fetchAll(PDO::FETCH_ASSOC);

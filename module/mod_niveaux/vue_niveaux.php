@@ -5,22 +5,12 @@ public function __contruct(){
 }
 
 public function afficherNiveaux($tabNiveau){
-    foreach($tabNiveau as $niveau){
-        $classeNiveau= $niveau["exist"] ? "universItem niveau-item itemExist" : "universItem niveau-item itemAVenir";
+        foreach($tabNiveau as $niveau){
 
-        // echo "Niveau blabalbal $niveau[numeroNiveau]  exist : $niveau[exist]";
+       
         ?>      
 
-    </br>
-        
-    <div class="niveau <?= $classeNiveau ?>">
-        <?php if ($classeNiveau === "itemAVenir"): ?>
-                <tr>
-                    <td colspan="2">Bientôt disponible</td>
-                </tr>
-            <?php endif; ?>
-
-        <table style="border: 3px solid pink; margin-bottom: 20px;">                
+       <table style="border: 3px solid pink; margin-bottom: 20px;">                
             <tr>  <?php echo "Niveau " .$niveau["numeroNiveau"]; ?> </tr>
 
             <tbody>
@@ -30,8 +20,7 @@ public function afficherNiveaux($tabNiveau){
                 <tr>
                     <td><span style="color: red;">nombre d'ennemis dans ce niveau : </span></td>
                     <td><?php echo $niveau["nbEnnemis"]; ?></td>
-                    <!-- A CHANGER -->
-                    <td><?php echo "FAIRE UNE METHODE POUR RECUP CB DENNEMIS DE QUEL TYPE ET AFFICHER CA"; ?></td>
+                    <!-- possibilité d'afficher le nb d'ennemis par niveau -->
                 </tr>
                 <tr>
                     <td><span style="color: red;">Argent bonbon pour ce niveau : </span></td>
@@ -41,10 +30,8 @@ public function afficherNiveaux($tabNiveau){
                     <td><span style="color: red;">Ce niveau vous donnera : </span></td>
                     <td><?php echo $niveau["XPgagnees"] . "XP"; ?></td>
                     <td><?php echo $niveau["ChocolatGagne"] . "chocolats"; ?></td>
-                    <td><?php echo $niveau["idTour"] . "idTOUR"; ?></td>
-                    <!-- A CHANGER -->
-                    <td><?php echo "CI DESSUS l'ID de la tour debloquee : ne pas afficher l'idee mais l'image + nom cliquable qui redirigent si possible vers la page des tours"; ?></td>
-                </tr>
+
+           </tr>
             <tbody>
             </tr>
         </table>
