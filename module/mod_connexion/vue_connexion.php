@@ -24,7 +24,7 @@
 <?php
 	}
 
-
+	
 	public function formulaireConnexion($token){
 		if(isset($_SESSION['newsession'])){
 			echo 'Vous êtes déjà connecté en tant que "'. $_SESSION['newsession'] . '"'; 
@@ -61,7 +61,10 @@
 				<p>Créez votre login : </p>
 				<input type="text" name="login" maxlength="100" required class="form-input" />
 				<p>Créez votre mot de passe : </p>
-				<input type="text" name="pwd" maxlength="200" required class="form-input" />
+				<input type="password" name="pwd" maxlength="200" required class="form-input" />
+				<p>Confirmer votre mot de passe : </p>
+                <input type="password" name="pwdConf" maxlength="200" required class="form-input"/>
+
 				<p>Ajoutez votre photo de profil :</p>
 				<input type="file" name="pathPhotoProfil" class="form-input" />
 	
@@ -73,8 +76,11 @@
 		<?php
 	}
 	
+	
+		
 
-	// public function formulaireConnexion() {    ///// ??????????????????????????????????
+
+	// public function formulaireConnexion() {
 	// 	if (isset($_SESSION['newsession'])) {
 	// 		$connect = 'Vous êtes déjà connecté en tant que "' . $_SESSION['newsession'] . '"
 	// 					<br>
@@ -94,7 +100,7 @@
 	// 					</form>';
 	// 	}
 	
-	// 	echo ' ??????????????????????????????????????????????????????????????????????????????????????????????????????????
+	// 	echo '
 	// 		<div class="container d-flex align-items-center justify-content-center">
 	// 			<div class="row">
 	// 				<div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
@@ -104,5 +110,6 @@
 	// 		</div>
 	// 	';
 	// }
-	
-	}
+
+
+}
