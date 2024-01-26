@@ -23,7 +23,7 @@ class ModeleProfil extends Connexion{
 		
 
 		if($resultat["pathPhotoProfil"]==null)	{
-			$resultat["pathPhotoProfil"]="Ressources/photoProfil/photoProfilDefault.png";
+			$resultat["pathPhotoProfil"]="ressources/photoProfil/photoProfilDefault.png";
 		}	
  	  	return $resultat;
   }
