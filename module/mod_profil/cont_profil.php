@@ -11,16 +11,18 @@ class ControleuProfil {
 	public function __construct() {
 		$this->modele = new ModeleProfil();
 		$this->vue = new VueProfil();
-		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		$this->nom = isset($_GET["nom"]) && $_GET["nom"] !== null ? $_GET["nom"] : $_SESSION['newsession'];
  
 	}
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
 		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		print_r("on cherche le profil de ");
-		print_r($this->nom);
-		if($this->nom=$_SESSION['newsession']){
+		//print_r("on cherche le profil de ");
+		//print_r($this->nom);
+		//print_r($_SESSION['newsession']);
+
+		if(isset($_SESSION['newsession'])&& $this->nom==$_SESSION['newsession']){
 			print_r("cest mon profil");
 			switch ($this->action) {
 				case "profil" :

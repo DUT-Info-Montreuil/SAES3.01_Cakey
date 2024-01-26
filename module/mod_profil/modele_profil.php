@@ -4,6 +4,8 @@ class ModeleProfil extends Connexion{
     private $id;
 
     public function __construct(){
+		if (isset($_SESSION['newsession'])) {
+
         $sql = self::$bdd->prepare("select idUser from utilisateur where login = :login");
 		$sql->bindParam(':login', $_SESSION["newsession"], PDO::PARAM_STR);
 		$sql->execute();
@@ -12,21 +14,22 @@ class ModeleProfil extends Connexion{
         $this->id = $result['idUser'];
 		print_r("mon id est : ");
 		print_r($this->id);
-     }
+     	}
+	}
 
 	public function get_detailsProfil ($login) {
 		$req = "SELECT utilisateur.login , utilisateur.description , utilisateur.pathPhotoProfil 
 			  FROM utilisateur  
 			  WHERE utilisateur.idUser=:id";
 
-	  $pdo_req = self::$bdd->prepare($req);
-	  $id = $this->get_idUserAvecLogin($login);
-	  $pdo_req->bindParam("id", $id, PDO::PARAM_INT);
-	  $pdo_req->execute();
-	  $resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
-	  var_dump($resultat["login"]);
-
- 	  return $resultat;
+		$pdo_req = self::$bdd->prepare($req);
+		$id = $this->get_idUserAvecLogin($login);
+		$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
+		$pdo_req->execute();
+		$resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
+		var_dump($resultat["login"]);
+		
+ 	  	return $resultat;
   }
 
 

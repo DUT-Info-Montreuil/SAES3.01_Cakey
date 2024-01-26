@@ -10,8 +10,8 @@ class ModeleCompMenu extends Connexion{
 
 
 	public function lienPathPhotoProfil(){
-		$id = $_SESSION['idUser'];
 		if(isset($_SESSION['newsession'])){
+			$id = $_SESSION['idUser']; //car si clique lien sans etre co affiche erreur
 			$sql = self::$bdd->prepare("SELECT pathPhotoProfil FROM utilisateur WHERE idUser = :idUser;");
 			$sql->bindParam(':idUser',$id, PDO::PARAM_INT);
 			/*$sql->bindParam(':numeroNiveau', $niveau, PDO::PARAM_INT);*/
