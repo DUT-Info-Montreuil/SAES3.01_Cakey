@@ -5,22 +5,13 @@ public function __contruct(){
 }
 
 public function afficherNiveaux($tabNiveau){
-    foreach($tabNiveau as $niveau){
-        $classeNiveau= $niveau["exist"] ? "universItem niveau-item itemExist" : "universItem niveau-item itemAVenir";
+    echo "DANS AFFICHER NIVEAU";
+    var_dump($tabNiveau);
 
-        // echo "Niveau blabalbal $niveau[numeroNiveau]  exist : $niveau[exist]";
+    foreach($tabNiveau as $niveau){
         ?>      
 
-    </br>
-        
-    <div class="niveau <?= $classeNiveau ?>">
-        <?php if ($classeNiveau === "itemAVenir"): ?>
-                <tr>
-                    <td colspan="2">Bientôt disponible</td>
-                </tr>
-            <?php endif; ?>
-
-        <table style="border: 3px solid pink; margin-bottom: 20px;">                
+       <table style="border: 3px solid pink; margin-bottom: 20px;">                
             <tr>  <?php echo "Niveau " .$niveau["numeroNiveau"]; ?> </tr>
 
             <tbody>
@@ -41,8 +32,12 @@ public function afficherNiveaux($tabNiveau){
                     <td><span style="color: red;">Ce niveau vous donnera : </span></td>
                     <td><?php echo $niveau["XPgagnees"] . "XP"; ?></td>
                     <td><?php echo $niveau["ChocolatGagne"] . "chocolats"; ?></td>
-                    <td><?php echo $niveau["idTour"] . "idTOUR"; ?></td>
+
                     <!-- A CHANGER -->
+
+            <?php if ($niveau["idTour"] !== NULL): ?>
+                <td><?php echo $niveau["nomTour"]; ?></td>
+            <?php endif; ?>
                     <td><?php echo "CI DESSUS l'ID de la tour debloquee : ne pas afficher l'idee mais l'image + nom cliquable qui redirigent si possible vers la page des tours"; ?></td>
                 </tr>
             <tbody>

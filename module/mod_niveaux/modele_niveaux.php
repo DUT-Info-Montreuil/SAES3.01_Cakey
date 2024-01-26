@@ -10,7 +10,7 @@ class ModeleNiveau extends Connexion{
 	}
 
 	public function recupererDonneesNiveau(){
-		$sql = self::$bdd->prepare("SELECT numeroNiveau, nbEnnemis, pathImageTerrain, argentBonbon, XPgagnees, ChocolatGagne, idTour, exist FROM niveau ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'numeroNiveau'));
+		$sql = self::$bdd->prepare("SELECT numeroNiveau, nbEnnemis, pathImageTerrain, argentBonbon, XPgagnees, ChocolatGagne, idTour FROM niveau  ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'numeroNiveau'));
 		
 		if ($sql->execute()) {
 			return $sql->fetchAll(PDO::FETCH_ASSOC);

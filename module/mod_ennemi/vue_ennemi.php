@@ -6,22 +6,14 @@
 
     public function afficherEnnemis($tabEnnemis){
         foreach($tabEnnemis as $ennemi){
-            $classeEnnemi = $ennemi["exist"] ? "universItem ennemi-item itemExist" : "universItem ennemi-item itemAVenir";
     ?>      
-    
-        <div class="ennemi <?= $classeEnnemi ?>">
-            <?php if ($classeEnnemi === "itemAVenir"): ?>
-                    <tr>
-                        <td colspan="2">Bientôt disponible</td>
-                    </tr>
-                <?php endif; ?>
 
             <table style="border: 3px solid pink; margin-bottom: 20px;" class="tabEnnemi">                
-                <tr>  <?php echo strtoupper($ennemi["nom"]); ?> </tr>
+                <tr>  <?php echo strtoupper($ennemi["nomEnnemi"]); ?> </tr>
 
                 <tbody>
                     <tr>
-                    <img src="<?= $ennemi["pathImageEnnemi"] ?>" alt="image de <?= $ennemi["nom"] ?>" style="width: 100px; height: 100px;">
+                    <img src="<?= $ennemi["pathImageEnnemi"] ?>" alt="image de <?= $ennemi["nomEnnemi"] ?>" style="width: 100px; height: 100px;">
                     </tr>
                     <tr>
                         <td><span style="color: red;">PV:</span></td>
@@ -50,7 +42,7 @@
         <div class="sorting-container">
             <p class="sorting-label">Trier par</p>
             <div class="sorting-buttons-container">
-                <a href="index.php?getmodule=modEnnemi&sort=nom" class="sorting-button">Nom</a>
+                <a href="index.php?getmodule=modEnnemi&sort=nomEnnemi" class="sorting-button">Nom</a>
                 <a href="index.php?getmodule=modEnnemi&sort=PV desc" class="sorting-button">PV</a>
                 <a href="index.php?getmodule=modEnnemi&sort=pointsAttaque desc" class="sorting-button">Attaque</a>
                 <a href="index.php?getmodule=modEnnemi&sort=recompense desc" class="sorting-button">Récompense Bonbons</a>
@@ -64,7 +56,3 @@
     
 }
 ?>
-
-<!-- pr savoir de quelle manière on trie on parcourt le DOM en JS 
-regarder si le selecteur est cochée regarder comment en jquery comment on sait si tel ou tel checkbow est cochée
-selon la checkbox cochée, j'envoie tel ou tel param pour ma requête ajax -->

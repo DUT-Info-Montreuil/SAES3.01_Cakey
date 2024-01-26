@@ -7,21 +7,10 @@
     public function afficherUstensiles($tabUstensiles){
         echo "dans afficher ustensile";
         foreach($tabUstensiles as $ustensile){
-            // if($ustensile["niveau"] == 1):
-                    $classeUstensile= $ustensile["exist"] ? "universItem ustensile-item itemExist" : "universItem ustensile-item itemAVenir";
                     ?>      
 
-                <div class="ustensile <?= $classeUstensile ?>">
-                    <?php if ($classeUstensile === "itemAVenir"): ?>
-                            <tr>
-                                <td colspan="2">Bientôt disponible</td>
-                            </tr>
-                        <?php endif; ?>
-
                     <table style="border: 3px solid pink; margin-bottom: 20px;">                
-                        <!-- <tr>  <?php echo $ustensile["nom"] . " - Niveau 1"; ?> </tr> -->
-                        <tr>  <?php echo $ustensile["nom"]; ?> </tr>
-
+                        <tr>  <?php echo $ustensile["nomTour"]; ?> </tr>
 
                         <tbody>
                             <tr>
@@ -46,7 +35,6 @@
                         </tr>
                     </table>
                 </div>
-                <!-- rajouter un php endif juste en dessous si je remet celui en haut -->
     <?php
         }
     }
@@ -56,7 +44,7 @@
         <div class="sorting-container">
             <p class="sorting-label">Trier par</p>
             <div class="sorting-buttons-container">
-                <a href="index.php?getmodule=modUstensile&sort=nom" class="sorting-button">Nom</a>
+                <a href="index.php?getmodule=modUstensile&sort=nomTour" class="sorting-button">Nom</a>
                 <a href="index.php?getmodule=modUstensile&sort=PV desc" class="sorting-button">PV</a>
                 <a href="index.php?getmodule=modUstensile&sort=pointsAttaque desc" class="sorting-button">Attaque</a>
                 <a href="index.php?getmodule=modUstensile&sort=porteeAttaque desc" class="sorting-button">Porte d'attaque</a>

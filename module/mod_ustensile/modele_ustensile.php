@@ -10,9 +10,7 @@ class ModeleUstensile extends Connexion{
 	}
 
     public function recupererDonneesUstensiles(){
-        $sql = self::$bdd->prepare("SELECT idTour, nom, pointsAttaque, porteeAttaque, pv, prixAchat, niveau, pathImageTour, exist FROM statistiquesTour ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'niveau'));
-		// $sql = self::$bdd->prepare("SELECT idEnnemi, nom, PV, porteeAttaque, pointsAttaque, recompense, pathImageEnnemi, exist FROM ennemi ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'nom'));
-
+        $sql = self::$bdd->prepare("SELECT idTour, nomTour, pointsAttaque, porteeAttaque, pv, prixAchat, niveau, pathImageTour FROM statistiquesTour ORDER BY " . ($this->sort && isset($_GET['sort']) ? $_GET['sort'] : 'niveau'));
 		
 		if ($sql->execute()) {
 		    return $sql->fetchAll(PDO::FETCH_ASSOC);
