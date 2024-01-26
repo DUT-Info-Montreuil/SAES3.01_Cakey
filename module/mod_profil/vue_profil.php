@@ -9,11 +9,12 @@ class VueProfil {
 	public function afficheProfilModifiable($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
 		var_dump($donnees);
 		var_dump($donnees["login"]);
+ 
 		?>	
- 		<h1> Mon profil </h1> 
-
  		<div class="profile-container">
 			<div class="profile-info">
+				<h1> Mon profil </h1> 
+			
 				<div id="photo">
 					<figure>	
 						<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" id="photoProfil">
@@ -23,10 +24,10 @@ class VueProfil {
 				<div class="user-info">
 					<form action="index.php?getmodule=modProfil&action=modifProfil" method="POST">
 
-						Nom d'utilisateur : <input type="text" id="login" name="login" placeholder="<?=$donnees["login"]?>"  maxlength="20"  /> <br/>
+						Nom d'utilisateur : <?= htmlentities($donnees["login"], ENT_QUOTES, 'UTF-8')?><br/>
 							
-						Description : <input type="text" id="description" name="description" placeholder="<?=$donnees["description"]?>"  maxlength="255" style="width: 300px; height: 50px;vertical-align: top;" 	/><br/>
-			
+						Description : <input type="text" id="description" name="description" placeholder="<?= htmlentities($donnees["description"], ENT_QUOTES, 'UTF-8') ?>"  maxlength="255" style="width: 300px;vertical-align: top;" 	/><br/>
+
 						<div>
 							<input type="submit" value ="Enregistrer"/> <br/>
 						</div>
@@ -56,7 +57,7 @@ class VueProfil {
 							var currentUrl = window.location.href;
 
 							navigator.clipboard.writeText(currentUrl).then(function() {
-								alert('L\'URL a été copiée dans le presse-papiers : ' + currentUrl);
+								alert('L\'URL a été copiée dans le presse-papiers : ');
 							}).catch(function(err) {
 								console.error('Erreur lors de la copie dans le presse-papiers : ', err);
 							});
@@ -75,12 +76,14 @@ class VueProfil {
  			
  		</div>
 		<?php
-			echo '</div class="classementEtAmi">';
-			$this->get_classement($donneesClassement, $classementAllLevel);
-			$this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
-			echo "</div>";
-			echo "</div>";
-
+			echo '<div class="classementEtAmi">';
+				echo '<div class="partieClassement">';
+					$this->get_classement($donneesClassement, $classementAllLevel);
+					echo "</div>";
+				echo '<div class="partieAmi">';
+					$this->afficherPartieAmis($amis, $demandeAmis, $demandeRecu);
+				echo "</div>";
+			echo "</div>"; 
 	}
 
 	public function afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
@@ -118,15 +121,21 @@ class VueProfil {
 	</div>
 		
 		<?php
-		   $this->get_classement($donneesClassement, $classementAllLevel);
- 		   $this->afficherPartieAmisNonModifiable($amis, $demandeAmis, $demandeRecu);
+		   echo '<div class="classementEtAmi">';
+		   echo '<div class="partieClassement">';
+			   $this->get_classement($donneesClassement, $classementAllLevel);
+			   echo "</div>";
+		   echo '<div class="partieAmi">';
+			   $this->afficherPartieAmisNonModifiable($amis, $demandeAmis, $demandeRecu);
+		   echo "</div>";
+	   echo "</div>"; 
 	}
 
 	public function get_classement($donneesClassement, $classementAllLevel){
 		?>
 		<div class="colonne-classement">
 			<h2> Statistique des 10 niveaux avec les meilleurs scores</h2>
-			<table>
+			<table class = "profilClassement">
 				<thead>
 					<tr>
 						<td> niveau</td>
@@ -150,7 +159,7 @@ class VueProfil {
 			</table>
 			 
  			<h2>Statistique de tous les niveaux </h2>
-			    <table>
+			    <table class = "profilClassement">
 					<thead>
 						<tr>
 							<td > niveau</td>
@@ -179,9 +188,7 @@ class VueProfil {
 	}
 
  	public function afficherPartieAmis($amis, $demandeAmis, $demandeRecu ){
-		//todo : ajouter colonne rang
-		//<input type="text" id="amiSupp" name="loginSupp" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
-
+ 
 		?>
 		<div class="colonne-amis">
 			<table class="table-amis">
@@ -260,13 +267,11 @@ class VueProfil {
 	
 	}
 	public function afficherPartieAmisNonModifiable($amis, $demandeAmis, $demandeRecu ){
-		//todo : ajouter colonne rang
-		//<input type="text" id="amiSupp" name="loginSupp" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
-
+ 
 		?>
-		
-		<table class="table-amis">
-		<thead>
+		<div class="colonne-amis">
+			<table class="table-amis">
+			<thead>
 		 	 	<tr>
 					<td class="titre-tab-centre"> Ses amis</td> 
  				</tr>
@@ -281,6 +286,7 @@ class VueProfil {
 			  	</tr>
 					<?php } ?>
 			   </table>
+			   </div>
 			   <?php 
 	
 	}
