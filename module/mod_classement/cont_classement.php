@@ -14,7 +14,7 @@ class ControleurClassement {
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "general";
-		$this->vue->menuzzef();
+		$this->vue->menu();
 		switch ($this->action) {
 			case "general" :
 				$this->general();

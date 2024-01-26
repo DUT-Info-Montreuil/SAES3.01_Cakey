@@ -21,14 +21,14 @@ class VueProfil {
 				</div>
 
 				<div class="user-info">
-					<form action="index.php?getmodule=modProfil&action=modifProfil" method="POST">
+					<form action="index.php?getmodule=modProfil&action=modifProfil" method="POST" id="formDescription">
 
-						Nom d'utilisateur : <input type="text" id="login" name="login" placeholder="<?=$donnees["login"]?>"  maxlength="20"  /> <br/>
+						Nom d'utilisateur : <input type="text" id="ZoneDeTexte" name="login" placeholder="<?=$donnees["login"]?>"  maxlength="20"  /> <br/>
 							
 						Description : <input type="text" id="description" name="description" placeholder="<?=$donnees["description"]?>"  maxlength="255" style="width: 300px; height: 50px;vertical-align: top;" 	/><br/>
 			
 						<div>
-							<input type="submit" value ="Enregistrer"/> <br/>
+							<input type="submit" value ="Enregistrer" /> <br/>
 						</div>
 					</form>
 				</div>

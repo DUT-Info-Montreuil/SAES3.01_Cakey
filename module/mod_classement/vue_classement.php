@@ -2,26 +2,15 @@
 class VueClassement{
     public function menuNotPerso(){
         ?> 
+            <h2> Classement</h2>
             <a href="index.php?getmodule=modClassement&action=general"id="menuClassement">Classement général</a>
             <a href="index.php?getmodule=modClassement&action=niveau"id="menuClassement">Classement par niveau</a>
    
     <?php
     }
-    public function menu(){
-        ?> <ul>
-        <li><a href="index.php?getmodule=modClassement&action=notPerso" id="menuClassement"> Classement</a></li>
-        <?php 
-        if(isset($_SESSION['newsession'])){
-		
-            ?><li><a href="index.php?getmodule=modClassement&action=perso"id="menuClassement> Classement Personnel</a></li>
-            <?php
-            }
-            ?>
-</ul>
-<?php
-    }
+  
 
-    public function menuzzef(){
+    public function menu(){
         ?> 
         <nav>
         <a href="index.php?getmodule=modClassement&action=notPerso" id="menuClassement"> Classement</a>
@@ -38,6 +27,7 @@ class VueClassement{
     }
     public function menuPerso(){
         ?>
+        <h2> Classement Personnel</h2>
         <nav>
         <a href="index.php?getmodule=modClassement&action=generalPerso" id="menuClassement">Classement général</a>
         <a href="index.php?getmodule=modClassement&action=niveauPerso" id="menuClassement">Classement par niveau</a>
@@ -59,7 +49,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["rankScore"]?></td>
-                        <td><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modProfil&nom=<?=$util['login']?>"><?=$util['login']?></a></td>
                         <td> <?=$util["score"]?> </td>
                 </tr><?php 
                 }
@@ -84,7 +74,7 @@ class VueClassement{
                 foreach ($données as $util){
                     ?><tr>
                         <td><?=$util["rankTemps"]?></td>
-                        <td><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modProfil&nom=<?=$util['login']?>"><?=$util['login']?></a></td>
                         <td> <?=$util["temps"]?> </td>
                 </tr><?php 
                 }
@@ -160,7 +150,7 @@ class VueClassement{
     
                     ?><tr>
                         <td><?=$util["rangG"]?></td>
-                        <td><?=$util["login"]?></a></td>
+                        <td><a href="index.php?getmodule=modProfil&nom=<?=$util['login']?>"><?=$util['login']?></a></td>
                         <td> <?=$util["niveauMax"]?> </td>
                         <td> <?=$util["Xp"]?> </td>
                 </tr><?php 

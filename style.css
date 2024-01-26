@@ -483,10 +483,29 @@ border-radius: 10%;
   justify-content: center;
  }
 
+#ZoneDeTexte{
+  border-radius: 20%;
+}
+
+#bouton1{
+  background-color:#F081B6;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+}
  
 
- 
- 
+h2{
+  color:#c53078;
+  text-shadow: #b84b7f;
 
-
+}
+a{
+  color:#b84b7f;
+}
 
