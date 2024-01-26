@@ -18,7 +18,7 @@
         </header>
 
         <div class="imagedefond">
-            <main>
+            <main style="height: 1500px;">
                 <?= $tampon ?>
             </main>
         </div>
