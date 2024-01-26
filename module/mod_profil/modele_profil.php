@@ -45,6 +45,9 @@ class ModeleProfil extends Connexion{
     }
 
     public function modifDescription($nouvdescription) {
+		$nouvdescription = strip_tags($_POST['nouvdescription']);
+		$nouvdescription = htmlspecialchars($_POST['nouvdescription'], ENT_QUOTES, 'UTF-8');
+
         $req = "update utilisateur set description = :description where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);

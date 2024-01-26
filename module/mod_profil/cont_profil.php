@@ -11,7 +11,8 @@ class ControleuProfil {
 	public function __construct() {
 		$this->modele = new ModeleProfil();
 		$this->vue = new VueProfil();
- 		$this->nom = isset($_GET["nom"]) && $_GET["nom"] !== null ? $_GET["nom"] : $_SESSION['newsession'];
+		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : (isset($_SESSION['newsession']) ? $_SESSION['newsession'] : null);
+		
 	}
 	
 	public function exec() {
