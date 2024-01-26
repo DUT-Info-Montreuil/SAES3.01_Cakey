@@ -1,8 +1,4 @@
 <?php session_start();
-// à supprimer c'est un affichage d'erreur pour le pc de caroline car ca ne s'affiche pas de base
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 include_once './connexion.php';
 include_once './vueGenerique.php';
 
@@ -17,10 +13,6 @@ include_once './module/mod_niveaux/vue_niveaux.php';
 include_once './module/mod_profil/cont_profil.php'; 
 include_once './module/mod_profil/modele_profil.php';
 include_once './module/mod_profil/vue_profil.php'; 
-
-include_once './module/mod_univers/cont_univers.php';  
-include_once './module/mod_univers/modele_univers.php';
-include_once './module/mod_univers/vue_univers.php';
 
 include_once './module/mod_ustensile/cont_ustensile.php';  
 include_once './module/mod_ustensile/modele_ustensile.php';
@@ -56,6 +48,7 @@ Connexion::initConnexion();
 
 $vueGenerique = new VueGenerique();
 $getmodule = isset($_GET['getmodule']) ? $_GET['getmodule'] : 'modAccueil';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'nom';
 switch ($getmodule) {
     case 'modAccueil' :
         include_once './module/mod_accueil/mod_accueil.php';
@@ -63,31 +56,29 @@ switch ($getmodule) {
         break;
     case 'modEnnemi':
         include_once './module/mod_ennemi/mod_ennemi.php';
-        $module = new ModEnnemi;
+        $module = new ModEnnemi($sort);
         break;
-    case 'modUstensile':
+    case 'modUstensile' :
         include_once './module/mod_ustensile/mod_ustensile.php';
-        $module = new ModUstensile;
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'niveau';
+        $module = new ModUstensile($sort);
         break;
     case 'modBonus' :
         include_once './module/mod_bonus/mod_bonus.php';
-        $module = new ModBonus;
+        $module = new ModBonus($sort);
         break;
     case 'modClassement' :
         include_once './module/mod_classement/mod_classement.php';
         $module = new ModClassement;
         break;
-    case 'modNiveaux' :
+    case 'modNiveau' :
         include_once './module/mod_niveaux/mod_niveaux.php';
-        $module = new ModNiveaux;
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'numeroNiveau';
+        $module = new ModNiveau($sort);
         break;
     case 'modProfil' : 
         include_once './module/mod_profil/mod_profil.php';
         $module = new ModProfil;
-        break;
-    case 'modUnivers' :
-        include_once './module/mod_univers/mod_univers.php';
-        $module = new ModUnivers;
         break;
     case 'modConnexion':
         include_once './module/mod_connexion/mod_connexion.php';
@@ -97,7 +88,7 @@ switch ($getmodule) {
         include_once './module/mod_statistiques/mod_statistiques.php';
         $module = new ModStatisques;
         break;
-    default : break;
+    default : die("Module inconnu");
 }
 
 //données dynamiques//
