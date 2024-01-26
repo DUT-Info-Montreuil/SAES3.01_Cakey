@@ -5,10 +5,9 @@ public function __contruct(){
 }
 
 public function afficherNiveaux($tabNiveau){
-    echo "DANS AFFICHER NIVEAU";
-    var_dump($tabNiveau);
+        foreach($tabNiveau as $niveau){
 
-    foreach($tabNiveau as $niveau){
+       
         ?>      
 
        <table style="border: 3px solid pink; margin-bottom: 20px;">                
@@ -21,8 +20,7 @@ public function afficherNiveaux($tabNiveau){
                 <tr>
                     <td><span style="color: red;">nombre d'ennemis dans ce niveau : </span></td>
                     <td><?php echo $niveau["nbEnnemis"]; ?></td>
-                    <!-- A CHANGER -->
-                    <td><?php echo "FAIRE UNE METHODE POUR RECUP CB DENNEMIS DE QUEL TYPE ET AFFICHER CA"; ?></td>
+                    <!-- possibilité d'afficher le nb d'ennemis par niveau -->
                 </tr>
                 <tr>
                     <td><span style="color: red;">Argent bonbon pour ce niveau : </span></td>
@@ -33,13 +31,7 @@ public function afficherNiveaux($tabNiveau){
                     <td><?php echo $niveau["XPgagnees"] . "XP"; ?></td>
                     <td><?php echo $niveau["ChocolatGagne"] . "chocolats"; ?></td>
 
-                    <!-- A CHANGER -->
-
-            <?php if ($niveau["idTour"] !== NULL): ?>
-                <td><?php echo $niveau["nomTour"]; ?></td>
-            <?php endif; ?>
-                    <td><?php echo "CI DESSUS l'ID de la tour debloquee : ne pas afficher l'idee mais l'image + nom cliquable qui redirigent si possible vers la page des tours"; ?></td>
-                </tr>
+           </tr>
             <tbody>
             </tr>
         </table>
