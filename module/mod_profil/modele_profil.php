@@ -6,8 +6,7 @@ class ModeleProfil extends Connexion{
     public function __construct(){
 		if (isset($_SESSION['newsession'])) {
 			$this->id = $this->get_idUserAvecLogin($_SESSION["newsession"]);
-			print_r("mon id est : ");
-			print_r($this->id);
+ 
      	}
 	}
 
@@ -21,8 +20,7 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 		$pdo_req->execute();
 		$resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
-		var_dump($resultat);
-
+ 
 		if($resultat["pathPhotoProfil"]==null)	{
 			$resultat["pathPhotoProfil"]="Ressources/photoProfil/photoProfilDefault.png";
 		}	
@@ -52,8 +50,7 @@ class ModeleProfil extends Connexion{
 
  		$nouvdescription = htmlentities($nouvdescription, ENT_QUOTES, 'UTF-8');
 
-		var_dump($nouvdescription);
-        $req = "update utilisateur set description = :description where idUser = :id";
+         $req = "update utilisateur set description = :description where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
         $pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
@@ -182,17 +179,14 @@ class ModeleProfil extends Connexion{
 
   public function ajouterAmi($login) {
 	print_r("dmd d'ami pour  : ");
-    var_dump($login);
- 
+  
 	$idUser=$this->get_idUserAvecLogin($login);
-	var_dump($idUser);
-	$bool = $this->aRecuDemandeDe($idUser, $this->id);
+ 	$bool = $this->aRecuDemandeDe($idUser, $this->id);
 
 	
 	if ($idUser !== null) {
 		try{
-			var_dump($bool);
-			if($bool){
+ 			if($bool){
 				$this->accepterDemandeAmi($login, $this->id);
 				print_r("ajouter l'ami");
 			}else{
@@ -240,8 +234,7 @@ class ModeleProfil extends Connexion{
 
 	public function supprimerAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
- 		var_dump($login);
-
+ 
  		try{
 			$req = 
 			"delete from amis
@@ -260,9 +253,7 @@ class ModeleProfil extends Connexion{
 
 	public function supprimerDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($this->id);
-		var_dump($login);
-
+ 
  		try{
 			$req = 
 			"delete from demandeAmis
@@ -284,10 +275,7 @@ class ModeleProfil extends Connexion{
 
 	public function accepterDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($this->id);
-		print_r("acceptation de ");
-		var_dump($login);
-
+  
  		try{
  			$req = 
 			"delete from demandeAmis

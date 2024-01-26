@@ -7,9 +7,7 @@ class VueProfil {
 	}
 
 	public function afficheProfilModifiable($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
-		var_dump($donnees);
-		var_dump($donnees["login"]);
- 
+  
 		?>	
  		<div class="profile-container">
 			<div class="profile-info">
@@ -87,9 +85,7 @@ class VueProfil {
 	}
 
 	public function afficheProfil($donnees, $donneesClassement, $classementAllLevel, $amis, $demandeAmis, $demandeRecu){
-		var_dump($donnees);
-		var_dump($donnees["login"]);
-		?>
+ 		?>
 		<div class="profile-container">
 			<div class="profile-info">
 				<div id="photo2">
