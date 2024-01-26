@@ -594,5 +594,37 @@ h2{
 a{
   color:#b84b7f;
 }
+ .dropdown{
+  display: inline-block;
+ }
+.dropdown button{
+  text-decoration: none; /* pas d'héritage avec effet souligné */
+  color: #F081B6; /* couleur du texte */
+  background:  #ffeaf9; /* couleur de fond */
+  
+  padding: 15px 32px; /* marges intérieur */
+  font-family: sans-serif; /* police d'écriture */
+  font-size: 16px; /* taille du texte */
+  transition: .5s; /* temps de transition lors du hover : une demi seconde */
+  border-radius: 5%;
+  }
+.dropdown a{
+display: block;
+color: #b84b7f ;
+padding:10px 15px;
+}
+.dropdown .content{
+  display:none;
+  position:absolute ;
+  background-color:#FFC6EF;
+  min-width: 100px;
+  box-shadow: 2px 2px 5px hotpink;
 
->>>>>>> 0613ca25a69d98865e9fb87f3b907dd62e485422
+}
+.dropdown:hover .content{
+  display: block;
+}
+.dropdown:hover button{
+  background:#F081B6; /* couleur de fond */
+color:#ffeaf9;
+}

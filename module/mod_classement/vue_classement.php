@@ -1,39 +1,29 @@
 <?php
 class VueClassement{
-    public function menuNotPerso(){
-        ?> 
-            <h2> Classement</h2>
-            <a href="index.php?getmodule=modClassement&action=general"id="menuClassement">Classement général</a>
-            <a href="index.php?getmodule=modClassement&action=niveau"id="menuClassement">Classement par niveau</a>
    
-    <?php
-    }
-  
-
     public function menu(){
         ?> 
-        <nav>
-        <a href="index.php?getmodule=modClassement&action=notPerso" id="menuClassement"> Classement</a>
-        <?php 
-        if(isset($_SESSION['newsession'])){
-		
-            ?><a href="index.php?getmodule=modClassement&action=perso" id="menuClassement"> Classement Personnel</a>
-            <?php
-            }
-            ?>
-            </nav>
-            
+        <div class="dropdown"> 
+            <button>Classement</button>
+            <div class="content">
+            <a href="index.php?getmodule=modClassement&action=general">Classement général</a>
+            <a href="index.php?getmodule=modClassement&action=niveau">Classement par niveau</a>
+    </div>
+    </div>  
+    <?php
+    if(isset($_SESSION['newsession'])){
+		?> 
+        <div class="dropdown"> 
+            <button>Classement Personnel</button>
+            <div class="content">
+            <a href="index.php?getmodule=modClassement&action=generalPerso">Classement général</a>
+            <a href="index.php?getmodule=modClassement&action=niveauPerso">Classement par niveau</a>
+    </div>
+    </div> 
+
 <?php
     }
-    public function menuPerso(){
-        ?>
-        <h2> Classement Personnel</h2>
-        <nav>
-        <a href="index.php?getmodule=modClassement&action=generalPerso" id="menuClassement">Classement général</a>
-        <a href="index.php?getmodule=modClassement&action=niveauPerso" id="menuClassement">Classement par niveau</a>
-    </nav>
-<?php
-    }
+}
     public function get_tableauParNiveau($données){
         ?>
          <table>

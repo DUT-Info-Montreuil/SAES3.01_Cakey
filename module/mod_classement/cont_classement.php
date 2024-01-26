@@ -30,13 +30,6 @@ class ControleurClassement {
 				$this->persNiveau();
 				$this->selPerso();
 				break;
-			case "perso" :
-				$this->vue->menuPerso();
-				break;
-	
-			case "notPerso" :
-				$this->vue->menunotPerso();
-				break;	
 			case "generalPerso" :
 				$this->persGenerale();
 				break;
@@ -53,15 +46,12 @@ class ControleurClassement {
 	
 	private function general () {
 		$liste =$this->modele->get_liste();
-		$this->vue->menuNotPerso();
       	$this->vue->tab($liste);
-	   //$this->modele->get_liste1();
 
 	
 	}
 	
 	private function niveau () {
-		$this->vue->menuNotPerso();
 		$listeNiveau=$this->modele->get_listeNiveau();
 		$this->vue->formselNiveau($listeNiveau);	
 	}
@@ -82,12 +72,10 @@ class ControleurClassement {
 	}
 }
 	private function persGenerale(){
-		$this->vue->menuPerso();
 		$liste= $this->modele->get_liste_perso();
 		$this->vue->tab($liste);
 	}
 	private function persNiveau(){
-		$this->vue->menuPerso();
 		$listeNiveau=$this->modele->get_listeNiveau();
 		$this->vue->formselNiveauPerso($listeNiveau);
 
