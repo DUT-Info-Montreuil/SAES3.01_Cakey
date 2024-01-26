@@ -10,16 +10,20 @@ class VueProfil {
 		var_dump($donnees);
 		var_dump($donnees["login"]);
 		?>	
+		<div id="photo">
 		<figure>	
 			<img src="<?php echo $donnees["pathPhotoProfil"]?>"  alt="photoProfil" class="photoProfil">
 		</figure>
-		<style>
+
+ 
+		 <style>
         .photoProfil {
             width: 3cm;
             height:  3cm; 
 			border-radius: 50%;
         }
     	</style>
+		</div>
 
  		<form method="post" enctype="multipart/form-data" action="index.php?getmodule=modProfil&action=changerPhotoProfil">
                  <input type="file" name="pathPhotoProfil"/>
@@ -33,11 +37,11 @@ class VueProfil {
 
  		<h1> Profil <h1/> 
 		<button type="button" id="boutonPartagerProfil">Partager mon profil</button> 
- 
-	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST">
 
-		<input type="text" id="amiDemande" name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20"  /> 
-		<input type="submit" value ="Ajouter un ami "/> <br/>
+	<form action="index.php?getmodule=modProfil&action=ajoutAmi" method="POST" id="DemandeDami">
+
+		<input type="text"  name="login" placeholder="Entrez le nom d'utilisateur"  maxlength="20" id="amiDemande" /> 
+		<input type="submit" value ="Ajouter un ami " id="bouton"/> <br/>
 	</form>
 
 

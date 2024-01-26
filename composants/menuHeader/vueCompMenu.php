@@ -195,7 +195,7 @@ class VueCompMenu{
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Classement</a>
+							<a class="nav-link" href="index.php?getmodule=modClassement">Classement</a>
 						</li>
 						' . $connect . '
 					</ul>
