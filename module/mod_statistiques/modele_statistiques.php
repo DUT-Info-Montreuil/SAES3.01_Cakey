@@ -19,8 +19,7 @@ class ModeleStatistiques extends Connexion{
         /*$sql->bindParam(':numeroNiveau', $niveau, PDO::PARAM_INT);*/
 		if($sql->execute()){
             $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-            /*var_dump($result);*/
-            return $result;
+             return $result;
         }
         else{
             return null;

@@ -6,8 +6,7 @@ class ModeleProfil extends Connexion{
     public function __construct(){
 		if (isset($_SESSION['newsession'])) {
 			$this->id = $this->get_idUserAvecLogin($_SESSION["newsession"]);
-			print_r("mon id est : ");
-			print_r($this->id);
+		
      	}
 	}
 
@@ -21,7 +20,7 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("id", $id, PDO::PARAM_INT);
 		$pdo_req->execute();
 		$resultat = $pdo_req->fetch(PDO::FETCH_ASSOC);
-		var_dump($resultat);
+		
 
 		if($resultat["pathPhotoProfil"]==null)	{
 			$resultat["pathPhotoProfil"]="Ressources/photoProfil/photoProfilDefault.png";
@@ -52,7 +51,7 @@ class ModeleProfil extends Connexion{
 
  		$nouvdescription = htmlentities($nouvdescription, ENT_QUOTES, 'UTF-8');
 
-		var_dump($nouvdescription);
+
         $req = "update utilisateur set description = :description where idUser = :id";
     
         $pdo_req = self::$bdd->prepare($req);
@@ -66,8 +65,7 @@ class ModeleProfil extends Connexion{
 		$id = $this->get_idUserAvecLogin($nom);
 		if(isset($_POST['submit'])){
 			$photo = $_FILES['pathPhotoProfil'];
-			//echo $photo;
-			$lien = $this->traitementPhoto($photo);
+ 			$lien = $this->traitementPhoto($photo);
 			$sql = self::$bdd->prepare("update utilisateur set pathPhotoProfil = :pathPhotoProfil where idUser = :id");
 		
 		$sql->bindParam(':pathPhotoProfil', $lien, PDO::PARAM_STR);
@@ -181,23 +179,20 @@ class ModeleProfil extends Connexion{
   
 
   public function ajouterAmi($login) {
-	print_r("dmd d'ami pour  : ");
-    var_dump($login);
+     
  
 	$idUser=$this->get_idUserAvecLogin($login);
-	var_dump($idUser);
+
 	$bool = $this->aRecuDemandeDe($idUser, $this->id);
 
 	
 	if ($idUser !== null) {
 		try{
-			var_dump($bool);
+			
 			if($bool){
 				$this->accepterDemandeAmi($login, $this->id);
-				print_r("ajouter l'ami");
-			}else{
-				print_r("envoyer demande l'ami");
-				$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
+ 			}else{
+ 				$req = "INSERT INTO demandeAmis VALUES (:id, :idUser, CURRENT_DATE)";
 				$pdo_req = self::$bdd->prepare($req);
 				$pdo_req->bindParam("idUser", $idUser, PDO::PARAM_INT);
 				$pdo_req->bindParam("id", $this->id, PDO::PARAM_INT);
@@ -217,8 +212,7 @@ class ModeleProfil extends Connexion{
 		}
 		}else {
 			echo "<script>alert('Mais c'est qui ? ! '); </script>";
-			print_r("user existe pas");
-
+ 
 	}
 }
 	public function aRecuDemandeDe($id){
@@ -232,7 +226,7 @@ class ModeleProfil extends Connexion{
 		$pdo_req->bindParam("monid", $this->id, PDO::PARAM_STR);
 		$pdo_req->execute(); 
 		$aRecu=$pdo_req->fetch(PDO::FETCH_ASSOC);
-		print_r($aRecu);
+		
 		return $aRecu;
 
 
@@ -240,7 +234,7 @@ class ModeleProfil extends Connexion{
 
 	public function supprimerAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
- 		var_dump($login);
+ 		
 
  		try{
 			$req = 
@@ -260,8 +254,7 @@ class ModeleProfil extends Connexion{
 
 	public function supprimerDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($this->id);
-		var_dump($login);
+		
 
  		try{
 			$req = 
@@ -284,9 +277,8 @@ class ModeleProfil extends Connexion{
 
 	public function accepterDemandeAmi($login) {
 		$idUser =  $this->get_idUserAvecLogin($login);
-		var_dump($this->id);
-		print_r("acceptation de ");
-		var_dump($login);
+		
+		;
 
  		try{
  			$req = 
@@ -308,8 +300,7 @@ class ModeleProfil extends Connexion{
 			$pdo_req2->execute();
 
  		}catch(PDOException $e ){
-			print_r("fail accepter");
-			print_r($e->getMessage());
+ 			print_r($e->getMessage());
 
  		}
 	}
