@@ -11,13 +11,12 @@ class ControleuProfil {
 	public function __construct() {
 		$this->modele = new ModeleProfil();
 		$this->vue = new VueProfil();
-		$this->nom = isset($_GET["nom"]) && $_GET["nom"] !== null ? $_GET["nom"] : $_SESSION['newsession'];
- 
+ 		$this->nom = isset($_GET["nom"]) && $_GET["nom"] !== null ? $_GET["nom"] : $_SESSION['newsession'];
 	}
 	
 	public function exec() {
 		$this->action = isset($_GET["action"]) ? $_GET["action"] : "profil";
-		$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
+		//$this->nom = isset($_GET["nom"]) ? $_GET["nom"] : $_SESSION['newsession'];
 		//print_r("on cherche le profil de ");
 		//print_r($this->nom);
 		//print_r($_SESSION['newsession']);
@@ -59,6 +58,8 @@ class ControleuProfil {
 			
 		}
 		}else{
+			print_r("cest pas mon profil");
+
 			switch ($this->action) {
 				case "profil" :
 					$this->afficheProfil();
@@ -154,21 +155,21 @@ exemple de pdp
 	}
 
 	private function supprimerAmi () {
- 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->supprimerAmi($nom );
+ 		$user = isset($_GET["user"]) ? $_GET["user"] : "";
+		$this->modele->supprimerAmi($user );
 		$this->afficheProfilModifiable();
 
 	}
 	private function supprimerDemandeAmi () {
- 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->supprimerDemandeAmi($nom);
+ 		$user = isset($_GET["user"]) ? $_GET["user"] : "";
+		$this->modele->supprimerDemandeAmi($user);
 		$this->afficheProfilModifiable();
 
 	}
 
 	private function accepterDemandeAmi () {
- 		$nom = isset($_GET["nom"]) ? $_GET["nom"] : "";
-		$this->modele->accepterDemandeAmi($nom);
+ 		$user = isset($_GET["user"]) ? $_GET["user"] : "";
+		$this->modele->accepterDemandeAmi($user);
 		$this->afficheProfilModifiable();
 
 	}
