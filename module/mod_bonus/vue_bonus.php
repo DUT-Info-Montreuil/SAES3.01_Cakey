@@ -11,10 +11,10 @@ public function afficherBonus($tabBonus){
       
             <div class="card-bonus">
                 <h5 class="card-title-bonus"><?= strtoupper($bonus["nomBonus"]) ?></h5>
-                <img src="<?= $bonus["pathImageBonus"] ?>" class="card-img-top-bonus" alt="image de <?= $bonus["nom"] ?>">
+                <img src="<?= $bonus["pathImageBonus"] ?>" class="card-img-top-bonus" alt="image de <?= $bonus["nomBonus"] ?>">
                 <div class="card-body-bonus">
                     <p class="caracteristique-bonus">Prix Chocolat: <?= $bonus["prixEnChocolat"] ?></p>
-                    <p class="caracteristique-bonus"><?= "Le " . $bonus['nom'] . " " . $bonus['description'] ?></p>
+                    <p class="caracteristique-bonus"><?= "Le " . $bonus['nomBonus'] . " " . $bonus['description'] ?></p>
                     <div class="hr-divider-bonus"></div>
                 </div>
             </div>

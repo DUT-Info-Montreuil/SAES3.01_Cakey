@@ -10,7 +10,7 @@ class VueCompMenu{
 	public function affiche($lien){
 		if(isset($_SESSION['newsession'])){
 			$connect = '
-			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modStatistiques&action=pageNiveau">Historique</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.php?getmodule=modHistorique&action=pageNiveau">Historique</a></li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
